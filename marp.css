@@ -1,0 +1,13 @@
+/* Custom font size for all text */
+body {
+  font-size: 10px;
+}
+
+/* Custom font size for headers */
+h1 {
+  font-size: 32px;
+}
+
+h2 {
+  font-size: 28px;
+}
