@@ -30,13 +30,13 @@ tavily = TavilySearchResults(max_results=10)
 tools = [tavily]
 model = ChatOpenAI(model="gpt-4o-mini")
 
-model_with_tools = model.bind_tools(tools)
+model_knows_tools = model.bind_tools(tools)
 # ---------------------------------------------
 
 # Define the chatbot function that takes the current state and updates it with a new message
 def chatbot(state: State):
     # The LLM with tools bound to it can now invoke the search engine if needed
-    return {"messages": [model_with_tools.invoke(state["messages"])]}
+    return {"messages": [model_knows_tools.invoke(state["messages"])]}
 
 # Set up the StateGraph with our defined state structure
 graph_builder = StateGraph(State)

@@ -23,6 +23,8 @@ Context: {context}
 Question: {question}
 
 Note: {note}
+
+code examples: {code1, code2}
 """
 prompt = ChatPromptTemplate.from_template(template)
 model = ChatOpenAI(model = "gpt-4o-mini")

@@ -2,7 +2,7 @@
 
 from langchain_openai import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
-from langchain_core.prompts import ChatPromptTemplate
+from langchain.prompts import ChatPromptTemplate
 
 # Load the API key from the .env file 从.env文件中加载API密钥
 from dotenv import load_dotenv, find_dotenv
@@ -15,7 +15,7 @@ prompt = ChatPromptTemplate.from_messages([
 ])
 
 # Model: Create the OpenAI chatbot 创建聊天机器人
-model = ChatOpenAI(name="gpt-4o-mini") 
+model = ChatOpenAI(name="gpt-4o-mini")
 
 # OutputParser: Create an output parser 创建输出解析器
 parser = StrOutputParser() # "Output Parser"是指用于解析和处理模型输出的工具或系统。它通常用于将模型输出转换为可读的文本、结构化数据或其他形式，以便用户或其他系统能够理解和使用。

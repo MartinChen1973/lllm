@@ -8,8 +8,8 @@ from langchain_openai import ChatOpenAI
 load_dotenv(find_dotenv())
 
 # Create the OpenAI chatbot 创建聊天机器人
-model = ChatOpenAI(model="gpt-4o-mini")
-# model = ChatOpenAI(model="gpt-4o") 
+# model = ChatOpenAI(model="gpt-4o-mini")
+model = ChatOpenAI(model="gpt-4o") 
 
 # Read code from a file 从文件中读取代码
 with open("src/lesson02_Prompt_Engineering/data/code.py", "r", encoding="utf-8") as file:

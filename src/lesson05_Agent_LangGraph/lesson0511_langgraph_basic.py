@@ -15,7 +15,9 @@ model = ChatOpenAI(model="gpt-4o-mini")
 # 下面的State只有唯一的一个字段messages，用于存储聊天过程中的历史消息。
 # add_messages是一个内建的方法，用于追加消息历史。
 class State(TypedDict):
-    messages: Annotated[list, add_messages] 
+    messages: Annotated[list, add_messages]
+    # images: list<Image>,
+    # materials: list<Image>
 
 # Define the chatbot function that takes the current state and updates it with a new message
 # 这是一个简单的机器人，他直接调用了llm.invoke()方法处理以往的历史，然后返回model最后一次的回复。

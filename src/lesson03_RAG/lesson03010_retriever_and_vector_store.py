@@ -52,8 +52,8 @@ chain = setup_and_retrieval | prompt | model | parser
 # Questions
 # question = "我们公司前台叫什么名字？"
 # question = "附近有好吃的吗？"
-# question = "我第一次在公司吃饭，想请个人一起。有什么推荐的人选和地方不？"
-question = "我想请假去看病，需要什么手续？向谁请假？"
+question = "我第一次在公司吃饭，想请个人一起。有什么推荐的人选和地方不？"
+# question = "我想请假去看病，需要什么手续？向谁请假？"
 # question = "我是新来的，公司有没有顺风车到天通苑？"
 
 result = chain.invoke(question)

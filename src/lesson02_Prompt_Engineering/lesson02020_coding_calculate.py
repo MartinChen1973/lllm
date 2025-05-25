@@ -25,8 +25,8 @@ output_parser = StrOutputParser()
 chain = prompt | model | output_parser
 
 # 生成代码
-_prompt = f"请编写一段python代码，计算1.23456789*9.87654321，并在屏幕上显示结果。"
-# _prompt = f"请编写一段代码，能在屏幕上绘制两个互相不连接的{shape}，其中一个是{color1}，另外一个也是{color1}。（只要代码）"
+# _prompt = f"请编写一段python代码，计算1.23456789*9.87654321，并在屏幕上显示结果。"
+_prompt = f"请编写一段代码，能在屏幕上绘制两个互相不连接的圆圈，一个红色一个蓝色。（只要代码）"
 
 result = chain.invoke({"input": _prompt})
 

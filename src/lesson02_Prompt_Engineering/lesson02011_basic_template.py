@@ -24,5 +24,5 @@ output_parser = StrOutputParser()
 chain = prompt | llm | output_parser
 
 # Invoke the chain 调用链
-print(chain.invoke({"type" : "joke", "subject": "cats", "language":"English"}))
+# print(chain.invoke({"type" : "joke", "subject": "cats", "language":"English"}))
 print(chain.invoke({"type" : "short poem", "subject": "dogs", "language":"Chinese"}))

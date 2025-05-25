@@ -6,9 +6,8 @@ from langchain_openai import ChatOpenAI
 from langchain_community.tools.tavily_search import TavilySearchResults
 from typing import Annotated
 from typing_extensions import TypedDict
-from langgraph.graph import StateGraph, START, END
 from langgraph.graph.message import add_messages
-from langchain_core.messages import HumanMessage, AIMessage
+from langgraph.graph.state import StateGraph
 from langgraph.prebuilt import ToolNode, tools_condition
 from langgraph.checkpoint.memory import MemorySaver
 
@@ -24,11 +23,11 @@ tavily = TavilySearchResults(max_results=10)
 tools = [tavily]
 llm = ChatOpenAI(model="gpt-4o-mini")
 # llm = ChatOpenAI(model="gpt-4o")
-llm_with_tools = llm.bind_tools(tools)
+llm_knows_tools = llm.bind_tools(tools)
 
 # Define the chatbot function that takes the current state and updates it with a new message
 def chatbot(state: State):
-    return {"messages": [llm_with_tools.invoke(state["messages"])]}
+    return {"messages": [llm_knows_tools.invoke(state["messages"])]}
 
 # Set up the StateGraph with our defined state structure
 graph_builder = StateGraph(State)

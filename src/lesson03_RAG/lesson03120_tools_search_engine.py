@@ -35,6 +35,7 @@ def get_context(question):
 
 # Define the full chain
 question = "懂王赢得了2024大选吗？（请列出相关信息的出处，包括网站名称，网址，内容摘要）"
+# question = "懂王赢得了2024大选吗？"
 context = get_context(question)
 chain = prompt | model | parser
 

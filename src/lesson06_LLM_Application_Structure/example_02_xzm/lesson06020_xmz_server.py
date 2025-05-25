@@ -22,7 +22,7 @@ class QuestionRequest(BaseModel):
 
 # Langchain_tools retriever
 retriever = LangChainRetriever.create_question_and_context_from_path(
-    "src/lesson06_LangServe/example_02_xzm/xmz.md"
+    "src/lesson06_LLM_Application_Structure/example_02_xzm/xmz.md"
 )
 
 # Create a prompt
@@ -91,7 +91,7 @@ if __name__ == "__main__":
 # Run the server with the following command:
 
 # 1. Terminal / New Terminal打开一个终端窗口（此时应该位于项目根目录），运行下面的指令
-# python .\src\lesson06_LangServe\example_02_xzm\lesson06020_xmz_server.py
+# python .src\lesson06_LLM_Application_Structure\lesson06020_xmz_server.py
 
 # 2. 测试性访问如下地址应可以看到相关内容（而非404页面不存在）
 # Root: http://localhost:8930/

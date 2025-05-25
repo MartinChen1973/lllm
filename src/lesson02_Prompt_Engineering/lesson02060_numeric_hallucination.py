@@ -24,5 +24,6 @@ model = ChatOpenAI(model="gpt-4o-mini") # Very Clever, but still not enough
 # print(response.content)
 # 
 ################# 内容幻觉 #################
-response = model.invoke("请用100字总结一下下面的内容：“小明是一个小学生。”")
+# response = model.invoke("请用100字总结一下下面的内容：“")
+response = model.invoke("请计算：1.23456789*9.87654321”")
 print(response.content)
