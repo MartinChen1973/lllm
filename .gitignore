@@ -174,3 +174,5 @@ cython_debug/
 .pypirc
 .env_agicto
 .env_openrouter
+# SpecStory explanation file
+.specstory/.what-is-this.md
