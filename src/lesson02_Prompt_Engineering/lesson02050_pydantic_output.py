@@ -17,6 +17,8 @@ model = ChatOpenAI(model="gpt-4o-mini")
 
 # Define the data structure for the couplet response
 class Couplet(BaseModel):
+    """Data model for Chinese couplet with validation rules."""
+    
     upper_part: str = Field(
         # description="对联的上联",
         description="对联的上联，字数必须在10-15个字之间",
@@ -39,6 +41,7 @@ class Couplet(BaseModel):
     @field_validator("lower_part", mode="before")
     @classmethod
     def lower_part_must_match_upper_length(cls, value, info):
+        """Ensure lower part length matches upper part length."""
         upper_part = info.data.get("upper_part")
         if upper_part and len(value) != len(upper_part):
             raise ValueError(f"下联的长度必须和上联相同。当前上联：{upper_part}，下联：{value}")
