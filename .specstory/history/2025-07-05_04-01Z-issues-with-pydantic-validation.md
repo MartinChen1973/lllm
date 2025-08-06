@@ -241,3 +241,431 @@ The generated couplet shows this working - the LLM followed the rules and genera
 
 ---
 
+_**User**_
+
+Can we use length annotation rather than hard code like  "if not 10 <= len(value) <= 15:"?
+
+---
+
+_**Assistant**_
+
+Yes, absolutely! We can use Pydantic's built-in length validation annotations instead of hardcoding the validation logic. This is much cleaner and more maintainable. Let me show you how to do this:
+
+
+---
+
+```diff
+  class Couplet(BaseModel):
+      upper_part: str = Field(
+-         description="对联的上联，字数必须在10-15个字之间"
++         description="对联的上联，字数必须在10-15个字之间",
++         min_length=10,
++         max_length=15
+      )
+      lower_part: str = Field(
+-         description="对联的下联，字数必须与上联相同，且字数在10-15个字之间"
++         description="对联的下联，字数必须与上联相同，且字数在10-15个字之间",
++         min_length=10,
++         max_length=15
+      )
+      horizontal_part: str = Field(
+-         description="对联的横批，必须是4个字"
++         description="对联的横批，必须是4个字",
++         min_length=4,
++         max_length=4
+      )
+  
+```
+
+```diff
+          if not value:
+              raise ValueError("上联不能为空")
+-         # check the length of the upper part. Should be between 10 and 15 characters
+-         if not 10 <= len(value) <= 15:
+-             raise ValueError("上联的字数必须在10-15之间")
+          return value
+  
+```
+
+```diff
+          if upper_part and len(value) != len(upper_part):
+              raise ValueError(f"下联的长度必须和上联相同。当前上联：{upper_part}，下联：{value}")
+-         
+          return value
+  
+```
+
+```diff
+      @classmethod
+      def horizontal_part_must_be_four_chars(cls, value):
+-         required_length = 4
+          if not value:
+              raise ValueError("横批不能为空")
+-         if len(value) != required_length:
+-             raise ValueError(f"横批的长度必须为{required_length}个字")
+          return value
+  
+```
+
+---
+
+Now let's test the updated code to see how the length annotations work:
+
+
+---
+
+```bash
+python src/lesson02_Prompt_Engineering/lesson02050_pydantic_output.py
+```
+
+---
+
+_**User**_
+
+since we are using min length annotation, I think we can remove the "if not value:" checking.
+
+---
+
+_**Assistant**_
+
+You're absolutely right! Since we're using `min_length` annotations, Pydantic will automatically handle the empty string validation. The `min_length=10` will catch empty strings (which have length 0) and strings shorter than 10 characters. Let me remove those redundant checks:
+
+
+---
+
+```diff
+      @classmethod
+      def upper_part_must_not_be_empty(cls, value):
+-         if not value:
+-             raise ValueError("上联不能为空")
+          return value
+  
+```
+
+```diff
+      @classmethod
+      def lower_part_must_not_be_empty_and_match_upper(cls, value, info):
+-         if not value:
+-             raise ValueError("下联不能为空")
+-         
+          upper_part = info.data.get("upper_part")
+          if upper_part and len(value) != len(upper_part):
+```
+
+```diff
+      @classmethod
+      def horizontal_part_must_be_four_chars(cls, value):
+-         if not value:
+-             raise ValueError("横批不能为空")
+          return value
+  
+```
+
+---
+
+Actually, since we're using Pydantic's built-in length validation, we can simplify this even further. The only custom validation we really need is the one that checks if the lower part matches the length of the upper part. Let me clean this up:
+
+
+---
+
+```diff
+          return value
+  
+-     # Field validator for the lower part of the couplet
++     # Field validator for the lower part of the couplet - check if it matches upper part length
+      @field_validator("lower_part", mode="before")
+      @classmethod
+-     def lower_part_must_not_be_empty_and_match_upper(cls, value, info):
++     def lower_part_must_match_upper_length(cls, value, info):
+          upper_part = info.data.get("upper_part")
+          if upper_part and len(value) != len(upper_part):
+```
+
+---
+
+Now let me remove the other unnecessary validators:
+
+
+---
+
+
+
+---
+
+Perfect! Now the code is much cleaner. Let's test it to make sure everything works correctly:
+
+
+---
+
+```bash
+python src/lesson02_Prompt_Engineering/lesson02050_pydantic_output.py
+```
+
+---
+
+_**User**_
+
+
+
+---
+
+_**Assistant**_
+
+I see the issue! You removed the `task` variable but the prompt template still references it. Let me fix this by updating the prompt template to remove the `task` reference:
+
+
+---
+
+```diff
+      根据用户提出的主题，为其编写一幅春联。\n
+      主题：{topic}\n
+-     任务：{task}\n
+      格式：{format_instructions}\n
+      """,
+```
+
+---
+
+Now let's test the updated code:
+
+
+---
+
+```bash
+python src/lesson02_Prompt_Engineering/lesson02050_pydantic_output.py
+```
+
+```
+PS C:\Projects\Courses\lllm> python src/lesson02_Prompt_Engineering/lesson02050_
+pydantic_output.py
+PS C:\Projects\Courses\lllm> python src/lesson02_Prompt_Engineering/lesson02050_
+pydantic_output.py
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+=== Prompt Template ===
+
+    根据用户提出的主题，为其编写一幅春联。
+
+    主题：请写一副蛇年对联。
+
+    格式：The output should be formatted as a JSON instance that conforms to the JS
+ON schema below.
+
+As an example, for the schema {"properties": {"foo": {"title": "Foo", "descripti
+on": "a list of stri
+ngs", "type": "array", "items": {"type": "string"}}}, "required": ["foo"]}
+                    the object {"foo": ["bar", "baz"]} is a well-formatted insta
+nce of the schema. The object {"properti
+es": {"foo": ["bar", "baz"]}} is not well-formatted.
+                    
+Here is the output schema:
+```
+{"properties": {"upper_part": {"description": "对联的上联，字数必须在10-15个字之间", "maxLength
+": 15
+, "minLength": 10, "title": "Upper Part", "type": "string"}, "lower_part": {"des
+cription": "对联的下联，字数必须与上联相同，且字数在10-15个字之间", "maxLength": 15, "minLength": 10, "t
+itle": "Lower Part", "type": "string"}, "horizontal_part": {"description": "对联的横
+批，必须是4个字", "maxLength": 4, "minLength": 4, "title": "Horizontal Part", "type": "
+string"}}, "required": ["upper_part", "lower_part", "horizontal_part"]}
+                                                                 ```
+
+
+=== End Prompt Template ===
+=== Generated Couplet ===
+上联: 春来蛇舞龙腾跃，万物复苏迎新岁
+下联: 福到运来财满家，四季常安乐无忧
+横批: 蛇年吉祥
+=== End Couplet ===
+
+```
+
+---
+
+
+
+---
+
+_**User**_
+
+For the code present, we get this error:
+```
+Missing function or method docstring
+```
+How can I resolve this? If you propose a fix, please make it concise.
+
+---
+
+_**Assistant**_
+
+The linter is complaining about missing docstrings for the class and method. Here's a concise fix:
+
+
+---
+
+```diff
+  # Define the data structure for the couplet response
+  class Couplet(BaseModel):
++     """Data model for Chinese couplet with validation rules."""
++     
+      upper_part: str = Field(
+          # description="对联的上联",
+```
+
+```diff
+      @classmethod
+      def lower_part_must_match_upper_length(cls, value, info):
++         """Ensure lower part length matches upper part length."""
+          upper_part = info.data.get("upper_part")
+          if upper_part and len(value) != len(upper_part):
+```
+
+---
+
+Perfect! I've added concise docstrings to both the class and the method. The class docstring explains what the model represents, and the method docstring explains what the validation does. This should resolve the linter warning about missing docstrings.
+
+---
+
+_**User**_
+
+Can python or llm recogonize the docstring? (like annotation rathter than comments)
+
+---
+
+_**Assistant**_
+
+Great question! Yes, Python and LLMs can recognize docstrings, but they work differently from annotations:
+
+## Python Docstrings:
+- **Python can access them programmatically** via `__doc__` attribute
+- **Used by documentation generators** like Sphinx, pydoc
+- **IDE support** for tooltips and autocomplete
+- **Not used for validation** like annotations
+
+## LLMs and Docstrings:
+- **LLMs can read docstrings** when they're in the code context
+- **But they're not automatically included** in Pydantic format instructions
+- **Only field descriptions** (from `Field(description=...)`) are sent to LLMs
+
+Let me show you the difference:
+
+
+---
+
+```diff
+  except Exception as e:
+      print(f"Error: {e}")
++ 
++ # Print the format instructions generated by the pydantic object
++ print("=== Pydantic Format Instructions ===")
++ print(parser.get_format_instructions())
++ print("\n=== End Format Instructions ===\n")
++ 
++ # Demonstrate Python docstring access
++ print("=== Python Docstring Access ===")
++ print(f"Class docstring: {Couplet.__doc__}")
++ print(f"Method docstring: {Couplet.lower_part_must_match_upper_length.__doc__}")
++ print("=== End Docstring Access ===\n")
+  
+```
+
+---
+
+Wait, let me fix the placement of this code:
+
+
+---
+
+
+
+---
+
+Now let me remove the duplicate code at the end:
+
+
+---
+
+
+
+---
+
+Now let's run it to see the difference:
+
+
+---
+
+```bash
+python src/lesson02_Prompt_Engineering/lesson02050_pydantic_output.py
+```
+
+---
+
+_**User**_
+
+So the way of llm get to know the rules is via parser.get_format_instructions()?
+
+---
+
+_**Assistant**_
+
+Exactly! You've got it right. The LLM gets to know the rules through `parser.get_format_instructions()`, which generates a JSON schema that includes:
+
+1. **Field descriptions** (from `Field(description=...)`)
+2. **Length constraints** (from `min_length` and `max_length`)
+3. **Required fields**
+4. **Data types**
+
+Let me show you what this looks like by adding a simple print statement:
+
+
+---
+
+```diff
+  # Create a parser to handle the Pydantic structure
+  parser = PydanticOutputParser(pydantic_object=Couplet)
++ 
++ # Show what the LLM receives
++ print("=== What LLM Sees ===")
++ print(parser.get_format_instructions())
++ print("=== End LLM Instructions ===\n")
+  
+  # Set up the prompt template and add instructions
+```
+
+---
+
+Now let's run it to see exactly what the LLM receives:
+
+
+---
+
+```bash
+python src/lesson02_Prompt_Engineering/lesson02050_pydantic_output.py
+```
+
+---
+

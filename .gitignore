@@ -175,4 +175,5 @@ cython_debug/
 .env_agicto
 .env_openrouter
 # SpecStory explanation file
-.specstory/.what-is-this.md
+.specstory
+.VSCodeCounter
