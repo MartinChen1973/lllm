@@ -14,6 +14,7 @@ def book_hotel(hotel_name: str):
 def book_flight(from_airport: str, to_airport: str):
     """Book a flight"""
     print(f"TOOL CALLED: book_flight with from_airport={from_airport}, to_airport={to_airport}")
+    query_engine = create_rag_query_engine()
     return f"Successfully booked a flight from {from_airport} to {to_airport}."
 
 flight_assistant = create_react_agent(

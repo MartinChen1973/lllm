@@ -22,6 +22,12 @@ model = ChatOpenAI(model="gpt-4o-mini")
 # add_messages是一个内建的方法，用于追加消息历史。
 class State(TypedDict):
     messages: Annotated[list, add_messages]
+    # new_messages: Messages[20],
+    # new_messages_counter: int,
+    # headings: headings_tree,
+    # long_term_memories: Memory[],
+    # personal: Personal,
+    # order: Order
     # images: list<Image>,
     # materials: list<Image>
 
