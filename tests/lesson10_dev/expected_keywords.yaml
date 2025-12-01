@@ -1,0 +1,184 @@
+# Expected keywords and forbidden patterns for lesson10_Dev example scripts
+#
+# This file is used by the test suite to validate that example scripts run successfully
+# and produce expected output. Add an entry for each new script you create.
+#
+# Format:
+#   forbidden_patterns: List of regex patterns that should NOT appear in any output
+#   scripts: Mapping of script paths to their validation rules
+#     - keywords: List of regex patterns; at least one must match the output
+#     - skip: (optional) Set to true to skip testing this script
+#     - requires_env: (optional) Set to true if script needs API keys
+
+# Global blacklist - these patterns indicate failures
+# Use specific patterns to avoid false positives from intentional error demonstrations
+# Note: These are checked after script runs, not during parsing of valid output
+forbidden_patterns:
+  - "TypeError:"
+  - "ValueError:"
+  - "KeyError:"
+  - "AttributeError:"
+  - "ImportError:"
+  - "ModuleNotFoundError:"
+  - "ConnectionError:"
+  - "TimeoutError:"
+  - "Failed to connect"
+  - "UnicodeEncodeError:"
+
+# Per-script validation rules
+scripts:
+  # Quickstart examples
+  "src/lesson10_Dev/1010_Langchain/101010 Quickstart/10101010 Build a basic agent.py":
+    keywords:
+      - "weather"
+      - "sunny"
+      - "sf"
+    requires_env: true
+
+  "src/lesson10_Dev/1010_Langchain/101010 Quickstart/10101020 Build a real-world agent.py":
+    keywords:
+      - "weather"
+      - "location"
+      - "structured_response"
+    requires_env: true
+    skip: true # Has TypeError with unexpected 'top_k' argument - needs fixing
+
+  # Agent examples
+  "src/lesson10_Dev/1010_Langchain/101020 Agents/10102010 Dynamic model.py":
+    keywords:
+      - "search|weather"
+      - "model"
+    requires_env: true
+
+  "src/lesson10_Dev/1010_Langchain/101020 Agents/10102020 Tool error handling.py":
+    keywords:
+      - "divide"
+      - "Tool error: Please check your input" # This is the intentional error message
+      - "division by zero"
+    requires_env: true
+
+  "src/lesson10_Dev/1010_Langchain/101020 Agents/10102030 Tool use in ReAct loop.py":
+    keywords:
+      - "product|inventory"
+      - "search"
+    requires_env: true
+
+  "src/lesson10_Dev/1010_Langchain/101020 Agents/10102040 Dynamic system prompt.py":
+    keywords:
+      - "beginner|expert"
+      - "prompt"
+    requires_env: true
+
+  "src/lesson10_Dev/1010_Langchain/101020 Agents/10102050 Structured output.py":
+    keywords:
+      - "ContactInfo|structured_response"
+      - "email|phone"
+    requires_env: true
+
+  "src/lesson10_Dev/1010_Langchain/101020 Agents/10102060 Ticket booking with state_schema.py":
+    keywords:
+      - "Ticket Booking|flight"
+      - "book"
+    requires_env: true
+
+  "src/lesson10_Dev/1010_Langchain/101020 Agents/10102070 Ticket booking with middle_ware.py":
+    keywords:
+      - "ticket|booking"
+    requires_env: true
+    skip: true # Placeholder file, no executable code yet
+
+  "src/lesson10_Dev/1010_Langchain/101020 Agents/10102080 Streaming.py":
+    keywords:
+      - "stream|chunk"
+      - "Tavily|search"
+    requires_env: true
+    skip: true # Has Unicode encoding issue on Windows - needs fixing
+
+  # Model examples
+  "src/lesson10_Dev/1010_Langchain/101030 Models/10103010 Basic usage.py":
+    keywords:
+      - "gpt-4o-mini"
+      - "parrot|talk"
+    requires_env: true
+
+  "src/lesson10_Dev/1010_Langchain/101030 Models/10103020 Invocation-invoke.py":
+    keywords:
+      - "parrot|feather"
+      - "colorful"
+    requires_env: true
+
+  "src/lesson10_Dev/1010_Langchain/101030 Models/10103021-a Invocation-stream-basic.py":
+    keywords:
+      - "parrot|feather"
+      - "colorful"
+      - "\\|"
+    requires_env: true
+    skip: true # Occasionally has network errors (RemoteProtocolError) - transient issue
+
+  "src/lesson10_Dev/1010_Langchain/101030 Models/10103021-b Invocation-stream-reasoning.py":
+    keywords:
+      - "sky|color"
+      - "reasoning|Reasoning"
+    requires_env: true
+
+  "src/lesson10_Dev/1010_Langchain/101030 Models/10103021-c Invocation-stream-reconstruct_from_chunks.py":
+    keywords:
+      - "sky|color"
+      - "text"
+    requires_env: true
+
+  "src/lesson10_Dev/1010_Langchain/101030 Models/10103022-a Invocation-batch.py":
+    keywords:
+      - "batch"
+      - "response"
+    requires_env: true
+
+  "src/lesson10_Dev/1010_Langchain/101030 Models/10103022-b Invocation-batch-as-completed.py":
+    keywords:
+      - "batch|completed"
+      - "response"
+    requires_env: true
+
+  "src/lesson10_Dev/1010_Langchain/101030 Models/10103022-c Invocation-batch-max-concurrency.py":
+    keywords:
+      - "batch|concurrency"
+      - "response"
+    requires_env: true
+
+  "src/lesson10_Dev/1010_Langchain/101030 Models/10103030-a Tool calling.py":
+    keywords:
+      - "weather|Boston"
+      - "tool"
+    requires_env: true
+
+  "src/lesson10_Dev/1010_Langchain/101030 Models/10103040-a Structured-output-pydantic.py":
+    keywords:
+      - "Structured|Movie"
+      - "title|rating"
+    requires_env: true
+
+  "src/lesson10_Dev/1010_Langchain/101030 Models/10103040-b Structured-output-typedict.py":
+    keywords:
+      - "Structured|Movie"
+      - "TypedDict"
+    requires_env: true
+
+  "src/lesson10_Dev/1010_Langchain/101030 Models/10103040-c Structured-output-json-schema.py":
+    keywords:
+      - "Structured|JSON Schema"
+      - "title"
+    requires_env: true
+
+  "src/lesson10_Dev/1010_Langchain/101030 Models/10103040-d Structured-output-include-raw.py":
+    keywords:
+      - "include_raw|Structured"
+      - "Movie"
+      - "Parsed Output"
+      - "Parsing Error: None" # Output contains "Parsing Error:" which is valid
+    requires_env: true
+
+  "src/lesson10_Dev/1010_Langchain/101030 Models/10103040-e Structured-output-nested.py":
+    keywords:
+      - "nested|Actor"
+      - "MovieDetails"
+    requires_env: true

@@ -34,7 +34,7 @@ prompt = ChatPromptTemplate.from_messages([
 ])
 
 # Step 3: LLM and chain setup
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.0)
+llm = ChatOpenAI(model="gpt-5-nano", temperature=0.0)
 output_parser = StrOutputParser()
 setup_and_retrieval = RunnableParallel({
     "context": RunnableLambda(lambda _: symptom_context),

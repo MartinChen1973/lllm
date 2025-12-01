@@ -30,7 +30,7 @@ prompt = ChatPromptTemplate.from_messages([
 ])
 
 # Step 3: Choose model and parser
-llm = ChatOpenAI(model="gpt-4o-mini", temperature=0.0)
+llm = ChatOpenAI(model="gpt-5-nano", temperature=0.0)
 output_parser = StrOutputParser()
 
 # Step 4: Build the chain

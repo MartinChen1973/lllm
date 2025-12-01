@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "@langchain/tavily": "^1.0.1",
+    "deepagents": "^1.2.0"
+  }
+}
