@@ -60,7 +60,7 @@ Now I'll refactor this into a LangGraph-based version while keeping the same fun
 
 <tool-use data-tool-type="write" data-tool-name="edit_file">
 
-<details><summary>Tool use: **code_edit** • Edit file: src/lesson01_Get_Started/lesson01010_hello_world_g.py</summary>
+<details><summary>Tool use: **edit_file** • Edit file: src/lesson01_Get_Started/lesson01010_hello_world_g.py</summary>
 
 I'm refactoring this file to use LangGraph structure instead of direct LangChain calls, while maintaining the same functionality and Chinese comments.
 
@@ -70,7 +70,7 @@ Lines added: 44, lines removed: 4
 ```diff
 @@ -1,19 +1,59 @@
 - # 演示如何使用OpenAI API创建一个简单的聊天机器人，以便在控制台中打印“hello world!”。
-+ # 演示如何使用OpenAI API创建一个简单的聊天机器人，以便在控制台中打印&quot;hello world!&quot;。
++ # 演示如何使用OpenAI API创建一个简单的聊天机器人，以便在控制台中打印"hello world!"。
   
   # Load the API key from the .env file (#010) 从.env文件中加载API密钥
   from dotenv import load_dotenv, find_dotenv
@@ -85,10 +85,10 @@ Lines added: 44, lines removed: 4
 + 
 + # Define the state structure 定义状态结构
 + class State(TypedDict):
-+     # Messages have the type &quot;list&quot;. The &#96;add_messages&#96; function
++     # Messages have the type "list". The &#96;add_messages&#96; function
 +     # in the annotation defines how this state key should be updated
 +     # (in this case, it appends messages to the list, rather than overwriting them)
-+     # 消息具有&quot;list&quot;类型。注释中的&#96;add_messages&#96;函数定义了如何更新此状态键
++     # 消息具有"list"类型。注释中的&#96;add_messages&#96;函数定义了如何更新此状态键
 +     # （在这种情况下，它将消息附加到列表中，而不是覆盖它们）
 +     messages: Annotated[list, add_messages]
 + 
@@ -103,19 +103,19 @@ Lines added: 44, lines removed: 4
 + # Define the chatbot node function 定义聊天机器人节点函数
 + def chatbot(state: State):
       # Start the chatbot and get the response 启动聊天机器人并获得回复
-- response = model.invoke(&quot;Please say &#39;Hello world!&#39;&quot;)
-+     response = llm.invoke(state[&quot;messages&quot;])
-+     return {&quot;messages&quot;: [response]}
+- response = model.invoke("Please say 'Hello world!'")
++     response = llm.invoke(state["messages"])
++     return {"messages": [response]}
 + 
 + # Add the chatbot node to the graph 将聊天机器人节点添加到图中
 + # The first argument is the unique node name 第一个参数是唯一的节点名称
 + # The second argument is the function or object that will be called whenever the node is used
 + # 第二个参数是每当使用节点时将调用的函数或对象
-+ graph_builder.add_node(&quot;chatbot&quot;, chatbot)
++ graph_builder.add_node("chatbot", chatbot)
 + 
 + # Add edges to define the flow 添加边来定义流程
-+ graph_builder.add_edge(START, &quot;chatbot&quot;)
-+ graph_builder.add_edge(&quot;chatbot&quot;, END)
++ graph_builder.add_edge(START, "chatbot")
++ graph_builder.add_edge("chatbot", END)
 + 
 + # Compile the graph 编译图
 + graph = graph_builder.compile()
@@ -125,12 +125,12 @@ Lines added: 44, lines removed: 4
 + 
 + # Invoke the graph with initial message 使用初始消息调用图
 + result = graph.invoke({
-+     &quot;messages&quot;: [HumanMessage(content=&quot;Please say &#39;Hello world!&#39;&quot;)]
++     "messages": [HumanMessage(content="Please say 'Hello world!'")]
 + })
   
   # Print the response 打印回复
 - print(response.content)
-+ print(result[&quot;messages&quot;][-1].content)
++ print(result["messages"][-1].content)
   
 ```
 
@@ -198,7 +198,7 @@ Now I'll create the LangGraph version (`hello_world_insights_g.py`) that demonst
 
 <tool-use data-tool-type="write" data-tool-name="edit_file">
 
-<details><summary>Tool use: **code_edit** • Edit file: src/lesson01_Get_Started/lesson01020_hello_world_insights_g.py</summary>
+<details><summary>Tool use: **edit_file** • Edit file: src/lesson01_Get_Started/lesson01020_hello_world_insights_g.py</summary>
 
 I'm creating a new LangGraph version of the hello_world_insights.py file that demonstrates model parameters, response details, and different invocation methods using LangGraph structure.
 
@@ -226,10 +226,10 @@ Lines added: 94, lines removed: 1
 + 
 + # Define the state structure 定义状态结构
 + class State(TypedDict):
-+     # Messages have the type &quot;list&quot;. The &#96;add_messages&#96; function
++     # Messages have the type "list". The &#96;add_messages&#96; function
 +     # in the annotation defines how this state key should be updated
 +     # (in this case, it appends messages to the list, rather than overwriting them)
-+     # 消息具有&quot;list&quot;类型。注释中的&#96;add_messages&#96;函数定义了如何更新此状态键
++     # 消息具有"list"类型。注释中的&#96;add_messages&#96;函数定义了如何更新此状态键
 +     # （在这种情况下，它将消息附加到列表中，而不是覆盖它们）
 +     messages: Annotated[list, add_messages]
 + 
@@ -238,69 +238,69 @@ Lines added: 94, lines removed: 1
 + 
 + # Create the OpenAI chatbot 创建聊天机器人
 + # model或llm是大语言模型Large Language Model的缩写。ChatOpenAI是一个用于与OpenAI或与之兼容的其他模型交互的类。
-+ llm = ChatOpenAI(model=&quot;gpt-4o-mini&quot;)  # Better and cheaper.
-+ # llm = ChatOpenAI(model=&quot;gpt-4o&quot;)  # Better but expensive.
-+ # llm = ChatOpenAI(model=&quot;gemma-7b-it&quot;)
++ llm = ChatOpenAI(model="gpt-4o-mini")  # Better and cheaper.
++ # llm = ChatOpenAI(model="gpt-4o")  # Better but expensive.
++ # llm = ChatOpenAI(model="gemma-7b-it")
 + # print(llm)
 + 
 + # Define the chatbot node function 定义聊天机器人节点函数
 + def chatbot(state: State):
 +     # Start the chatbot and get the response 启动聊天机器人并获得回复
-+     response = llm.invoke(state[&quot;messages&quot;])
-+     return {&quot;messages&quot;: [response]}
++     response = llm.invoke(state["messages"])
++     return {"messages": [response]}
 + 
 + # Define a streaming chatbot node function 定义流式聊天机器人节点函数
 + def chatbot_stream(state: State):
 +     # Stream the response 流式响应
-+     response_stream = llm.stream(state[&quot;messages&quot;])
++     response_stream = llm.stream(state["messages"])
 +     # Collect all chunks into a single response
 +     full_response = None
 +     for chunk in response_stream:
 +         full_response = chunk
-+     return {&quot;messages&quot;: [full_response]}
++     return {"messages": [full_response]}
 + 
 + # Define a batch chatbot node function 定义批处理聊天机器人节点函数
 + def chatbot_batch(state: State):
 +     # Process multiple messages in batch 批量处理多个消息
-+     messages = state[&quot;messages&quot;]
++     messages = state["messages"]
 +     if len(messages) &gt; 1:
 +         # Extract content from messages for batch processing
-+         contents = [msg.content for msg in messages if hasattr(msg, &#39;content&#39;)]
++         contents = [msg.content for msg in messages if hasattr(msg, 'content')]
 +         responses = llm.batch(contents)
-+         return {&quot;messages&quot;: responses}
++         return {"messages": responses}
 +     else:
 +         # Single message processing
 +         response = llm.invoke(messages)
-+         return {&quot;messages&quot;: [response]}
++         return {"messages": [response]}
 + 
 + # Add the chatbot nodes to the graph 将聊天机器人节点添加到图中
 + # The first argument is the unique node name 第一个参数是唯一的节点名称
 + # The second argument is the function or object that will be called whenever the node is used
 + # 第二个参数是每当使用节点时将调用的函数或对象
-+ graph_builder.add_node(&quot;chatbot&quot;, chatbot)
-+ graph_builder.add_node(&quot;chatbot_stream&quot;, chatbot_stream)
-+ graph_builder.add_node(&quot;chatbot_batch&quot;, chatbot_batch)
++ graph_builder.add_node("chatbot", chatbot)
++ graph_builder.add_node("chatbot_stream", chatbot_stream)
++ graph_builder.add_node("chatbot_batch", chatbot_batch)
 + 
 + # Add edges to define the flow 添加边来定义流程
-+ graph_builder.add_edge(START, &quot;chatbot&quot;)
-+ graph_builder.add_edge(&quot;chatbot&quot;, END)
++ graph_builder.add_edge(START, "chatbot")
++ graph_builder.add_edge("chatbot", END)
 + 
 + # Compile the graph 编译图
 + graph = graph_builder.compile()
 + 
 + # Create initial message 创建初始消息
-+ initial_message = HumanMessage(content=&quot;say &#39;hello worlld !&#39;&quot;)
++ initial_message = HumanMessage(content="say 'hello worlld !'")
 + 
 + # Invoke the graph with initial message 使用初始消息调用图
-+ # response = graph.invoke({&quot;messages&quot;: [initial_message]})
-+ # response = graph.invoke({&quot;messages&quot;: [initial_message]})  # For streaming
-+ # response = graph.invoke({&quot;messages&quot;: [initial_message, HumanMessage(content=&quot;say &#39;hello Bob !&#39;&quot;)]})  # For batch
++ # response = graph.invoke({"messages": [initial_message]})
++ # response = graph.invoke({"messages": [initial_message]})  # For streaming
++ # response = graph.invoke({"messages": [initial_message, HumanMessage(content="say 'hello Bob !'")]})  # For batch
 + 
-+ # For demonstration, let&#39;s use the regular invoke method
-+ response = graph.invoke({&quot;messages&quot;: [initial_message]})
++ # For demonstration, let's use the regular invoke method
++ response = graph.invoke({"messages": [initial_message]})
 + 
 + # Print the response 打印回复
-+ # print(response[&quot;messages&quot;][-1].content)
++ # print(response["messages"][-1].content)
 + print(response) 
 ```
 
@@ -387,7 +387,7 @@ Now I'll clean up the comments, keeping only the essential ones:
 
 <tool-use data-tool-type="write" data-tool-name="edit_file">
 
-<details><summary>Tool use: **code_edit** • Edit file: src/lesson01_Get_Started/lesson01010_hello_world_g.py</summary>
+<details><summary>Tool use: **edit_file** • Edit file: src/lesson01_Get_Started/lesson01010_hello_world_g.py</summary>
 
 I'm removing most comments and keeping only the essential ones for a cleaner, more concise version of the basic hello world example.
 
@@ -396,7 +396,7 @@ Lines added: undefined, lines removed: 1
 
 ```diff
 @@ -1,5 +1,4 @@
-  # 演示如何使用OpenAI API创建一个简单的聊天机器人，以便在控制台中打印&quot;hello world!&quot;。
+  # 演示如何使用OpenAI API创建一个简单的聊天机器人，以便在控制台中打印"hello world!"。
   
 - # Load the API key from the .env file (#010) 从.env文件中加载API密钥
   from dotenv import load_dotenv, find_dotenv
@@ -472,7 +472,7 @@ Here's the fix:
 
 <tool-use data-tool-type="write" data-tool-name="search_replace">
 
-<details><summary>Tool use: **code_edit** • Edit file: src/lesson01_Get_Started/lesson01020_hello_world_insights_g.py</summary>
+<details><summary>Tool use: **search_replace** • Edit file: src/lesson01_Get_Started/lesson01020_hello_world_insights_g.py</summary>
 
 **Chunk 1**
 Lines added: 2, lines removed: 2
@@ -481,10 +481,10 @@ Lines added: 2, lines removed: 2
 @@ -37,6 +37,6 @@
   def chatbot(state: State):
       # Start the chatbot and get the response 启动聊天机器人并获得回复
--     messages = llm.invoke(state[&quot;messages&quot;])
--     return {&quot;messages&quot;: [messages]}
-+     response = llm.invoke(state[&quot;messages&quot;])
-+     return {&quot;messages&quot;: [response]}
+-     messages = llm.invoke(state["messages"])
+-     return {"messages": [messages]}
++     response = llm.invoke(state["messages"])
++     return {"messages": [response]}
   
   # Add the chatbot nodes to the graph 将聊天机器人节点添加到图中
 ```
@@ -538,7 +538,7 @@ _**Agent (mode Agent)**_
 
 <tool-use data-tool-type="write" data-tool-name="search_replace">
 
-<details><summary>Tool use: **code_edit** • Edit file: src/lesson01_Get_Started/lesson01020_hello_world_insights_g.py</summary>
+<details><summary>Tool use: **search_replace** • Edit file: src/lesson01_Get_Started/lesson01020_hello_world_insights_g.py</summary>
 
 **Chunk 1**
 Lines added: 2, lines removed: 2
@@ -546,9 +546,9 @@ Lines added: 2, lines removed: 2
 ```diff
 @@ -57,6 +57,6 @@
   
-  # For demonstration, let&#39;s use the regular invoke method
-- response = graph.invoke({&quot;messages&quot;: [initial_message]})
-+ result = graph.invoke({&quot;messages&quot;: [initial_message]})
+  # For demonstration, let's use the regular invoke method
+- response = graph.invoke({"messages": [initial_message]})
++ result = graph.invoke({"messages": [initial_message]})
   
   # Print the response 打印回复
 - print(response) 

@@ -19,7 +19,7 @@ I'll help you refactor the code to use Pydantic's built-in field annotations ins
 
 <tool-use data-tool-type="write" data-tool-name="edit_file">
 
-<details><summary>Tool use: **code_edit** • Edit file: src/lesson02_Prompt_Engineering/lesson02050_pydantic_output.py</summary>
+<details><summary>Tool use: **edit_file** • Edit file: src/lesson02_Prompt_Engineering/lesson02050_pydantic_output.py</summary>
 
 I will replace the custom field validators with Pydantic's built-in field annotations for length and null checking.
 
@@ -30,59 +30,59 @@ Lines added: 16, lines removed: 28
 @@ -18,39 +18,27 @@
   # Define the data structure for the couplet response
   class Couplet(BaseModel):
--     upper_part: str = Field(description=&quot;对联的上联, 7-15个字&quot;)
--     lower_part: str = Field(description=&quot;对联的下联，字数和上联一样多&quot;)
--     horizontal_part: str = Field(description=&quot;对联的横批，一般4个字&quot;)
+-     upper_part: str = Field(description="对联的上联, 7-15个字")
+-     lower_part: str = Field(description="对联的下联，字数和上联一样多")
+-     horizontal_part: str = Field(description="对联的横批，一般4个字")
 - 
 -     # Field validator for the upper part of the couplet
--     @field_validator(&quot;upper_part&quot;, mode=&quot;before&quot;)
+-     @field_validator("upper_part", mode="before")
 -     def upper_part_must_not_be_empty(cls, value):
 -         if not value:
--             raise ValueError(&quot;上联不能为空&quot;)
+-             raise ValueError("上联不能为空")
 -         # check the length of the upper part. Should be between 7 and 15 characters
 -         if not 7 &lt;= len(value) &lt;= 15:
--             raise ValueError(&quot;上联的字数必须在7-15之间&quot;)
+-             raise ValueError("上联的字数必须在7-15之间")
 -         return value
 +     upper_part: str = Field(
-+         description=&quot;对联的上联, 7-15个字&quot;,
++         description="对联的上联, 7-15个字",
 +         min_length=7,
 +         max_length=15
 +     )
 +     lower_part: str = Field(
-+         description=&quot;对联的下联，字数和上联一样多&quot;,
++         description="对联的下联，字数和上联一样多",
 +         min_length=1
 +     )
 +     horizontal_part: str = Field(
-+         description=&quot;对联的横批，一般4个字&quot;,
++         description="对联的横批，一般4个字",
 +         min_length=4,
 +         max_length=4
 +     )
   
 -     # Field validator for the lower part of the couplet
 +     # Field validator for the lower part to match upper part length
-      @field_validator(&quot;lower_part&quot;, mode=&quot;before&quot;)
+      @field_validator("lower_part", mode="before")
 -     def lower_part_must_not_be_empty_and_match_upper(cls, value, info):
 -         if not value:
--             raise ValueError(&quot;下联不能为空&quot;)
+-             raise ValueError("下联不能为空")
 -         
 +     def lower_part_must_match_upper(cls, value, info):
-          upper_part = info.data.get(&quot;upper_part&quot;)
+          upper_part = info.data.get("upper_part")
           if upper_part and len(value) != len(upper_part):
-              raise ValueError(f&quot;下联的长度必须和上联相同。当前上联：{upper_part}，下联：{value}&quot;)
+              raise ValueError(f"下联的长度必须和上联相同。当前上联：{upper_part}，下联：{value}")
           return value
   
 -     # Field validator for the horizontal part of the couplet
--     @field_validator(&quot;horizontal_part&quot;, mode=&quot;before&quot;)
+-     @field_validator("horizontal_part", mode="before")
 -     def horizontal_part_must_be_four_chars(cls, value):
 -         required_length = 4  # Change to 5 if required
 -         if not value:
--             raise ValueError(&quot;横批不能为空&quot;)
+-             raise ValueError("横批不能为空")
 -         if len(value) != required_length:
--             raise ValueError(f&quot;横批的长度必须为{required_length}个字&quot;)
+-             raise ValueError(f"横批的长度必须为{required_length}个字")
 -         return value
 - 
   # Define the prompt with background instructions and format
-  couplet_rule_text = &quot;&quot;&quot;
+  couplet_rule_text = """
 ```
 
 </details>

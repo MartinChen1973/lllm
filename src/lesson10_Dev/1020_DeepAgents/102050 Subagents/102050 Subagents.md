@@ -4,7 +4,7 @@
 
 Deep agents can create subagents to delegate work. You can specify custom subagents in the `subagents` parameter. Subagents are useful for [context quarantine](https://www.dbreunig.com/2025/06/26/how-to-fix-your-context.html#context-quarantine) (keeping the main agent's context clean) and for providing specialized instructions.
 
-```mermaid theme={null}
+```mermaid
 graph TB
     Main[Main Agent] --> |task tool| Sub[Subagent]
 
@@ -69,7 +69,7 @@ For complex workflows, use a pre-built LangGraph graph:
 
 ## Using SubAgent
 
-```python theme={null}
+```python
 import os
 from typing import Literal
 from tavily import TavilyClient
@@ -110,8 +110,8 @@ agent = create_deep_agent(
 
 For more complex use cases, you can provide your own pre-built LangGraph graph as a subagent:
 
-```python theme={null}
-from deepagents import create_deep_agent, CompiledSubAgent
+```python
+	from deepagents import create_deep_agent, CompiledSubAgent
 from langchain.agents import create_agent
 
 # Create a custom agent graph
@@ -168,8 +168,8 @@ The main agent uses descriptions to decide which subagent to call. Be specific:
 
 Include specific guidance on how to use tools and format outputs:
 
-```python theme={null}
-research_subagent = {
+```python
+		research_subagent = {
     "name": "research-agent",
     "description": "Conducts in-depth research using web search and synthesizes findings",
     "system_prompt": """You are a thorough researcher. Your job is to:
@@ -193,7 +193,7 @@ research_subagent = {
 
 Only give subagents the tools they need. This improves focus and security:
 
-```python theme={null}
+```python
 # ✅ Good: Focused tool set
 email_agent = {
     "name": "email-sender",
@@ -211,7 +211,7 @@ email_agent = {
 
 Different models excel at different tasks:
 
-```python theme={null}
+```python
 subagents = [
     {
         "name": "contract-reviewer",
@@ -234,7 +234,7 @@ subagents = [
 
 Instruct subagents to return summaries, not raw data:
 
-```python theme={null}
+```python
 data_analyst = {
     "system_prompt": """Analyze the data and return:
     1. Key insights (3-5 bullet points)
@@ -256,7 +256,7 @@ data_analyst = {
 
 Create specialized subagents for different domains:
 
-```python theme={null}
+```python
 from deepagents import create_deep_agent
 
 subagents = [
@@ -307,17 +307,16 @@ Each subagent works with clean context focused only on its task.
 
 1. **Make descriptions more specific:**
 
-   ```python theme={null}
+   ```python
    # ✅ Good
    {"name": "research-specialist", "description": "Conducts in-depth research on specific topics using web search. Use when you need detailed information that requires multiple searches."}
 
    # ❌ Bad
    {"name": "helper", "description": "helps with stuff"}
    ```
-
 2. **Instruct main agent to delegate:**
 
-   ```python theme={null}
+   ```python
    agent = create_deep_agent(
        system_prompt="""...your instructions...
 
@@ -335,17 +334,16 @@ Each subagent works with clean context focused only on its task.
 
 1. **Instruct subagent to return concise results:**
 
-   ```python theme={null}
+   ```python
    system_prompt="""...
 
    IMPORTANT: Return only the essential summary.
    Do NOT include raw data, intermediate search results, or detailed tool outputs.
    Your response should be under 500 words."""
    ```
-
 2. **Use filesystem for large data:**
 
-   ```python theme={null}
+   ```python
    system_prompt="""When you gather large amounts of data:
    1. Save raw data to /data/raw_results.txt
    2. Process and analyze the data
@@ -360,7 +358,7 @@ Each subagent works with clean context focused only on its task.
 
 **Solution**: Differentiate subagents clearly in descriptions:
 
-```python theme={null}
+```python
 subagents = [
     {
         "name": "quick-researcher",

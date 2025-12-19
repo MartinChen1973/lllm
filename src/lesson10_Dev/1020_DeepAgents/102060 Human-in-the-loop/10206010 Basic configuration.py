@@ -36,16 +36,16 @@ def send_email(to: str, subject: str, body: str) -> str:
 
 
 # Checkpointer is REQUIRED for human-in-the-loop
-checkpointer = MemorySaver()
+checkpointer = MemorySaver() ## ⬅️ Attention: Checkpointer is required for human-in-the-loop
 
 # Basic configuration: Set up agent with interrupt_on parameter
 agent = create_deep_agent(
     model="openai:gpt-4o-mini",
     tools=[delete_file, read_file, send_email],
-    interrupt_on={
-        "delete_file": True,  # Default: approve, edit, reject
-        "read_file": False,   # No interrupts needed
-        "send_email": {"allowed_decisions": ["approve", "reject"]},  # No editing
+    interrupt_on={ ## ⬅️ Define which tools require human-in-the-loop
+        "delete_file": True,  ## ⬅️ Default: approve, edit, reject
+        "read_file": False,   ## ⬅️ No interrupts needed
+        "send_email": {"allowed_decisions": ["approve", "reject"]},  ## ⬅️ No editing
     },
     checkpointer=checkpointer  # Required!
 )
@@ -56,7 +56,8 @@ config = {"configurable": {"thread_id": str(uuid.uuid4())}}
 
 # Invoke the agent
 result = agent.invoke({
-    "messages": [{"role": "user", "content": "Delete the file temp.txt"}]
+    "messages": [{"role": "user", "content": "Delete the file temp.txt"}] ## ⬅️ Requires human-in-the-loop
+    # "messages": [{"role": "user", "content": "Read the file temp.txt"}] ## ⬅️ Requires NO human-in-the-loop
 }, config=config)
 
 # Check if execution was interrupted
@@ -77,8 +78,8 @@ if result.get("__interrupt__"):
         print(f"Allowed decisions: {review_config['allowed_decisions']}")
 
     # Get user decisions (one per action_request, in order)
-    decisions = [ ## ⬅️ Simulate user decision to approve the deletion
-        {"type": "approve"}  # User approved the deletion
+    decisions = [ 
+        {"type": "approve"}  ## ⬅️ Simulate user decision to approve the deletion
     ]
 
     # Resume execution with decisions
@@ -89,4 +90,3 @@ if result.get("__interrupt__"):
 
 # Process final result
 print(result["messages"][-1].content)
-

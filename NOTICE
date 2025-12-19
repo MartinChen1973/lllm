@@ -1,0 +1,111 @@
+LLM Course Project
+Copyright (c) 2025 [Your Name/Organization]
+
+================================================================================
+
+THIRD-PARTY COMPONENTS AND ATTRIBUTIONS
+
+This project contains code and documentation derived from multiple open source
+projects. We gratefully acknowledge the following:
+
+================================================================================
+
+1. LangChain Documentation (PRIMARY SOURCE)
+
+  Project: LangChain Docs
+  Source: https://github.com/langchain-ai/docs
+  Copyright: (c) 2025 LangChain
+  License: MIT License
+  
+  The majority of this project's code, structure, and documentation is based
+  on or derived from the LangChain documentation repository. This includes:
+  - Documentation structure and examples
+  - LangChain tutorial content
+  - LangGraph examples
+  - Integration patterns
+  - Code examples and snippets
+  
+  MIT License Text:
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+  
+  The above copyright notice and this permission notice shall be included in
+  all copies or substantial portions of the Software.
+
+================================================================================
+
+2. Alibaba Cloud ACP Learning (PARTIAL SOURCE)
+
+  Project: aliyun_acp_learning
+  Source: https://github.com/AlibabaCloudDocs/aliyun_acp_learning
+  Copyright: Alibaba Cloud
+  License: Apache License 2.0
+  
+  A portion of this project contains code and materials derived from the
+  Alibaba Cloud ACP Learning project, particularly:
+  - Some example code for LLM applications
+  - Certain educational materials and tutorials
+  - Specific code samples related to Alibaba Cloud services
+  
+  This content is licensed under the Apache License 2.0, which can be found at:
+  http://www.apache.org/licenses/LICENSE-2.0
+  
+  Key Apache 2.0 requirements for this portion:
+  - Original copyright notices are preserved
+  - Source attribution is provided
+  - Modifications have been made and noted
+  - No trademark rights are granted
+
+================================================================================
+
+MODIFICATIONS
+
+This project includes the following types of modifications to the source
+materials:
+
+From LangChain Docs:
+- Adaptation for specific course content
+- Translation and localization
+- Additional examples and explanations
+- Custom utilities and helper functions
+- Enhanced documentation and tutorials
+- Integration with additional frameworks
+
+From Alibaba ACP:
+- Modified example code
+- Adapted learning materials
+- Extended documentation
+- Custom implementations
+
+================================================================================
+
+ADDITIONAL DEPENDENCIES
+
+This project may also depend on other open source libraries and frameworks.
+Please refer to:
+- requirements.txt (Python dependencies)
+- package.json (Node.js dependencies)
+
+Each dependency has its own license, which can be found in their respective
+package directories or repositories.
+
+================================================================================
+
+LICENSE COMPLIANCE
+
+This project is distributed under the MIT License (see LICENSE file), which
+is compatible with both:
+- The MIT License of the LangChain documentation
+- The Apache License 2.0 of the Alibaba Cloud materials
+
+All copyright notices and license requirements have been preserved as required
+by the respective licenses.
+
+================================================================================
+
+For questions about licensing or attribution, please open an issue in the
+project repository.

@@ -57,7 +57,8 @@ config = {"configurable": {"thread_id": str(uuid.uuid4())}}
 
 # Invoke the agent
 result = agent.invoke({
-    "messages": [{"role": "user", "content": "Delete the file temp.txt"}]
+    "messages": [{"role": "user", "content": "Delete the file temp.txt"}] ## ⬅️ Requires human-in-the-loop
+    # "messages": [{"role": "user", "content": "Read the file temp.txt"}] ## ⬅️ Requires NO human-in-the-loop
 }, config=config)
 
 # Check if execution was interrupted
@@ -71,7 +72,7 @@ if result.get("__interrupt__"):
     config_map = {cfg["action_name"]: cfg for cfg in review_configs}
 
     # Get user decisions (one per action_request, in order)
-    decisions = get_user_decisions(action_requests, config_map)
+    decisions = get_user_decisions(action_requests, config_map) ## ⬅️ Let the user make decisions
 
     # Resume execution with decisions
     result = agent.invoke(

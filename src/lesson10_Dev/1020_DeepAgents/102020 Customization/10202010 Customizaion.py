@@ -9,10 +9,10 @@ from tavily import TavilyClient
 load_dotenv(find_dotenv())
 
 
-# Customize Model 
+# Customize Model ## ⬅️ Use a custom model
 custom_model = init_chat_model(model="openai:gpt-4o-mini") 
 
-# Customize System Prompt 
+# Customize System Prompt ## ⬅️ Use a custom system prompt
 custom_system_prompt = """You are an expert researcher. Your job is to conduct thorough research, and then write a polished report."""  ## ⬅️
 
 # Customize Tools

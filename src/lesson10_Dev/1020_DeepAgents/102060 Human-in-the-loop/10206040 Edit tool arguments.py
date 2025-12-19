@@ -1,9 +1,10 @@
 """
-Edit tool arguments - Handle editing tool arguments example
+Edit tool arguments - Unified approach for handling 1 to N actions with editing support
 
-This example demonstrates how to edit tool arguments when "edit" is in the
-allowed decisions. It provides a simple text-based UI for modifying individual
-tool arguments before execution.
+This example demonstrates how to use get_user_decisions which can:
+1. Handle single or multiple action requests (1 to N)
+2. Support interactive editing for email arguments when "edit" is selected
+3. Use JSON-based editing for other tools
 
 Based on the documentation from: 
 src/lesson10_Dev/1020_DeepAgents/102060 Human-in-the-loop/102060 Human-in-the-loop.md
@@ -15,118 +16,43 @@ from langchain.tools import tool
 from langgraph.types import Command
 from deepagents import create_deep_agent
 from langgraph.checkpoint.memory import MemorySaver
+from human_in_the_loop_utils import get_user_decisions
 
 # Load environment variables from .env file
 load_dotenv(find_dotenv())
 
 
 @tool
+def delete_file(path: str) -> str:
+    """Delete a file from the filesystem. Requires human approval."""
+    return f"Deleted file: {path}"
+
+
+@tool
+def create_backup(path: str, backup_name: str = None) -> str:
+    """Create a backup of a file. Requires human approval."""
+    if backup_name is None:
+        backup_name = f"{path}.backup"
+    return f"Created backup: {backup_name}"
+
+
+@tool  
 def send_email(to: str, subject: str, body: str) -> str:
-    """Send an email."""
-    return f"Successfully sent email to {to} with subject '{subject}' and body '{body}'."
-
-
-def edit_argument(current_value: str, argument_name: str) -> str:
-    """
-    Simple text-based UI for editing a single argument.
-    
-    Args:
-        current_value: The current value of the argument
-        argument_name: The name of the argument being edited
-    
-    Returns:
-        The new value (or original if user pressed Enter without changes)
-    """
-    print(f"Current {argument_name}: {current_value}")
-    new_value = input("Modify to (press Enter to keep unchanged): ").strip()
-    
-    if not new_value:
-        return current_value
-    
-    return new_value
-
-
-def get_user_decision_with_editing(action_req, review_cfg):
-    """
-    Get user decision for a single action request, with support for editing.
-    
-    Args:
-        action_req: The action request that needs approval
-        review_cfg: The review configuration for this action
-    
-    Returns:
-        A decision dictionary (approve, edit, or reject)
-    """
-    allowed_decisions = review_cfg['allowed_decisions']
-    
-    print(f"\n--- Tool: {action_req['name']} ---")
-    print(f"Arguments: {action_req['args']}")
-    print(f"\nAllowed decisions: {', '.join(allowed_decisions)}")
-    
-    # Display numbered options
-    for idx, decision_type in enumerate(allowed_decisions, 1):
-        print(f"  {idx}. {decision_type}")
-    
-    # Get user choice
-    while True:
-        try:
-            choice = input(f"\nSelect decision (1-{len(allowed_decisions)}): ").strip()
-            choice_num = int(choice)
-            if 1 <= choice_num <= len(allowed_decisions):
-                selected_decision = allowed_decisions[choice_num - 1]
-                break
-            else:
-                print(f"Please enter a number between 1 and {len(allowed_decisions)}")
-        except ValueError:
-            print("Please enter a valid number")
-    
-    # Handle edit decision
-    if selected_decision == "edit":
-        original_args = action_req['args']
-        # Create a fresh dictionary with all original arguments, then update with edited values
-        edited_args = dict(original_args)
-        
-        # Edit each argument individually: to, subject (title), and body
-        print("\n--- Editing Email Arguments ---")
-        
-        # Edit 'to' (recipient)
-        if 'to' in original_args:
-            edited_value = edit_argument(str(original_args['to']), 'to (recipient)')
-            edited_args['to'] = edited_value
-        
-        # Edit 'subject' (title)
-        if 'subject' in original_args:
-            edited_value = edit_argument(str(original_args['subject']), 'subject (title)')
-            edited_args['subject'] = edited_value
-        
-        # Edit 'body'
-        if 'body' in original_args:
-            edited_value = edit_argument(str(original_args['body']), 'body')
-            edited_args['body'] = edited_value
-        
-        edit_decision = {
-            "type": "edit",
-            "edited_action": {
-                "name": action_req["name"],
-                "args": edited_args
-            }
-        }
-        
-        return edit_decision
-    
-    # Handle approve or reject
-    return {"type": selected_decision}
+    """Send an email. Supports interactive editing."""
+    return f"Sent email to {to} with subject '{subject}': {body[:50]}..."
 
 
 # Checkpointer is REQUIRED for human-in-the-loop
 checkpointer = MemorySaver()
 
-# Configure agent with send_email tool that allows editing
+# Configure agent with multiple tools requiring different approval levels
 agent = create_deep_agent(
     model="openai:gpt-4o-mini",
-    tools=[send_email],
+    tools=[delete_file, create_backup, send_email],
     interrupt_on={
-        "send_email": {"allowed_decisions": ["approve", "edit", "reject"]},  # Editing allowed
+        "delete_file": {"allowed_decisions": ["approve", "reject"]},  # Only approve/reject
+        "create_backup": {"allowed_decisions": ["approve", "reject"]},  # Only approve/reject
+        "send_email": True,  # Default: approve, edit, reject (editing allowed)
     },
     checkpointer=checkpointer  # Required!
 )
@@ -134,11 +60,18 @@ agent = create_deep_agent(
 # Create config with thread_id for state persistence
 config = {"configurable": {"thread_id": str(uuid.uuid4())}}
 
+# Test different scenarios by uncommenting one of these:
+# Scenario 1: Single action (send_email only) - can edit interactively
+prompt = "Send an email to admin@example.com with subject 'Test' and body 'This is a test message.'"
+
+# Scenario 2: Multiple actions - interactive editing for send_email, approve/reject for others
+# prompt = "Delete important.txt, create a backup of data.db, and send email to admin@example.com about the cleanup"
+
 # Invoke the agent
 result = agent.invoke({
     "messages": [{
         "role": "user",
-        "content": "Send an email to everyone@company.com with subject 'Important Update' and body 'Please review the new policy.'"
+        "content": prompt
     }]
 }, config=config)
 
@@ -148,41 +81,70 @@ if result.get("__interrupt__"):
     action_requests = interrupts["action_requests"]
     review_configs = interrupts["review_configs"]
     
-    # Create a lookup map from tool name to review config
+    # Create lookup map for review configs
     config_map = {cfg["action_name"]: cfg for cfg in review_configs}
     
-    # Get user decision (with editing support)
-    action_request = action_requests[0]
-    review_config = config_map[action_request["name"]]
-    decision = get_user_decision_with_editing(action_request, review_config)
+    # Get user decisions - handles 1 to N actions with intelligent editing
+    # For send_email: uses interactive UI for editing (to, subject, body)
+    # For other tools: uses JSON-based editing
+    decisions = get_user_decisions(action_requests, config_map)
+    print(f"\nDecisions made: {decisions}")
     
-    # Resume execution with decision
-    try:
-        result = agent.invoke(
-            Command(resume={"decisions": [decision]}),
-            config=config  # Must use the same config!
-        )
-        
-        # Find and display the actual tool result
-        tool_result = None
-        for msg in result.get("messages", []):
-            # Look for the tool result message (has name attribute matching the tool)
-            if hasattr(msg, 'name') and msg.name == 'send_email' and hasattr(msg, 'content'):
-                tool_result = msg.content
-                break
-        
-        # Display the actual tool result (shows what was really executed)
-        if tool_result:
-            print(f"\n{'='*60}")
-            print("✓ EMAIL SENT SUCCESSFULLY:")
-            print(f"{'='*60}")
-            print(f"  {tool_result}")
-            print(f"{'='*60}")
-        else:
-            print(f"\nFinal result: {result['messages'][-1].content}")
-    except Exception as e:
-        print(f"\n⚠ Error occurred: {type(e).__name__}: {str(e)[:200]}")
-else:
-    # No interrupt - show final result
-    print(f"\nFinal result: {result['messages'][-1].content}")
+    # Resume execution with decisions
+    result = agent.invoke(
+        Command(resume={"decisions": decisions}),
+        config=config  # Must use the same config!
+    )
+    
+    # Check if there are more interrupts (shouldn't happen, but just in case)
+    if result.get("__interrupt__"):
+        print("\n⚠ Warning: Execution was interrupted again after resuming!")
+        print("This means the agent needs more decisions or there's an issue with the decisions format.")
+        interrupts = result["__interrupt__"][0].value
+        action_requests = interrupts.get("action_requests", [])
+        print(f"Number of pending actions: {len(action_requests)}")
+        if action_requests:
+            print("Pending actions:")
+            for action in action_requests:
+                print(f"  - {action['name']}: {action['args']}")
+    else:
+        # Verify decisions were executed by checking tool results
+        print("\n✓ Execution completed without further interrupts")
+        if 'messages' in result:
+            # Check if tool was executed with edited arguments
+            for msg in result.get("messages", []):
+                if hasattr(msg, 'name') and msg.name == 'send_email':
+                    print("✓ Tool execution found in messages - decisions were executed")
+                    break
 
+# Display final result and verify edited arguments were applied
+if result and 'messages' in result and len(result['messages']) > 0:
+    # Find the tool result message to verify edited arguments were used
+    tool_result = None
+    for msg in result.get("messages", []):
+        # Look for the tool result message (has name attribute matching the tool)
+        if hasattr(msg, 'name') and msg.name == 'send_email' and hasattr(msg, 'content'):
+            tool_result = msg.content
+            break
+    
+    # Display the final result based on the actual tool execution
+    if tool_result:
+        print(f"\nFinal result: {tool_result}")
+    else:
+        # Fallback to last message if no tool result found
+        last_message = result['messages'][-1]
+        if hasattr(last_message, 'content') and last_message.content:
+            print(f"\nFinal result: {last_message.content}")
+        else:
+            print("\nFinal result: (No content in last message)")
+            print(f"Last message type: {type(last_message).__name__}")
+            if hasattr(last_message, 'role'):
+                print(f"Last message role: {last_message.role}")
+else:
+    print("\n⚠ Error: No messages in result")
+    print(f"Result keys: {list(result.keys()) if result else 'None'}")
+
+## ⚠️ Important!
+# If you edit the "to" email address with an invalid format (e.g., just "abc" instead of a valid email like "abc@something.com"),
+# the agent will be interrupted again and ask for a correct email.
+# This is expected to ensure argument validation happens before sending emails.

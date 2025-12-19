@@ -80,6 +80,7 @@ if result.get("__interrupt__"):
     
     # Get user decisions (one per action_request, in order)
     decisions = get_user_decisions(action_requests, config_map)
+    print(f"Decisions: {decisions}")
     
     # Resume execution with decisions
     result = agent.invoke(

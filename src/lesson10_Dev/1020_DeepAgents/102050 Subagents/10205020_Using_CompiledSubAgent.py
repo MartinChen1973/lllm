@@ -1,6 +1,10 @@
 from deepagents import create_deep_agent, CompiledSubAgent
 from langchain.agents import create_agent
 from langchain.chat_models import init_chat_model
+from dotenv import load_dotenv, find_dotenv
+
+# load the environment variables
+load_dotenv(find_dotenv())
 
 # Initialize the model
 model = init_chat_model("openai:gpt-4o-mini")
@@ -13,11 +17,8 @@ specialized_tools = []
 custom_graph = create_agent( ## ⬅️ Create a custom agent graph (See details in Langgraph documentation)
     model=model, ## ⬅️ Use a predefined model
     tools=specialized_tools, ## ⬅️ Use the specialized tools
-    system_prompt="You are a specialized agent for data analysis..."
+    system_prompt="You are a specialized agent for data analysis..." ## ⬅️ Attention: this is a data analysis agent, not a research agent, not a researcher agent
 )
-
-# Compile the graph (required for CompiledSubAgent)
-custom_graph = custom_graph.compile()
 
 # Use it as a custom subagent
 custom_subagent = CompiledSubAgent(
@@ -40,4 +41,3 @@ agent = create_deep_agent(
     system_prompt=research_instructions,
     subagents=subagents
 )
-

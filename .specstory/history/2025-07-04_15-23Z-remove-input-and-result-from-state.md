@@ -19,7 +19,7 @@ I'll help you simplify the state by removing the redundant `input` and `result` 
 
 <tool-use data-tool-type="write" data-tool-name="edit_file">
 
-<details><summary>Tool use: **code_edit** • Edit file: src/lesson02_Prompt_Engineering/lesson02010_basic_g.py</summary>
+<details><summary>Tool use: **edit_file** • Edit file: src/lesson02_Prompt_Engineering/lesson02010_basic_g.py</summary>
 
 I will remove the input and result fields from the State TypedDict and update the chatbot function to only work with messages, simplifying the state management.
 
@@ -33,7 +33,7 @@ Lines added: undefined, lines removed: 2
 -     input: str
 -     result: str
   
-  # &quot;Prompt&quot;是指在使用大型语言模型（LLM）时提供给模型的输入文本或指令。
+  # "Prompt"是指在使用大型语言模型（LLM）时提供给模型的输入文本或指令。
 ```
 
 **Chunk 2**
@@ -44,16 +44,16 @@ Lines added: 4, lines removed: 4
   # Define the chatbot node function 定义聊天机器人节点函数
   def chatbot(state: State):
 +     # Get the last user message
-+     last_message = state[&quot;messages&quot;][-1]
++     last_message = state["messages"][-1]
       # Create messages from the prompt template
--     messages = prompt.format_messages(input=state[&quot;input&quot;])
+-     messages = prompt.format_messages(input=state["input"])
 +     messages = prompt.format_messages(input=last_message.content)
       # Invoke the model
       response = model.invoke(messages)
 -     # Parse the response
 -     result = parser.invoke(response)
--     return {&quot;messages&quot;: [response], &quot;result&quot;: result}
-+     return {&quot;messages&quot;: [response]}
+-     return {"messages": [response], "result": result}
++     return {"messages": [response]}
   
   # Add the chatbot node to the graph 将聊天机器人节点添加到图中
 ```
@@ -65,15 +65,15 @@ Lines added: 2, lines removed: 4
 @@ -86,9 +84,7 @@
   # Invoke the graph with the prompt 使用提示词调用图
   result = graph.invoke({
--     &quot;messages&quot;: [],
--     &quot;input&quot;: _prompt,
--     &quot;result&quot;: &quot;&quot;
-+     &quot;messages&quot;: [HumanMessage(content=_prompt)]
+-     "messages": [],
+-     "input": _prompt,
+-     "result": ""
++     "messages": [HumanMessage(content=_prompt)]
   })
   
   # Print the response 打印回复
-- print(result[&quot;result&quot;]) 
-+ print(result[&quot;messages&quot;][-1].content) 
+- print(result["result"]) 
++ print(result["messages"][-1].content) 
 ```
 
 </details>
