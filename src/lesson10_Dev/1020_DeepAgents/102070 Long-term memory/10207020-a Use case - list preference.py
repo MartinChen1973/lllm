@@ -1,9 +1,12 @@
 """
-Use case: Self-improving instructions
+Use case: Self-improving instructions with list-based preference storage
 
 This example demonstrates how an agent can update its own instructions based on user feedback.
 The agent maintains a persistent instructions file at /memories/instructions.txt that accumulates
 user preferences and feedback over time, helping the agent improve its behavior across conversations.
+
+IMPROVEMENT: This version uses an unordered list format to prevent preference loss during summarization.
+Preferences are stored as list items and are never removed unless they conflict with new preferences.
 
 Based on the documentation from:
 src/lesson10_Dev/1020_DeepAgents/102070 Long-term memory/102070 Long-term memory.md
@@ -22,35 +25,75 @@ load_dotenv(find_dotenv())
 # Checkpointer is required for state persistence
 checkpointer = MemorySaver()
 
-## ⬇️ Key difference: Basic version without list-based format to prevent preference loss during summarization between this file and the list-based version
-## The "Prefer detailed explanations" might be lost
-SYSTEM_PROMPT = """You have a file at /memories/instructions.txt with additional
-    instructions and preferences.
+## ⬇️ Key difference: Unordered list format to prevent preference loss during summarization between this file and the basic version
+SYSTEM_PROMPT = """You have a file at /memories/instructions.txt that stores user preferences
+    and instructions in an unordered list format.
 
-    Read this file at the start of conversations to understand user preferences.
-
-    When users provide feedback like "please always do X" or "I prefer Y",
-    update /memories/instructions.txt using the edit_file tool to add these preferences.
+    CRITICAL RULES FOR MANAGING /memories/instructions.txt:
     
-    Accumulate all user preferences and instructions in this file so you can remember
-    them in future conversations."""
+    1. FORMAT: Always store preferences as an unordered list using bullet points (- or *).
+       Each preference should be a separate list item on its own line.
+    
+    2. MANDATORY UPDATE PROCEDURE - Follow these steps EXACTLY when updating the file:
+       
+       STEP 1: FIRST, read the current contents of /memories/instructions.txt using read_file.
+       
+       STEP 2: Copy ALL existing list items from the file. Do NOT skip any items.
+       
+       STEP 3: Add the new preference as a NEW list item at the end of the list.
+       
+       STEP 4: When using edit_file, you MUST include ALL existing items PLUS the new item.
+              NEVER write only the new item. NEVER summarize or consolidate existing items.
+       
+       EXAMPLE OF CORRECT UPDATE:
+       If the file currently contains:
+       - Always format code with proper indentation and comments
+       - Prefer detailed explanations
+       
+       And user says "I prefer type hints", the updated file MUST be:
+       - Always format code with proper indentation and comments
+       - Prefer detailed explanations
+       - Always use type hints in Python code examples
+       
+       EXAMPLE OF INCORRECT UPDATE (DO NOT DO THIS):
+       - Always use type hints in Python code examples  ❌ (missing previous items)
+    
+    3. NEVER REMOVE: You must NEVER remove, delete, or omit existing list items during
+       updates. Every single existing preference must be preserved in the updated file.
+    
+    4. CONFLICT RESOLUTION: Only remove a list item if a new preference explicitly
+       contradicts it (e.g., "I prefer dark mode" conflicts with "I prefer light mode").
+       In such cases, replace ONLY the conflicting item, but keep all other items.
+    
+    5. ENHANCEMENT: If a user provides more details about an existing preference, you may
+       update that specific item, but you must still preserve ALL other existing items.
+    
+    6. READ FIRST: At the start of each conversation, read /memories/instructions.txt to
+       understand existing user preferences before responding.
+    
+    7. VERIFICATION: After updating, verify that all previous items are still present.
+       Count the items: if the file had N items before, it should have N+1 items after
+       adding a new preference (unless there's a conflict).
+    
+    REMEMBER: The edit_file tool REPLACES the entire file content. You must include
+    ALL existing items in your edit_file call, not just the new item."""
 
 # Create agent with CompositeBackend for long-term memory
 def make_backend(runtime):
     """Create a CompositeBackend with both transient and persistent storage."""
     return CompositeBackend(
-        default=StateBackend(runtime),  # ⬅️ Ephemeral storage
+        default=StateBackend(runtime),
         routes={
-            "/memories/": StoreBackend(runtime)  # ⬅️ Persistent storage (across all threads)
+            "/memories/": StoreBackend(runtime)
         }
     )
 
 # Create agent with system prompt that instructs it to read and update instructions
 agent = create_deep_agent(
     model="openai:gpt-4o-mini",
-    store=InMemoryStore(),  # ⬅️ Required for StoreBackend
+    store=InMemoryStore(), 
     backend=make_backend,
-    checkpointer=checkpointer, # ⬅️ Required for state persistence
+    checkpointer=checkpointer,
     system_prompt=SYSTEM_PROMPT
 )
 
@@ -152,8 +195,11 @@ print("\n" + "=" * 70)
 print("DEMONSTRATION COMPLETE")
 print("=" * 70)
 print("\nKey takeaways:")
-print("  • Agent reads /memories/instructions.txt at the start of conversations")
-print("  • Agent updates /memories/instructions.txt when users provide feedback")
-print("  • Instructions persist across different conversation threads")
-print("  • Instructions accumulate over time, helping the agent improve")
+print("  - Agent reads /memories/instructions.txt at the start of conversations")
+print("  - Agent stores preferences as an unordered list (bullet points)")
+print("  - Agent never removes list items during summarization")
+print("  - Agent only removes items if they conflict with new preferences")
+print("  - Agent can enhance existing list items when needed")
+print("  - Instructions persist across different conversation threads")
+print("  - Instructions accumulate over time, helping the agent improve")
 print("=" * 70)
