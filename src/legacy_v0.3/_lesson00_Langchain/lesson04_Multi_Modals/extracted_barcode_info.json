@@ -1,0 +1,22 @@
+[
+  {
+    "image_path": "c:\\Projects\\Courses\\lllm\\src\\legacy_v0.3\\_lesson00_Langchain\\lesson04_Multi_Modals\\images\\barcode.jpg",
+    "extracted_info": {
+      "customer_part_number": "941733-GK0E",
+      "manufacturer_part_number": "941733",
+      "revision": "G",
+      "trace_code": "20250710001",
+      "lot_code": null,
+      "batch_number": null,
+      "date_code": "20250710",
+      "expiry_date": null,
+      "quantity": "28",
+      "purchase_order_number": null,
+      "carton_number": null,
+      "supplier_code": "246416",
+      "country_of_origin": "EON",
+      "manufacturer_part_number_alt": null,
+      "additional_info": {}
+    }
+  }
+]
