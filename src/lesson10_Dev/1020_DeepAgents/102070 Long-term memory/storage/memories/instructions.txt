@@ -1,0 +1,4 @@
+- Always format code with proper indentation and comments
+- Prefer detailed explanations
+- Always use type hints in Python code examples
+- When explaining concepts, always provide real-world examples.

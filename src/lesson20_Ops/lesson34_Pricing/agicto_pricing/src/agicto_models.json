@@ -1,8 +1,8 @@
 {
   "models": [
     {
-      "name": "gemini-3-pro-preview-thinking",
-      "url": "/model/gemini-3-pro-preview-thinking",
+      "name": "gpt-5.1-codex-high",
+      "url": "/model/gpt-5.1-codex-high",
       "features": [
         "支持文本"
       ],
@@ -10,27 +10,15 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 14.6,
+          "price": 7.3,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 87.6,
+          "price": 73.0,
           "unit": "百万tokens"
         }
       },
-      "provider": "Google"
-    },
-    {
-      "name": "gemini-3-pro-image-preview",
-      "url": "/model/gemini-3-pro-image-preview",
-      "features": [
-        "支持图像",
-        "nano banana2"
-      ],
-      "pricing": {
-        "type": null
-      },
-      "provider": "Google"
+      "provider": "Open AI"
     },
     {
       "name": "gpt-5.2-pro",
@@ -195,32 +183,6 @@
           "price": 109.5,
           "unit": "百万tokens"
         }
-      },
-      "provider": "Open AI"
-    },
-    {
-      "name": "sora-2-pro",
-      "url": "/model/sora-2-pro",
-      "features": [
-        "支持文本"
-      ],
-      "pricing": {
-        "type": "per_use",
-        "price": 3.0,
-        "unit": "次"
-      },
-      "provider": "Open AI"
-    },
-    {
-      "name": "sora-2",
-      "url": "/model/sora-2",
-      "features": [
-        "支持文本"
-      ],
-      "pricing": {
-        "type": "per_use",
-        "price": 0.3,
-        "unit": "次"
       },
       "provider": "Open AI"
     },
@@ -905,7 +867,7 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 1.1,
+          "price": 1.09,
           "unit": "百万tokens"
         },
         "output": {
@@ -1451,6 +1413,10 @@
         "input": {
           "price": 0.73,
           "unit": "百万tokens"
+        },
+        "output": {
+          "price": 0.0,
+          "unit": "百万tokens"
         }
       },
       "provider": "Open AI"
@@ -1466,6 +1432,10 @@
         "unit": "百万tokens",
         "input": {
           "price": 0.95,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 0.0,
           "unit": "百万tokens"
         }
       },
@@ -1483,6 +1453,10 @@
         "input": {
           "price": 0.15,
           "unit": "百万tokens"
+        },
+        "output": {
+          "price": 0.0,
+          "unit": "百万tokens"
         }
       },
       "provider": "Open AI"
@@ -1496,6 +1470,46 @@
       ],
       "pricing": {
         "type": null
+      },
+      "provider": "Open AI"
+    },
+    {
+      "name": "sora-2-pro",
+      "url": "/model/sora-2-pro",
+      "features": [
+        "支持工具"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 0.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 0.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "Open AI"
+    },
+    {
+      "name": "sora-2",
+      "url": "/model/sora-2",
+      "features": [
+        "支持工具"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 0.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 0.0,
+          "unit": "百万tokens"
+        }
       },
       "provider": "Open AI"
     },
@@ -2613,6 +2627,7 @@
       "name": "qwen-omni-turbo",
       "url": "/model/qwen-omni-turbo",
       "features": [
+        "支持文本",
         "全模态，支持文本/图像/语音/视频混合输入",
         "上下文长度: 32K"
       ],
@@ -2634,6 +2649,7 @@
       "name": "qwen-omni-turbo-latest",
       "url": "/model/qwen-omni-turbo-latest",
       "features": [
+        "支持文本",
         "全模态，支持文本/图像/语音/视频混合输入",
         "上下文长度: 32K"
       ],
@@ -2717,6 +2733,10 @@
         "input": {
           "price": 0.7,
           "unit": "百万tokens"
+        },
+        "output": {
+          "price": 0.0,
+          "unit": "百万tokens"
         }
       },
       "provider": "阿里"
@@ -2733,6 +2753,10 @@
         "input": {
           "price": 0.7,
           "unit": "百万tokens"
+        },
+        "output": {
+          "price": 0.0,
+          "unit": "百万tokens"
         }
       },
       "provider": "阿里"
@@ -2748,6 +2772,10 @@
         "unit": "百万tokens",
         "input": {
           "price": 0.7,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 0.0,
           "unit": "百万tokens"
         }
       },
@@ -2780,6 +2808,10 @@
         "unit": "百万tokens",
         "input": {
           "price": 0.8,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 0.0,
           "unit": "百万tokens"
         }
       },
@@ -3080,6 +3112,46 @@
       "provider": "360"
     },
     {
+      "name": "gemini-3-flash-preview",
+      "url": "/model/gemini-3-flash-preview",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 3.65,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 21.9,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "Google"
+    },
+    {
+      "name": "gemini-3-pro-preview-thinking",
+      "url": "/model/gemini-3-pro-preview-thinking",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 14.6,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 87.6,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "Google"
+    },
+    {
       "name": "gemini-3-pro-preview",
       "url": "/model/gemini-3-pro-preview",
       "features": [
@@ -3264,6 +3336,31 @@
       "provider": "Google"
     },
     {
+      "name": "gemini-3-pro-image-preview-vip",
+      "url": "/model/gemini-3-pro-image-preview-vip",
+      "features": [
+        "支持图像"
+      ],
+      "pricing": {
+        "type": "per_use",
+        "price": 0.7,
+        "unit": "次"
+      },
+      "provider": "Google"
+    },
+    {
+      "name": "gemini-3-pro-image-preview",
+      "url": "/model/gemini-3-pro-image-preview",
+      "features": [
+        "支持图像",
+        "nano banana2"
+      ],
+      "pricing": {
+        "type": null
+      },
+      "provider": "Google"
+    },
+    {
       "name": "gemini-2.5-flash-image-preview",
       "url": "/model/gemini-2.5-flash-image-preview",
       "features": [
@@ -3272,6 +3369,46 @@
       ],
       "pricing": {
         "type": null
+      },
+      "provider": "Google"
+    },
+    {
+      "name": "veo3.1-pro",
+      "url": "/model/veo3.1-pro",
+      "features": [
+        "支持工具"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 0.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 0.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "Google"
+    },
+    {
+      "name": "veo3.1",
+      "url": "/model/veo3.1",
+      "features": [
+        "支持工具"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 0.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 0.0,
+          "unit": "百万tokens"
+        }
       },
       "provider": "Google"
     },
@@ -4297,6 +4434,7 @@
       "name": "Doubao-Seedance-1.0-pro",
       "url": "/model/Doubao-Seedance-1.0-pro",
       "features": [
+        "支持工具",
         "文生视频",
         "首帧图生视频"
       ],
@@ -4381,9 +4519,16 @@
         "支持文本"
       ],
       "pricing": {
-        "type": "per_use",
-        "price": 0.03,
-        "unit": "次"
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 0.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 0.0,
+          "unit": "百万tokens"
+        }
       },
       "provider": "DeepSeek"
     },
@@ -5360,27 +5505,60 @@
     {
       "name": "kling-video-o1",
       "url": "/model/kling-video-o1",
-      "features": [],
+      "features": [
+        "支持工具"
+      ],
       "pricing": {
-        "type": null
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 0.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 0.0,
+          "unit": "百万tokens"
+        }
       },
       "provider": "可灵"
     },
     {
       "name": "viduq2-pro_720p",
       "url": "/model/viduq2-pro_720p",
-      "features": [],
+      "features": [
+        "支持工具"
+      ],
       "pricing": {
-        "type": null
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 0.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 0.0,
+          "unit": "百万tokens"
+        }
       },
       "provider": "Vidu"
     },
     {
       "name": "viduq2-pro_1080p",
       "url": "/model/viduq2-pro_1080p",
-      "features": [],
+      "features": [
+        "支持工具"
+      ],
       "pricing": {
-        "type": null
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 0.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 0.0,
+          "unit": "百万tokens"
+        }
       },
       "provider": "Vidu"
     },

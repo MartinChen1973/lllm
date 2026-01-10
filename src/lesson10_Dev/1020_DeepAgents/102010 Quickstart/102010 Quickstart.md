@@ -15,11 +15,11 @@ Before you begin, make sure you have an API key from a model provider (e.g., Ant
   pip install deepagents tavily-python
   ```
 
-```bash uv theme={null}
+```bash
 uv add deepagents tavily-python
 ```
 
-```bash poetry theme={null}
+```bash
 poetry add deepagents tavily-python
 ```
 
@@ -27,14 +27,14 @@ poetry add deepagents tavily-python
 
 ### Step 2: Set up your API keys
 
-```bash theme={null}
+```bash
 export ANTHROPIC_API_KEY="your-api-key"
 export TAVILY_API_KEY="your-tavily-api-key"
 ```
 
 ### Step 3: Create a search tool
 
-```python theme={null}
+```python
 import os
 from typing import Literal
 from tavily import TavilyClient
@@ -59,7 +59,7 @@ def internet_search(
 
 ### Step 4: Create a deep agent
 
-```python theme={null}
+```python
 # System prompt to steer the agent to be an expert researcher
 research_instructions = """You are an expert researcher. Your job is to conduct thorough research and then write a polished report.
 
@@ -78,7 +78,7 @@ agent = create_deep_agent(
 
 ### Step 5: Run the agent
 
-```python theme={null}
+```python
 result = agent.invoke({"messages": [{"role": "user", "content": "What is langgraph?"}]})
 
 # Print the agent's response

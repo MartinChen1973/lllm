@@ -15,7 +15,6 @@ from langgraph.checkpoint.memory import MemorySaver
 # Load environment variables from .env file
 load_dotenv(find_dotenv())
 
-
 # Define tools
 @tool
 def delete_file(path: str) -> str:

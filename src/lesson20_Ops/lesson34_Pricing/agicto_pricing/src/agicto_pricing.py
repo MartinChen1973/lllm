@@ -734,7 +734,7 @@ if __name__ == '__main__':
     def open_browser():
         """Wait for server to start, then open browser."""
         time.sleep(1.5)  # Wait for server to start
-        url = "http://localhost:5000"
+        url = "http://localhost:5003"
         print(f"正在打开浏览器: {url}")
         webbrowser.open(url)
     
@@ -743,15 +743,15 @@ if __name__ == '__main__':
     # Only auto-open browser if --no-browser flag is not set
     # This allows batch files to control when to open the browser
     if not no_browser:
-        print("浏览器将自动打开 http://localhost:5000")
+        print("浏览器将自动打开 http://localhost:5003")
         # Start browser in a separate thread
         browser_thread = threading.Thread(target=open_browser)
         browser_thread.daemon = True
         browser_thread.start()
     else:
-        print("请在浏览器中打开 http://localhost:5000")
+        print("请在浏览器中打开 http://localhost:5003")
     
-    app.run(debug=debug_mode, host='127.0.0.1', port=5000)
+    app.run(debug=debug_mode, host='127.0.0.1', port=5003)
 
 
 

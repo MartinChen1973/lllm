@@ -23,7 +23,7 @@ try:
     from selenium.webdriver.common.by import By
     from selenium.webdriver.support.ui import WebDriverWait
     from selenium.webdriver.support import expected_conditions as EC
-    from selenium.common.exceptions import TimeoutException, WebDriverException
+    from selenium.common.exceptions import TimeoutException
     SELENIUM_AVAILABLE = True
 except ImportError as e:
     SELENIUM_ERROR = f"Selenium import failed: {e}"

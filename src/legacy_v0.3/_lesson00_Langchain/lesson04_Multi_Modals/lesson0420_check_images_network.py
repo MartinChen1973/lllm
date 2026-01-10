@@ -4,6 +4,7 @@ from langchain_core.messages import HumanMessage
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv, find_dotenv
 import base64
+from pathlib import Path
 
 # Load environment variables
 load_dotenv(find_dotenv())
@@ -45,17 +46,20 @@ def check_network_status(image_text):
     
     return response.content
 
-# List of image paths to check
+# Get the directory where this script is located
+script_dir = Path(__file__).parent
+
+# List of image paths to check (relative to script directory)
 image_paths = [
-    # "src/lesson04_Multi_Modals/images/Connected.gif",
-    "src/lesson04_Multi_Modals/images/NotConnected1.jpg",
-    # "src/lesson04_Multi_Modals/images/NotConnected2.jpg",
+    # script_dir / "images" / "Connected.gif",
+    script_dir / "images" / "NotConnected1.jpg",
+    # script_dir / "images" / "NotConnected2.jpg",
 ]
 
 # Check network status for each image
 for image_path in image_paths:
     try:
-        image_text = get_image_text(image_path)
+        image_text = get_image_text(str(image_path))
         status = check_network_status(image_text)
         print(f"Image Path: {image_path}\nPic texts: {image_text}\n\nStatus: {status}\n")
         print("="*40)

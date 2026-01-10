@@ -4,6 +4,7 @@ from langchain_core.messages import HumanMessage
 from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv, find_dotenv
 import base64
+from pathlib import Path
 
 # Load environment variables
 load_dotenv(find_dotenv())
@@ -22,7 +23,7 @@ def get_image_description(image_path):
             {
                 "type": "text", 
                 "text": "Please provide a detailed description of this image."
-                # "text": "请问图中的网络处于连接状态吗？（请只回答“是”或“否”）"
+                # "text": "请问图中的网络处于连接状态吗？（请只回答"是"或"否"）"
             },
             {
                 "type": "image_url",
@@ -36,17 +37,20 @@ def get_image_description(image_path):
     
     return response.content
 
-# List of image paths to describe
+# Get the directory where this script is located
+script_dir = Path(__file__).parent
+
+# List of image paths to describe (relative to script directory)
 image_paths = [
-    "src/lesson04_Multi_Modals/images/Connected.gif",
-    # "src/lesson04_Multi_Modals/images/NotConnected1.jpg",
-    # "src/lesson04_Multi_Modals/images/NotConnected2.jpg",
+    script_dir / "images" / "Connected.gif",
+    # script_dir / "images" / "NotConnected1.jpg",
+    # script_dir / "images" / "NotConnected2.jpg",
 ]
 
 # Describe each image
 for image_path in image_paths:
     try:
-        description = get_image_description(image_path)
+        description = get_image_description(str(image_path))
         print(f"Image Path: {image_path}\nDescription: {description}\n")
         print("-"*40)
     except Exception as e:

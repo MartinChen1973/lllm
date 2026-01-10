@@ -5,6 +5,7 @@ from langchain_openai import ChatOpenAI
 from dotenv import load_dotenv, find_dotenv
 import base64
 from PIL import Image
+from pathlib import Path
 
 # Load environment variables
 load_dotenv(find_dotenv())
@@ -44,16 +45,20 @@ def get_image_text(question, image_path):
     
     return response.content
 
-# List of image paths to check
+# Get the directory where this script is located
+script_dir = Path(__file__).parent
+
+# List of image paths to check (relative to script directory)
 question_to_images = {
-    # "图中有人在闯红灯吗？（仅回答“是”或“否”，不要解释，不要标点符号）": "src/lesson04_Multi_Modals/images/pedestrian_jaywalking.png",
-    "图中路口有车辆在等待吗？（仅回答“是”或“否”，不要解释，不要标点符号）": "src/lesson04_Multi_Modals/images/empty_street.png",
+    # "图中有人在闯红灯吗？（仅回答'是'或'否'，不要解释，不要标点符号）": script_dir / "images" / "pedestrian_jaywalking.png",
+    "图中路口有车辆在等待吗？（仅回答'是'或'否'，不要解释，不要标点符号）": script_dir / "images" / "empty_street.png",
 }
 
 # Check network status for each image
 for question, image_path in question_to_images.items():
     try:
-        image_text = get_image_text(question, image_path)
+        # Convert Path object to string for the function
+        image_text = get_image_text(question, str(image_path))
         print(f"Question: {question}\nResponse: {image_text}\n")
     except Exception as e:
         print(f"An error occurred while processing {image_path}. Error: {e}")
