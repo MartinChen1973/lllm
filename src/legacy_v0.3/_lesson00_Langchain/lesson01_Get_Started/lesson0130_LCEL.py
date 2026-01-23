@@ -2,7 +2,7 @@
 
 from langchain_openai import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
-from langchain.prompts import ChatPromptTemplate
+from langchain_core.prompts import ChatPromptTemplate
 
 # Load the API key from the .env file 从.env文件中加载API密钥
 from dotenv import load_dotenv, find_dotenv

@@ -17,12 +17,10 @@ print("========= MODEL INFO =========")
 print(llm)
 
 # Start the chatbot and get the response 启动聊天机器人并获得回复
-response = llm.invoke("say 'hello worlld !'")
-# response = llm.stream("say 'hello worlld !'")
-# response = llm.stream("请写一篇800字的关于春天的记叙文")
-
+# 使用stream()方法进行流式输出
 print("========= STREAM RESPONSE =========")
-# for chunk in response:
-#     print(chunk.text, end="", flush=True)
-# response = llm.batch(["say 'hello worlld !'", "say 'hello Bob !'",])
-print(response)
+print("正在生成作文...\n")
+## ⬇️ Stream the model with a single message
+for chunk in llm.stream('写800字作文，题目为"春天"'):
+    print(chunk.text, end="", flush=True)
+print("\n\n========= 生成完成 =========")
