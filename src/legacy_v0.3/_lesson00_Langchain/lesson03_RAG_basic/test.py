@@ -8,6 +8,12 @@
 # New code gives error on expired key: ValueError: Not enough available money, Please go to  recharge
 #            and error on wrong key: ValueError: Please check sk-************6GzDaH key from the  platform..
 
+import os
+
+# Fix OpenMP conflict: allow multiple OpenMP runtimes to coexist
+# This is needed when using FAISS with other libraries that use OpenMP
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+
 from langchain_community.vectorstores import FAISS
 from langchain_openai.embeddings import OpenAIEmbeddings
 import os

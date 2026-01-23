@@ -1,3 +1,9 @@
+import os
+
+# Fix OpenMP conflict: allow multiple OpenMP runtimes to coexist
+# This is needed when using FAISS with other libraries that use OpenMP
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+
 def parse_markdown(file_path):
     with open(file_path, 'r', encoding='utf-8') as file:
         lines = file.readlines()

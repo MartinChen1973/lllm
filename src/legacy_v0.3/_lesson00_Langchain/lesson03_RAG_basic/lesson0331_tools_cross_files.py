@@ -1,6 +1,12 @@
 # 1. 演示如何通过封装来简化代码（多个文件）
 # 2. 演示如何在多个文件中搜索，且答案涉及到多个信息的推理
 
+import os
+
+# Fix OpenMP conflict: allow multiple OpenMP runtimes to coexist
+# This is needed when using FAISS with other libraries that use OpenMP
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_openai.chat_models import ChatOpenAI

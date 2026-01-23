@@ -8,6 +8,7 @@ langchain_openai>=1.0.3
 langchain-text-splitters>=1.0.0
 langchain_tools==0.1.34
 langgraph>=1.0.3
+docarray>=0.41.0
 langgraph-prebuilt>=1.0.4  # needed for prebuilt agent support
 langgraph-supervisor==0.0.27
 langserve>=0.3.3

@@ -57,8 +57,8 @@ config = {"configurable": {"thread_id": str(uuid.uuid4())}}
 
 # Invoke the agent
 result = agent.invoke({
-    # "messages": [{"role": "user", "content": "Delete the file temp.txt"}] ## ⬅️ Requires human-in-the-loop
-    "messages": [{"role": "user", "content": "Read the file temp.txt"}] ## ⬅️ Requires NO human-in-the-loop
+    "messages": [{"role": "user", "content": "Delete the file temp.txt"}] ## ⬅️ Requires human-in-the-loop
+    # "messages": [{"role": "user", "content": "Read the file temp.txt"}] ## ⬅️ Requires NO human-in-the-loop
 }, config=config)
 
 # Check if execution was interrupted

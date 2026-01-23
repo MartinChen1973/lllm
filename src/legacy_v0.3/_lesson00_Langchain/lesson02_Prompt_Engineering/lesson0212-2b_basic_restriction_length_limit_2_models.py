@@ -20,7 +20,8 @@ prompt_summarize = ChatPromptTemplate.from_messages([
 # ---------------------------------------------
 
 # Model: Create the OpenAI chatbot 创建聊天机器人
-model = ChatOpenAI(model="gpt-5-nano") 
+# model = ChatOpenAI(model="gpt-5-nano") ## ⬅️ Can 50 words but difficult to read.
+model = ChatOpenAI(model="gpt-4o-mini") ## ⬅️ Cannot limmit the exact words but readable.
 
 # OutputParser: Create an output parser 创建输出解析器d 
 output_parser = StrOutputParser()
@@ -41,3 +42,4 @@ result = chain.invoke({"input": input})
 
 # Print the response 打印回复
 print(result)
+print(f"length = {len(result)}")

@@ -1,5 +1,11 @@
 # 1. 演示如何使用本地文档协助Retriever回答问题
 
+import os
+
+# Fix OpenMP conflict: allow multiple OpenMP runtimes to coexist
+# This is needed when using FAISS with other libraries that use OpenMP
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+
 from langchain_community.vectorstores import DocArrayInMemorySearch
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
@@ -12,7 +18,10 @@ from langchain_tools.retriever.md.split_md import parse_markdown
 # Load the API key from the .env file   从.env文件中加载API密钥
 load_dotenv(find_dotenv())
 
-sections_leave_policy = parse_markdown("src/lesson03_RAG/md/leave_policy.md")
+# Get the directory of the current script file
+script_dir = os.path.dirname(os.path.abspath(__file__))
+md_file_path = os.path.join(script_dir, "md", "leave_policy.md")
+sections_leave_policy = parse_markdown(md_file_path)
 
 # 查看文档切分的情况
 for section in sections_leave_policy:

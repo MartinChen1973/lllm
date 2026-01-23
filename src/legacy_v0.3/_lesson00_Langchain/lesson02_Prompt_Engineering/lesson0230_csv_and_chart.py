@@ -23,12 +23,10 @@ Context: {context}
 Question: {question}
 
 Note: {note}
-
-code examples: {code1, code2}
 """
 prompt = ChatPromptTemplate.from_template(template)
-model = ChatOpenAI(model = "gpt-5-nano")
-# model = ChatOpenAI(model="gpt-4") # 如果由于问题复杂，导致实验效果不佳，请使用gpt-5模型
+model = ChatOpenAI(model = "gpt-4o-mini")
+# model = ChatOpenAI(model="gpt-5") # 如果由于问题复杂，导致实验效果不佳，请使用gpt-5模型
 output_parser = StrOutputParser()
 
 # Create a note for the prompt 创建提示词的注释

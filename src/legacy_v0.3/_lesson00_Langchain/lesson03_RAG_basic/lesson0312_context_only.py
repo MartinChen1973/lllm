@@ -1,6 +1,12 @@
 # 1. 演示如何借助搜索引擎来回答用户的问题
 #    搜索引擎可提供实时信息，尤其是在模型生成之后才出现的信息。
 
+import os
+
+# Fix OpenMP conflict: allow multiple OpenMP runtimes to coexist
+# This is needed when using FAISS with other libraries that use OpenMP
+os.environ["KMP_DUPLICATE_LIB_OK"] = "TRUE"
+
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableParallel, RunnablePassthrough
@@ -8,7 +14,7 @@ from langchain_openai.chat_models import ChatOpenAI
 from langchain_community.document_loaders import WebBaseLoader
 from langchain_openai import OpenAIEmbeddings
 from langchain_community.vectorstores import FAISS
-from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain_text_splitters import RecursiveCharacterTextSplitter
 
 from dotenv import load_dotenv, find_dotenv
 
@@ -25,15 +31,15 @@ vector_store = FAISS.from_documents(documents, embeddings)
 retriever = vector_store.as_retriever()
 
 # Create a prompt 创建提示词
-# template = """仅依赖下面的context回答用户的问题，如果前后文没有查到相关内容，请告知用户。
-template = """回答用户的问题。
+# template = """回答用户的问题。
+template = """仅依赖下面的context回答用户的问题，如果前后文没有查到相关内容，请告知用户。
 Context：{context}
 
 Question: {question}
 """
 prompt = ChatPromptTemplate.from_template(template)
-model = ChatOpenAI(model="gpt-5-nano")
-# model = ChatOpenAI(model = "gpt-4") # 如果由于问题复杂，导致实验效果不佳，请使用gpt-4模型
+model = ChatOpenAI(model="gpt-5-nano") ## ⬅️ This model might not work.
+# model = ChatOpenAI(model = "gpt-4o-mini") # 如果由于问题复杂，导致实验效果不佳，请使用gpt-4模型
 output_parser = StrOutputParser()
 
 setup_and_retrieval = RunnableParallel(  # RunnableParallel是一个并行运行多个Runnable的工具。它可以将多个Runnable组合成一个并行的处理流程，以实现更复杂的任务或功能。

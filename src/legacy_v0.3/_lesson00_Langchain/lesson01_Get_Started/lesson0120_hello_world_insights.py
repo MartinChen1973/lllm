@@ -20,9 +20,10 @@ print(llm)
 # Start the chatbot and get the response 启动聊天机器人并获得回复
 response = llm.invoke("say 'hello worlld !'")
 # response = llm.stream("say 'hello worlld !'")
-# response = llm.batch(["say 'hello worlld !'", "say 'hello Bob !'",])
-# print(response)
+# response = llm.stream("请写一篇800字的关于春天的记叙文")
 
-# Print the response
-print("========= RESPONSE =========")
+print("========= STREAM RESPONSE =========")
+# for chunk in response:
+#     print(chunk.text, end="|", flush=True)
+# response = llm.batch(["say 'hello worlld !'", "say 'hello Bob !'",])
 print(response)

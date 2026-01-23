@@ -15,8 +15,9 @@ prompt = ChatPromptTemplate.from_messages([
 ])
 
 # Model: Create the OpenAI chatbot 创建聊天机器人
-model = ChatOpenAI(name="gpt-5-nano") 
-# model = ChatOpenAI(name="gpt-5") 
+model = ChatOpenAI(name="gpt-5-nano") ## ⬅️ Might not work.
+# model = ChatOpenAI(name="gpt-4o-mini") ## ⬅️ Normally Works.
+# model = ChatOpenAI(name="gpt-5") ## ⬅️ Should work.
 
 # OutputParser: Create an output parser 创建输出解析器
 output_parser = StrOutputParser()

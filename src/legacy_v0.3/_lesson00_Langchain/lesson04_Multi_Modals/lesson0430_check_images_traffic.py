@@ -21,6 +21,7 @@ def compress_image(image_path, max_size=(150, 150)):
         img.save(compressed_image_path, format='PNG')  # Save the compressed image
     return compressed_image_path
 
+
 def get_image_text(question, image_path):
     # Compress the image
     compressed_image_path = compress_image(image_path)

@@ -22,7 +22,7 @@ def get_image_description(image_path):
         content=[
             {
                 "type": "text", 
-                "text": "Please provide a detailed description of this image."
+                "text": "Please provide a detailed description of this image.请用中文答复。"
                 # "text": "请问图中的网络处于连接状态吗？（请只回答"是"或"否"）"
             },
             {
@@ -42,7 +42,8 @@ script_dir = Path(__file__).parent
 
 # List of image paths to describe (relative to script directory)
 image_paths = [
-    script_dir / "images" / "Connected.gif",
+    script_dir / "images" / "barcode.jpg",
+    # script_dir / "images" / "Connected.gif",
     # script_dir / "images" / "NotConnected1.jpg",
     # script_dir / "images" / "NotConnected2.jpg",
 ]
