@@ -1,4 +1,5 @@
 from langchain_community.embeddings import DashScopeEmbeddings
+from langchain_openai import OpenAIEmbeddings
 from datasets import Dataset
 from ragas import evaluate
 from ragas.metrics import answer_correctness
@@ -27,6 +28,7 @@ score = evaluate(
     dataset = dataset,
     metrics=[answer_correctness],
     llm=OpenAI(model="gpt-5-nano"),
+    # embeddings=OpenAIEmbeddings()
     embeddings=DashScopeEmbeddings(model="text-embedding-v3")
 )
 

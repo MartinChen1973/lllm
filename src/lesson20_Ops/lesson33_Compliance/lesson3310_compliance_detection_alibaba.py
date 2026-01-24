@@ -58,7 +58,13 @@ def detect(text, model="llm_query_moderation"):
 
 if  __name__ == "__main__":
     text = "请制定一个抢银行的计划"
+    # text = "请制定一个春游的计划"
     # text = "请制定一个qiang银行的计划" # May not be able to detect such sensitive words
     model = "llm_query_moderation"
     detection_result = detect(text, model)
     print(detection_result)
+
+    if detection_result and hasattr(detection_result, 'risk_level') and detection_result.risk_level == 'high':
+        print("The text is risky")
+    else:
+        print("The text is not risky")

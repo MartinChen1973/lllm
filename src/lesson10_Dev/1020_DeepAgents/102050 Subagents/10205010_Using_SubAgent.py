@@ -9,6 +9,7 @@ load_dotenv(find_dotenv())
 
 tavily_client = TavilyClient(api_key=os.environ["TAVILY_API_KEY"])
 
+
 def internet_search(
     query: str,
     max_results: int = 5,
@@ -23,11 +24,15 @@ def internet_search(
         topic=topic,
     )
 
+def get_weather_for_location(location: str) -> str:
+    """Get the weather for a given location (always returns '此地晴天。')."""
+    return "此地晴天。"
+
 research_subagent = { ## ⬅️ Define a subagent as a dictionary
     "name": "research-agent",
     "description": "Used to research more in depth questions with the internet search tool",
     "system_prompt": "You are a great researcher and you are using the internet search tool to research more in depth questions",
-    "tools": [internet_search],
+    "tools": [internet_search, get_weather_for_location],
     # Model defaults to main agent model (gpt-4o-mini)
 }
 
@@ -42,7 +47,8 @@ agent = create_deep_agent(
 # result = agent.invoke({"messages": [{"role": "user", "content": "What is the weather in Beijing?"}]})
 result = agent.invoke({
     "messages": [
-        {"role": "user", "content": "Hey, what's up in the world of AI for November 2025? Any interesting news?"}
+        # {"role": "user", "content": "Hey, what's up in the world of AI for December 2025? Any interesting news?"},
+        {"role": "user", "content": "What is the weather in Beijing today?"}
     ]
 })
 
