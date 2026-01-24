@@ -1,8 +1,9 @@
 # 1. 演示如何使用csv文件和图表回答开放性问题。
 
+from langchain_openai import ChatOpenAI
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_openai.chat_models import ChatOpenAI
+from langchain.chat_models import init_chat_model
 from dotenv import load_dotenv, find_dotenv
 import os
 
@@ -26,7 +27,9 @@ Note: {note}
 """
 prompt = ChatPromptTemplate.from_template(template)
 model = ChatOpenAI(model = "gpt-4o-mini")
-# model = ChatOpenAI(model="gpt-5") # 如果由于问题复杂，导致实验效果不佳，请使用gpt-5模型
+# model = ChatOpenAI(model="gpt-5-mini") # 如果由于问题复杂，导致实验效果不佳，请使用gpt-5模型
+# model = init_chat_model("openai:gpt-5") # Better but expensive.
+
 output_parser = StrOutputParser()
 
 # Create a note for the prompt 创建提示词的注释
@@ -52,9 +55,9 @@ chain = prompt | model | output_parser
 questions = [
     # "2024年一月份一共卖出多少辆车？",
     # "2024-01-01~2024-01-31期间一共有卖出多少辆车？",
-    # "2024-01-01~2024-01-31期间一共有多少订单?",
+    "2024-01-01~2024-01-31期间一共有多少订单?",
     # "2024年一季度按销售人员从多到少排列分别是谁？各有多少辆车？",
-    """请从月份、销售人员、车型三个方面分析订单中的规律，并绘制图表进行展示。。"""
+    # """请从月份、销售人员、车型三个方面分析订单中的规律，并绘制图表进行展示。。"""
 ]
 
 # Invoke the chain 调用链

@@ -17,8 +17,11 @@ from langchain_tools.retriever.LangChainRetriever import LangChainRetriever
 load_dotenv(find_dotenv())
 
 # Langchain_tools question and context | FOLDER -----------------------------------
+# Get the directory where this script is located and combine with "md"
+script_dir = os.path.dirname(os.path.abspath(__file__))
+md_path = os.path.join(script_dir, "md")
 question_and_context = LangChainRetriever.create_question_and_context_from_path(
-    "src/lesson03_RAG/md",  # 从文件夹中获取文本数据，包含《组织结构图》和《请假政策》。
+    md_path,  # 从文件夹中获取文本数据，包含《组织结构图》和《请假政策》。
     # k=1, # 从每个文件中提取的段落数，缺省为7。如果只提取1段，则无法完成跨文档的问题回答。
 )
 

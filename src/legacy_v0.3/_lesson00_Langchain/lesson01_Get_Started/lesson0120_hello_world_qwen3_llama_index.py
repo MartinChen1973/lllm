@@ -5,6 +5,7 @@
 import os
 
 from dotenv import load_dotenv, find_dotenv
+from langchain_community.retrievers import web_research
 from llama_index.llms.openai_like import OpenAILike
 
 # 从当前文件夹或父文件夹中加载.env文件的配置（成为全局可访问的静态变量）。

@@ -46,14 +46,8 @@ model = init_chat_model(
     base_url=os.getenv("OPENAI_API_BASE"),
     organization=os.getenv("OPENAI_ORG_ID"),
     top_p=1,
-    top_k=40,
     frequency_penalty=0,
     presence_penalty=0,
-    logit_bias={},
-    logprobs=None,
-    logprobs_format=None,
-    logprobs_format_type=None,
-    logprobs_format_type_format=None,
 )
 
 # Initialize memory checkpointer for conversation history

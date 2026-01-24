@@ -23,7 +23,8 @@ template = """仅依赖下面的context回答用户的问题:
 Question: {question}
 """
 prompt = ChatPromptTemplate.from_template(template)
-model = ChatOpenAI(model="gpt-5-nano")
+# model = ChatOpenAI(model="gpt-5-nano")
+model = ChatOpenAI(model="gpt-4o-mini")
 parser = StrOutputParser()
 
 # Function to get context from Tavily retriever
@@ -41,7 +42,6 @@ def get_context(question):
 
 # Define the full chain
 question = "懂王赢得了2024大选吗？（请列出相关信息的出处，包括网站名称，网址，内容摘要）"
-# question = "懂王赢得了2024大选吗？"
 context = get_context(question)
 chain = prompt | model | parser
 

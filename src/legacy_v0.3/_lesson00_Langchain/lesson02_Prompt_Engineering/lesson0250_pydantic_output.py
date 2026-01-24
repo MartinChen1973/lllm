@@ -4,8 +4,8 @@
 
 from langchain_openai import ChatOpenAI
 from pydantic import BaseModel, Field, field_validator
-from langchain.output_parsers import PydanticOutputParser
-from langchain.prompts import PromptTemplate
+from langchain_core.output_parsers import PydanticOutputParser
+from langchain_core.prompts import PromptTemplate
 from dotenv import load_dotenv, find_dotenv
 
 # Load environment variables
@@ -53,7 +53,7 @@ class Couplet(BaseModel):
 topic = "请写一副蛇年对联。"
 
 # Create a parser to handle the Pydantic structure
-parser = PydanticOutputParser(pydantic_object=Couplet)
+parser = PydanticOutputParser[Couplet](pydantic_object=Couplet)
 
 # =============================================
 # Set up the prompt template and add instructions

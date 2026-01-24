@@ -6,7 +6,8 @@ from langchain_openai import ChatOpenAI
 load_dotenv(find_dotenv())
 
 # Create the OpenAI chatbot 创建聊天机器人
-model = ChatOpenAI(model="gpt-5-nano") # Very Clever, but still not enough
+model = ChatOpenAI(model="gpt-4o-mini") # Very Clever, but still not enough
+# model = ChatOpenAI(model="gpt-5-nano") # Very Clever, but still not enough
 # model = ChatOpenAI(model="gpt-5") # Super Clever
 
 ################# 数字幻觉 #################
@@ -27,3 +28,5 @@ model = ChatOpenAI(model="gpt-5-nano") # Very Clever, but still not enough
 # response = model.invoke("请用100字总结一下下面的内容：“")
 response = model.invoke("请计算：1.23456789*9.87654321”")
 print(response.content)
+print("="*50)
+print(1.23456789*9.87654321)

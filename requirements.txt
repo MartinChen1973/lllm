@@ -51,3 +51,4 @@ selenium>=4.0.0
 webdriver-manager>=4.0.0
 deepagents
 tavily-python
+pygame>=2.5.0

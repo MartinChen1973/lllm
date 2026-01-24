@@ -16,9 +16,14 @@ from langchain_tools.retriever.LangChainRetriever import LangChainRetriever
 load_dotenv(find_dotenv())
 
 # Langchain_tools question and context  -----------------------------------
-question_and_context = LangChainRetriever.create_question_and_context_from_path(
-    "src/lesson03_RAG/md/leave_policy.md"
-)
+path = "src/legacy_v0.3/_lesson00_Langchain/lesson03_RAG_basic/md/leave_policy.md"
+print(f"Attempting to load from path: {path}")
+print(f"Path exists: {os.path.exists(path)}")
+print(f"Is file: {os.path.isfile(path)}")
+print(f"Is directory: {os.path.isdir(path)}")
+if os.path.exists(path):
+    print(f"Absolute path: {os.path.abspath(path)}")
+question_and_context = LangChainRetriever.create_question_and_context_from_path(path)
 
 # Create a prompt 创建提示词
 template = """仅依赖下面的context回答用户的问题:

@@ -37,7 +37,13 @@ print(result)
 
 # 读取并执行代码（代码在result中，以```python开头，```结束）
 code = result.split("```python")[1].split("```")[0]
-exec(code)
+try:
+    exec(code)
+except ModuleNotFoundError as e:
+    print(f"\n错误：缺少必要的模块 - {e}")
+    print("请运行: pip install pygame")
+except Exception as e:
+    print(f"\n执行代码时出错：{e}")
 # ---------------------------------------------
 
 # 用regex可以实现更复杂内容的读取。
