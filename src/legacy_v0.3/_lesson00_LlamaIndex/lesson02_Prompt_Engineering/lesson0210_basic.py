@@ -6,7 +6,8 @@ from langchain_core.output_parsers import StrOutputParser
 
 # Load the API key from the .env file 从.env文件中加载API密钥
 from dotenv import load_dotenv, find_dotenv
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # "Prompt"是指在使用大型语言模型（LLM）时提供给模型的输入文本或指令。
 # 这可以是一个问题、一个描述或一个任务说明，目的是引导模型生成相关的文本输出。

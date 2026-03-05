@@ -7,7 +7,8 @@ from dotenv import load_dotenv, find_dotenv
 from langchain.agents import create_agent
 
 # Load environment variables from .env file
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 
 def get_weather(city: str) -> str:

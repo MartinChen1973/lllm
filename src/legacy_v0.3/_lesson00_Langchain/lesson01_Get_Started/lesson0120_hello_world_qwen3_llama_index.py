@@ -9,7 +9,8 @@ from langchain_community.retrievers import web_research
 from llama_index.llms.openai_like import OpenAILike
 
 # 从当前文件夹或父文件夹中加载.env文件的配置（成为全局可访问的静态变量）。
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Create the OpenAI chatbot 创建聊天机器人
 # model或llm是大语言模型Large Language Model的缩写。这里使用LlamaIndex的OpenAI LLM。
@@ -18,7 +19,8 @@ llm = OpenAILike(
     api_key=os.getenv("OPENAI_API_KEY"),
     api_base=os.getenv("OPENAI_API_BASE"),
     is_chat_model=True,
-    context_window=32768
+    context_window=32768,
+    search_kwargs={"top_k": 10},
 )  # Fast and cheap.
 
 # llm = OpenAI(model="gpt-5-nano") # Fast and cheap.

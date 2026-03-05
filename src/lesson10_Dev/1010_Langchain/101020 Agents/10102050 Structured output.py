@@ -8,7 +8,8 @@ from langchain.agents import create_agent
 from langchain.agents.structured_output import ToolStrategy, ProviderStrategy
 
 # Load environment variables from .env file
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 
 # Define the structured output schema

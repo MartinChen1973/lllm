@@ -7,7 +7,8 @@ from langserve import add_routes
 from fastapi import FastAPI
 
 from dotenv import load_dotenv, find_dotenv
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # 1. Create prompt template
 # system_template_text ensures the question is related to Agile/Scrum

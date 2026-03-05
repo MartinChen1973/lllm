@@ -14,7 +14,8 @@ from langgraph.checkpoint.memory import MemorySaver
 from human_in_the_loop_utils import get_user_decisions
 
 # Load environment variables from .env file
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 
 # Define tools
@@ -37,7 +38,7 @@ def send_email(to: str, subject: str, body: str) -> str:
 
 
 # Checkpointer is REQUIRED for human-in-the-loop
-checkpointer = MemorySaver()
+checkpointer = MemorySaver() 
 
 # Basic configuration: Set up agent with interrupt_on parameter
 agent = create_deep_agent(

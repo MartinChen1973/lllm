@@ -5,7 +5,8 @@ import json
 import os
 
 from dotenv import load_dotenv, find_dotenv
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 access_key_id = os.environ['ALIBABA_CLOUD_ACCESS_KEY_ID']
 access_key_secret = os.environ['ALIBABA_CLOUD_ACCESS_KEY_SECRET']

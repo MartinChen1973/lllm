@@ -4,7 +4,7 @@ from dotenv import load_dotenv, find_dotenv
 from langchain.chat_models import init_chat_model
 
 # Load environment variables from .env file in current or parent directories (becomes globally accessible static variable).
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
 
 # model or llm is an abbreviation for Large Language Model. init_chat_model is a function used to initialize a chat model.
 llm = init_chat_model("openai:gpt-4o-mini")

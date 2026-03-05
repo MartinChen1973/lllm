@@ -33,7 +33,8 @@ def save_graph_image(graph, filename):
         traceback.print_exc()
 
 # Load environment variables
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Define the structure of the chatbot's state
 class State(TypedDict):

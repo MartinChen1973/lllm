@@ -5,7 +5,8 @@ from deepagents import create_deep_agent
 from dotenv import load_dotenv, find_dotenv
 
 # Load environment variables from .env file
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 tavily_client = TavilyClient(api_key=os.environ["TAVILY_API_KEY"])
 
@@ -28,6 +29,7 @@ def get_weather_for_location(location: str) -> str:
     """Get the weather for a given location (always returns '此地晴天。')."""
     return "此地晴天。"
 
+
 research_subagent = { ## ⬅️ Define a subagent as a dictionary
     "name": "research-agent",
     "description": "Used to research more in depth questions with the internet search tool",
@@ -36,7 +38,19 @@ research_subagent = { ## ⬅️ Define a subagent as a dictionary
     # Model defaults to main agent model (gpt-4o-mini)
 }
 
-subagents = [research_subagent]
+weather_subagent = {  # 定义一个可以 getWeather 的子智能体
+    "name": "weather-agent",
+    "description": "用于获取指定地点天气信息的子智能体",
+    "system_prompt": "你是一名天气助手，请准确地为用户查询和解答有关天气的问题。",
+    "tools": [get_weather_for_location],
+    # Model 默认为主智能体的模型 (gpt-4o-mini)
+}
+
+subagents = [research_subagent, weather_subagent]
+
+# subagents = load_subagents(subagents)
+subagents = find_subagents(subagents, "http://192.168.1.100:8000/subagents/list")
+
 
 agent = create_deep_agent(
     model="openai:gpt-4o-mini",

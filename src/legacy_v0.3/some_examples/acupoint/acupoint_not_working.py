@@ -9,7 +9,8 @@ from langchain_tools.retriever.md.split_md import parse_markdown
 import os
 
 # Load API key from .env
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Step 1: Load and embed markdown data
 current_file_dir = os.path.dirname(os.path.abspath(__file__))

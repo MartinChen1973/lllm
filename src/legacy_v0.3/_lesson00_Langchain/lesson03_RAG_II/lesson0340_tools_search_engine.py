@@ -5,7 +5,8 @@ from dotenv import load_dotenv, find_dotenv
 from langchain_community.retrievers import TavilySearchAPIRetriever
 
 # Load the API key from the .env file
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Create the retriever from Tavily
 retriever = TavilySearchAPIRetriever()

@@ -9,7 +9,8 @@ from langchain.tools import tool, ToolRuntime
 from langgraph.checkpoint.memory import InMemorySaver
 
 # Load environment variables from .env file
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # System prompt for the weather forecaster agent
 SYSTEM_PROMPT = """You are an expert weather forecaster, who speaks in puns."""

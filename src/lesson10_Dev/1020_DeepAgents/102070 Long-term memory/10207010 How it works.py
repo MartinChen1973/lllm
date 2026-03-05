@@ -22,7 +22,8 @@ from langgraph.store.memory import InMemoryStore
 from langgraph.checkpoint.memory import MemorySaver
 
 # Load environment variables from .env file
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Checkpointer is REQUIRED for state persistence across multiple invocations in the same thread
 # StateBackend stores files in agent state, which persists via checkpoints

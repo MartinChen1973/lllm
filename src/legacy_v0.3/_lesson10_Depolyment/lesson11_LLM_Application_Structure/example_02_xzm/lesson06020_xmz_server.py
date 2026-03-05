@@ -14,7 +14,8 @@ from fastapi.responses import RedirectResponse
 from langserve import add_routes
 
 # Load the API key from the .env file
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Define Pydantic model for request body
 class QuestionRequest(BaseModel):

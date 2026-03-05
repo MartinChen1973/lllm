@@ -17,7 +17,8 @@ from langchain_community.vectorstores import FAISS
 
 
 # Load the API key from the .env file   从.env文件中加载API密钥
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 embedding = OpenAIEmbeddings()
 

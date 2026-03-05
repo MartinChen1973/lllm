@@ -19,7 +19,8 @@ from langgraph.checkpoint.memory import MemorySaver
 from human_in_the_loop_utils import get_user_decisions
 
 # Load environment variables from .env file
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 
 @tool

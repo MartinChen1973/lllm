@@ -7,7 +7,8 @@ from langchain.chat_models import init_chat_model
 from langchain_core.messages import HumanMessage, AIMessage, SystemMessage
 
 # Load environment variables from .env file
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Initialize a basic model
 model = init_chat_model("openai:gpt-4o-mini")

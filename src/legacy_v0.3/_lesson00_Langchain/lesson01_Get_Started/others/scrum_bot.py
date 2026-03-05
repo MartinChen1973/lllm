@@ -4,7 +4,8 @@ from langchain_core.output_parsers import StrOutputParser
 
 # Load the API key from the .env file 从.env文件中加载API密钥
 from dotenv import load_dotenv, find_dotenv
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Prompt: create a prompt 创建提示词
 prompt = ChatPromptTemplate.from_messages([ 

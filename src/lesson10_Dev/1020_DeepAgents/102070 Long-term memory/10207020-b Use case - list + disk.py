@@ -20,7 +20,8 @@ from deepagents.backends import CompositeBackend, StateBackend, FilesystemBacken
 from langgraph.checkpoint.memory import MemorySaver
 
 # Load environment variables from .env file
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # ⬇️ Create directory for persistent storage
 STORAGE_DIR = Path(__file__).parent / "storage"

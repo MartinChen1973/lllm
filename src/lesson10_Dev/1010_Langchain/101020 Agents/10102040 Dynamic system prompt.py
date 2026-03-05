@@ -8,7 +8,8 @@ from langchain.agents import create_agent
 from langchain.agents.middleware import dynamic_prompt, ModelRequest
 
 # Load environment variables from .env file within the current working directory or parent directories
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 
 class Context(TypedDict):

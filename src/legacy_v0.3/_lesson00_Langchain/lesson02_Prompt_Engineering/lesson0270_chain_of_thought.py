@@ -5,7 +5,8 @@
 from dotenv import load_dotenv, find_dotenv
 from langchain_openai import ChatOpenAI
 
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Create the OpenAI chatbot 创建聊天机器人
 # model = ChatOpenAI(model="gpt-5-nano")

@@ -8,7 +8,8 @@ from langchain.agents import AgentState, create_agent
 from langchain.tools import tool
 
 # Load environment variables from .env file
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 
 # Define custom state schema for ticket booking

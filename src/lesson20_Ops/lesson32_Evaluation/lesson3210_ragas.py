@@ -10,7 +10,8 @@ from dotenv import load_dotenv, find_dotenv
 from llama_index.llms.openai import OpenAI
 
 # 从当前文件夹或父文件夹中加载.env文件的配置（成为全局可访问的静态变量）。
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # ===================================
 # Load data from CSV file

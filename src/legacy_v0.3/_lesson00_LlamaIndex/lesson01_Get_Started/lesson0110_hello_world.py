@@ -4,7 +4,8 @@ from dotenv import load_dotenv, find_dotenv
 from llama_index.llms.openai import OpenAI
 
 # 从当前文件夹或父文件夹中加载.env文件的配置（成为全局可访问的静态变量）。
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # model或llm是大语言模型Large Language Model的缩写。这里使用LlamaIndex的OpenAI LLM。
 llm = OpenAI(model="gpt-5-nano")

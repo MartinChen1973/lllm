@@ -9,7 +9,8 @@ from langchain.agents.middleware import wrap_model_call, ModelRequest, ModelResp
 from langchain.tools import tool
 
 # Load environment variables from .env file
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 
 @tool

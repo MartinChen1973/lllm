@@ -10,7 +10,8 @@ from image_viewer import show_images
 import os
 
 # Load .env
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Step 1: Load acupoint data
 current_file_dir = os.path.dirname(os.path.abspath(__file__))

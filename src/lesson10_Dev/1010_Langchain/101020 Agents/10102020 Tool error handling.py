@@ -9,7 +9,8 @@ from langchain.tools import tool
 from langchain_core.messages import ToolMessage
 
 # Load environment variables from .env file
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 
 @tool

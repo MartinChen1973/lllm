@@ -13,7 +13,8 @@ import sys
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
 from src.utilities.image_saver.image_saver import save_graph_image
 
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 model = ChatOpenAI(model="gpt-5-nano")
 
 # Define the structure of the chatbot's state

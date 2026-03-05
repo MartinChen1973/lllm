@@ -7,7 +7,8 @@ from langchain_core.messages import AnyMessage
 from langchain_core.runnables import RunnableConfig
 from langgraph.prebuilt.chat_agent_executor import AgentState
 
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 def get_weather(city: str) -> str:  
     """Get weather for a given city."""

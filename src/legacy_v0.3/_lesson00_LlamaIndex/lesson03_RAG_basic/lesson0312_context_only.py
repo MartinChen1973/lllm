@@ -13,7 +13,8 @@ from langchain_text_splitters import RecursiveCharacterTextSplitter
 from dotenv import load_dotenv, find_dotenv
 
 # Load the API key from the .env file   从.env文件中加载API密钥
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Create the retriever from url 从url创建检索器
 loader = WebBaseLoader("https://docs.smith.langchain.com/overview")

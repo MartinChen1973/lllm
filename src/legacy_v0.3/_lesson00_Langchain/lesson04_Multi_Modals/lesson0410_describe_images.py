@@ -7,7 +7,8 @@ import base64
 from pathlib import Path
 
 # Load environment variables
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Initialize the ChatOpenAI model
 model = ChatOpenAI(model="gpt-5")

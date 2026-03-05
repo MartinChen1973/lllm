@@ -4,7 +4,8 @@ from dotenv import load_dotenv, find_dotenv
 from langgraph.prebuilt import create_react_agent
 from langgraph.checkpoint.memory import MemorySaver
 
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 def get_chinese_name(city: str) -> str:
     """Translate city names to their Chinese names. """

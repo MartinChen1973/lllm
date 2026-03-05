@@ -10,7 +10,8 @@ from dotenv import load_dotenv, find_dotenv
 from langchain_tools.retriever.md.split_md import parse_markdown
 
 # Load the API key from the .env file   从.env文件中加载API密钥
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 sections_leave_policy = parse_markdown("src/lesson03_RAG/md/leave_policy.md")
 

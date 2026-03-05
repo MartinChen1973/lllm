@@ -5,7 +5,8 @@ from pprint import pprint
 from dotenv import load_dotenv, find_dotenv
 
 # Load environment variables from .env file
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Example 1: Initialize OpenAI model using init_chat_model
 from langchain.chat_models import init_chat_model

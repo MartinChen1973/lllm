@@ -4,7 +4,8 @@ from dotenv import load_dotenv, find_dotenv
 from langgraph.prebuilt import create_react_agent
 from pydantic import BaseModel
 
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 def get_weather(_city: str) -> str:
     """Get weather for a given city."""

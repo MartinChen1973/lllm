@@ -16,7 +16,8 @@ from dotenv import load_dotenv, find_dotenv
 from langchain_tools.retriever.md.split_md import parse_markdown
 
 # Load the API key from the .env file   从.env文件中加载API密钥
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Get the directory of the current script file
 script_dir = os.path.dirname(os.path.abspath(__file__))

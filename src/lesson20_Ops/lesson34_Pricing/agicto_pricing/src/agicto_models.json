@@ -1,6 +1,26 @@
 {
   "models": [
     {
+      "name": "gpt-5.2-codex",
+      "url": "/model/gpt-5.2-codex",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 12.25,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 98.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "Open AI"
+    },
+    {
       "name": "gpt-5.1-codex-high",
       "url": "/model/gpt-5.1-codex-high",
       "features": [
@@ -10,11 +30,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 7.3,
+          "price": 7.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         }
       },
@@ -31,11 +51,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 12.78,
+          "price": 147.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 102.2,
+          "price": 1176.0,
           "unit": "百万tokens"
         }
       },
@@ -52,11 +72,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 12.78,
+          "price": 12.25,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 102.2,
+          "price": 98.0,
           "unit": "百万tokens"
         }
       },
@@ -73,11 +93,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 12.78,
+          "price": 12.25,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 102.2,
+          "price": 98.0,
           "unit": "百万tokens"
         }
       },
@@ -94,11 +114,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 9.13,
+          "price": 8.75,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         }
       },
@@ -115,11 +135,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 9.13,
+          "price": 8.75,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         }
       },
@@ -136,11 +156,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 9.13,
+          "price": 8.75,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         }
       },
@@ -156,11 +176,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 9.13,
+          "price": 8.75,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         }
       },
@@ -176,11 +196,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 10.95,
+          "price": 10.5,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         }
       },
@@ -197,11 +217,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 9.13,
+          "price": 8.75,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         }
       },
@@ -218,11 +238,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 9.13,
+          "price": 8.75,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         }
       },
@@ -239,11 +259,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 1.83,
+          "price": 1.75,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 14.6,
+          "price": 14.0,
           "unit": "百万tokens"
         }
       },
@@ -260,11 +280,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 0.37,
+          "price": 0.35,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 2.92,
+          "price": 2.8,
           "unit": "百万tokens"
         }
       },
@@ -280,11 +300,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 8.76,
+          "price": 8.4,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 17.52,
+          "price": 16.8,
           "unit": "百万tokens"
         }
       },
@@ -300,11 +320,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 2.19,
+          "price": 2.1,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 8.76,
+          "price": 8.4,
           "unit": "百万tokens"
         }
       },
@@ -321,11 +341,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 438.0,
+          "price": 420.0,
           "unit": "百万tokens"
         }
       },
@@ -342,11 +362,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 8.03,
+          "price": 7.7,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 32.12,
+          "price": 30.8,
           "unit": "百万tokens"
         }
       },
@@ -363,11 +383,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 8.03,
+          "price": 7.7,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 32.12,
+          "price": 30.8,
           "unit": "百万tokens"
         }
       },
@@ -384,11 +404,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 14.6,
+          "price": 14.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 58.4,
+          "price": 56.0,
           "unit": "百万tokens"
         }
       },
@@ -405,11 +425,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 14.6,
+          "price": 14.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 58.4,
+          "price": 56.0,
           "unit": "百万tokens"
         }
       },
@@ -426,11 +446,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 8.03,
+          "price": 7.7,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 32.12,
+          "price": 30.8,
           "unit": "百万tokens"
         }
       },
@@ -447,11 +467,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 8.03,
+          "price": 7.7,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 32.12,
+          "price": 30.8,
           "unit": "百万tokens"
         }
       },
@@ -468,11 +488,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 8.03,
+          "price": 7.7,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 32.12,
+          "price": 30.8,
           "unit": "百万tokens"
         }
       },
@@ -489,11 +509,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 8.03,
+          "price": 7.7,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 32.12,
+          "price": 30.8,
           "unit": "百万tokens"
         }
       },
@@ -510,11 +530,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 8.03,
+          "price": 7.7,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 32.12,
+          "price": 30.8,
           "unit": "百万tokens"
         }
       },
@@ -531,11 +551,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 8.03,
+          "price": 7.7,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 32.12,
+          "price": 30.8,
           "unit": "百万tokens"
         }
       },
@@ -552,11 +572,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 0.73,
+          "price": 0.7,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 2.92,
+          "price": 2.8,
           "unit": "百万tokens"
         }
       },
@@ -573,11 +593,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 2.92,
+          "price": 2.8,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 11.68,
+          "price": 11.2,
           "unit": "百万tokens"
         }
       },
@@ -594,11 +614,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 14.6,
+          "price": 14.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 58.4,
+          "price": 56.0,
           "unit": "百万tokens"
         }
       },
@@ -615,11 +635,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 8.03,
+          "price": 7.7,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 32.12,
+          "price": 30.8,
           "unit": "百万tokens"
         }
       },
@@ -636,11 +656,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 8.03,
+          "price": 7.7,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 32.12,
+          "price": 30.8,
           "unit": "百万tokens"
         }
       },
@@ -657,11 +677,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 730.0,
+          "price": 700.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 1460.0,
+          "price": 1400.0,
           "unit": "百万tokens"
         }
       },
@@ -678,11 +698,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 292.0,
+          "price": 280.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 584.0,
+          "price": 560.0,
           "unit": "百万tokens"
         }
       },
@@ -699,11 +719,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 730.0,
+          "price": 700.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 1460.0,
+          "price": 1400.0,
           "unit": "百万tokens"
         }
       },
@@ -720,11 +740,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 18.25,
+          "price": 17.5,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         }
       },
@@ -741,11 +761,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 21.9,
+          "price": 21.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 87.6,
+          "price": 84.0,
           "unit": "百万tokens"
         }
       },
@@ -762,11 +782,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 21.9,
+          "price": 21.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 87.6,
+          "price": 84.0,
           "unit": "百万tokens"
         }
       },
@@ -783,11 +803,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 438.0,
+          "price": 420.0,
           "unit": "百万tokens"
         }
       },
@@ -804,11 +824,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 438.0,
+          "price": 420.0,
           "unit": "百万tokens"
         }
       },
@@ -825,11 +845,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 36.5,
+          "price": 35.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         }
       },
@@ -846,11 +866,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 18.25,
+          "price": 17.5,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         }
       },
@@ -867,11 +887,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 1.09,
+          "price": 1.05,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 4.38,
+          "price": 4.2,
           "unit": "百万tokens"
         }
       },
@@ -888,11 +908,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 18.25,
+          "price": 17.5,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         }
       },
@@ -909,11 +929,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 219.0,
+          "price": 210.0,
           "unit": "百万tokens"
         }
       },
@@ -930,11 +950,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 219.0,
+          "price": 210.0,
           "unit": "百万tokens"
         }
       },
@@ -951,11 +971,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 219.0,
+          "price": 210.0,
           "unit": "百万tokens"
         }
       },
@@ -972,11 +992,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 438.0,
+          "price": 420.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 876.0,
+          "price": 840.0,
           "unit": "百万tokens"
         }
       },
@@ -993,11 +1013,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 438.0,
+          "price": 420.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 876.0,
+          "price": 840.0,
           "unit": "百万tokens"
         }
       },
@@ -1014,11 +1034,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 219.0,
+          "price": 210.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 438.0,
+          "price": 420.0,
           "unit": "百万tokens"
         }
       },
@@ -1035,11 +1055,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 219.0,
+          "price": 210.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 438.0,
+          "price": 420.0,
           "unit": "百万tokens"
         }
       },
@@ -1056,11 +1076,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 219.0,
+          "price": 210.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 438.0,
+          "price": 420.0,
           "unit": "百万tokens"
         }
       },
@@ -1077,11 +1097,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 219.0,
+          "price": 210.0,
           "unit": "百万tokens"
         }
       },
@@ -1098,11 +1118,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 219.0,
+          "price": 210.0,
           "unit": "百万tokens"
         }
       },
@@ -1119,11 +1139,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 219.0,
+          "price": 210.0,
           "unit": "百万tokens"
         }
       },
@@ -1140,11 +1160,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 21.9,
+          "price": 21.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 29.2,
+          "price": 28.0,
           "unit": "百万tokens"
         }
       },
@@ -1161,11 +1181,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 21.9,
+          "price": 21.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 29.2,
+          "price": 28.0,
           "unit": "百万tokens"
         }
       },
@@ -1182,11 +1202,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 10.95,
+          "price": 10.5,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 14.6,
+          "price": 14.0,
           "unit": "百万tokens"
         }
       },
@@ -1203,11 +1223,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 10.95,
+          "price": 10.5,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 14.6,
+          "price": 14.0,
           "unit": "百万tokens"
         }
       },
@@ -1224,11 +1244,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 3.65,
+          "price": 3.5,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 10.95,
+          "price": 10.5,
           "unit": "百万tokens"
         }
       },
@@ -1245,11 +1265,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 7.3,
+          "price": 7.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 14.6,
+          "price": 14.0,
           "unit": "百万tokens"
         }
       },
@@ -1266,11 +1286,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 3.65,
+          "price": 3.5,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 10.95,
+          "price": 10.5,
           "unit": "百万tokens"
         }
       },
@@ -1411,7 +1431,7 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 0.73,
+          "price": 0.7,
           "unit": "百万tokens"
         },
         "output": {
@@ -1431,7 +1451,7 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 0.95,
+          "price": 0.91,
           "unit": "百万tokens"
         },
         "output": {
@@ -1451,7 +1471,7 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 0.15,
+          "price": 0.14,
           "unit": "百万tokens"
         },
         "output": {
@@ -2057,7 +2077,7 @@
           "unit": "百万tokens"
         }
       },
-      "provider": "讯飞星火"
+      "provider": "讯飞"
     },
     {
       "name": "pro-128k",
@@ -2078,7 +2098,7 @@
           "unit": "百万tokens"
         }
       },
-      "provider": "讯飞星火"
+      "provider": "讯飞"
     },
     {
       "name": "generalv3",
@@ -2099,7 +2119,7 @@
           "unit": "百万tokens"
         }
       },
-      "provider": "讯飞星火"
+      "provider": "讯飞"
     },
     {
       "name": "spark-V1.5",
@@ -2120,7 +2140,7 @@
           "unit": "百万tokens"
         }
       },
-      "provider": "讯飞星火"
+      "provider": "讯飞"
     },
     {
       "name": "Baichuan2-53B",
@@ -2133,11 +2153,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 146.0,
+          "price": 140.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 146.0,
+          "price": 140.0,
           "unit": "百万tokens"
         }
       },
@@ -2256,11 +2276,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 8.76,
+          "price": 8.4,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 17.52,
+          "price": 16.8,
           "unit": "百万tokens"
         }
       },
@@ -3121,11 +3141,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 3.65,
+          "price": 3.5,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 21.9,
+          "price": 21.0,
           "unit": "百万tokens"
         }
       },
@@ -3141,11 +3161,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 14.6,
+          "price": 14.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 87.6,
+          "price": 84.0,
           "unit": "百万tokens"
         }
       },
@@ -3161,11 +3181,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 14.6,
+          "price": 14.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 87.6,
+          "price": 84.0,
           "unit": "百万tokens"
         }
       },
@@ -3181,11 +3201,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 9.13,
+          "price": 8.75,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         }
       },
@@ -3201,11 +3221,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 9.13,
+          "price": 8.75,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 43.8,
+          "price": 42.0,
           "unit": "百万tokens"
         }
       },
@@ -3221,11 +3241,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 9.13,
+          "price": 8.75,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         }
       },
@@ -3242,11 +3262,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 9.13,
+          "price": 8.75,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         }
       },
@@ -3263,11 +3283,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 9.2,
+          "price": 8.82,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 36.79,
+          "price": 35.28,
           "unit": "百万tokens"
         }
       },
@@ -3283,11 +3303,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 9.13,
+          "price": 8.75,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         }
       },
@@ -3325,11 +3345,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 3.65,
+          "price": 3.5,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 10.95,
+          "price": 10.5,
           "unit": "百万tokens"
         }
       },
@@ -3343,7 +3363,7 @@
       ],
       "pricing": {
         "type": "per_use",
-        "price": 0.7,
+        "price": 0.55,
         "unit": "次"
       },
       "provider": "Google"
@@ -3422,11 +3442,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 36.5,
+          "price": 35.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 182.5,
+          "price": 175.0,
           "unit": "百万tokens"
         }
       },
@@ -3442,11 +3462,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 3.65,
+          "price": 3.5,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 18.25,
+          "price": 17.5,
           "unit": "百万tokens"
         }
       },
@@ -3462,11 +3482,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 3.65,
+          "price": 3.5,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 18.25,
+          "price": 17.5,
           "unit": "百万tokens"
         }
       },
@@ -3482,11 +3502,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 547.5,
+          "price": 525.0,
           "unit": "百万tokens"
         }
       },
@@ -3502,11 +3522,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 547.5,
+          "price": 525.0,
           "unit": "百万tokens"
         }
       },
@@ -3522,11 +3542,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 21.9,
+          "price": 21.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         }
       },
@@ -3543,11 +3563,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 547.5,
+          "price": 525.0,
           "unit": "百万tokens"
         }
       },
@@ -3564,11 +3584,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 547.5,
+          "price": 525.0,
           "unit": "百万tokens"
         }
       },
@@ -3585,11 +3605,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 547.5,
+          "price": 525.0,
           "unit": "百万tokens"
         }
       },
@@ -3606,11 +3626,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 547.5,
+          "price": 525.0,
           "unit": "百万tokens"
         }
       },
@@ -3627,11 +3647,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 21.9,
+          "price": 21.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         }
       },
@@ -3648,11 +3668,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 21.9,
+          "price": 21.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         }
       },
@@ -3669,11 +3689,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 21.9,
+          "price": 21.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         }
       },
@@ -3690,11 +3710,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 21.9,
+          "price": 21.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         }
       },
@@ -3711,11 +3731,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 21.9,
+          "price": 21.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         }
       },
@@ -3732,11 +3752,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 7.3,
+          "price": 7.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 36.5,
+          "price": 35.0,
           "unit": "百万tokens"
         }
       },
@@ -3753,11 +3773,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 21.9,
+          "price": 21.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         }
       },
@@ -3774,11 +3794,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 7.3,
+          "price": 7.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 36.5,
+          "price": 35.0,
           "unit": "百万tokens"
         }
       },
@@ -3795,11 +3815,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 21.9,
+          "price": 21.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         }
       },
@@ -3816,11 +3836,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 547.5,
+          "price": 525.0,
           "unit": "百万tokens"
         }
       },
@@ -3837,11 +3857,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 449.68,
+          "price": 431.2,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 1349.04,
+          "price": 1293.6,
           "unit": "百万tokens"
         }
       },
@@ -3858,11 +3878,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 112.42,
+          "price": 107.8,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 337.26,
+          "price": 323.4,
           "unit": "百万tokens"
         }
       },
@@ -3879,11 +3899,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 39.42,
+          "price": 37.8,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 39.42,
+          "price": 37.8,
           "unit": "百万tokens"
         }
       },
@@ -3900,11 +3920,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 13.87,
+          "price": 13.3,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 13.87,
+          "price": 13.3,
           "unit": "百万tokens"
         }
       },
@@ -3921,11 +3941,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 7.3,
+          "price": 7.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 7.3,
+          "price": 7.0,
           "unit": "百万tokens"
         }
       },
@@ -3942,11 +3962,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 2.19,
+          "price": 2.1,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 2.19,
+          "price": 2.1,
           "unit": "百万tokens"
         }
       },
@@ -3963,11 +3983,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 1.46,
+          "price": 1.4,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 1.46,
+          "price": 1.4,
           "unit": "百万tokens"
         }
       },
@@ -3984,11 +4004,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 1.46,
+          "price": 1.4,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 1.46,
+          "price": 1.4,
           "unit": "百万tokens"
         }
       },
@@ -4005,11 +4025,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 10.95,
+          "price": 10.5,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 10.95,
+          "price": 10.5,
           "unit": "百万tokens"
         }
       },
@@ -4584,11 +4604,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 2.56,
+          "price": 2.45,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 9.49,
+          "price": 9.1,
           "unit": "百万tokens"
         }
       },
@@ -4669,11 +4689,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 3.65,
+          "price": 3.5,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 10.95,
+          "price": 10.5,
           "unit": "百万tokens"
         }
       },
@@ -4690,11 +4710,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 3.65,
+          "price": 3.5,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 10.95,
+          "price": 10.5,
           "unit": "百万tokens"
         }
       },
@@ -4711,11 +4731,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 3.65,
+          "price": 3.5,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 10.95,
+          "price": 10.5,
           "unit": "百万tokens"
         }
       },
@@ -4732,11 +4752,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 3.65,
+          "price": 3.5,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 10.95,
+          "price": 10.5,
           "unit": "百万tokens"
         }
       },
@@ -4753,11 +4773,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 3.65,
+          "price": 3.5,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 10.95,
+          "price": 10.5,
           "unit": "百万tokens"
         }
       },
@@ -4774,11 +4794,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 21.9,
+          "price": 21.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         }
       },
@@ -5283,11 +5303,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 7.3,
+          "price": 7.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 18.25,
+          "price": 17.5,
           "unit": "百万tokens"
         }
       },
@@ -5303,11 +5323,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 21.9,
+          "price": 21.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         }
       },
@@ -5324,11 +5344,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 146.0,
+          "price": 140.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 29.2,
+          "price": 28.0,
           "unit": "百万tokens"
         }
       },
@@ -5345,11 +5365,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 146.0,
+          "price": 140.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 29.2,
+          "price": 28.0,
           "unit": "百万tokens"
         }
       },
@@ -5366,11 +5386,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 146.0,
+          "price": 140.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 29.2,
+          "price": 28.0,
           "unit": "百万tokens"
         }
       },
@@ -5387,11 +5407,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 36.5,
+          "price": 35.0,
           "unit": "百万tokens"
         }
       },
@@ -5408,11 +5428,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 109.5,
+          "price": 105.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 36.5,
+          "price": 35.0,
           "unit": "百万tokens"
         }
       },
@@ -5429,11 +5449,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 14.6,
+          "price": 14.0,
           "unit": "百万tokens"
         }
       },
@@ -5450,11 +5470,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 14.6,
+          "price": 14.0,
           "unit": "百万tokens"
         }
       },
@@ -5471,11 +5491,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 14.6,
+          "price": 14.0,
           "unit": "百万tokens"
         }
       },
@@ -5492,11 +5512,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 73.0,
+          "price": 70.0,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 14.6,
+          "price": 14.0,
           "unit": "百万tokens"
         }
       },
@@ -5573,11 +5593,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 9.13,
+          "price": 8.75,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 36.5,
+          "price": 35.0,
           "unit": "百万tokens"
         }
       },
@@ -5594,11 +5614,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 0.51,
+          "price": 0.49,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 2.19,
+          "price": 2.1,
           "unit": "百万tokens"
         }
       },
@@ -5614,11 +5634,11 @@
         "type": "tokens",
         "unit": "百万tokens",
         "input": {
-          "price": 9.13,
+          "price": 8.75,
           "unit": "百万tokens"
         },
         "output": {
-          "price": 146.0,
+          "price": 140.0,
           "unit": "百万tokens"
         }
       },

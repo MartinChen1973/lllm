@@ -10,7 +10,8 @@ from langgraph.prebuilt import ToolNode, tools_condition
 from langgraph.checkpoint.memory import MemorySaver
 
 # Load environment variables
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Define the structure of the chatbot's state
 class State(TypedDict):

@@ -10,7 +10,8 @@ from pathlib import Path
 from typing import Dict, Any
 
 # Load environment variables
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Initialize the ChatOpenAI model with structured output
 model = ChatOpenAI(model="gpt-4o", temperature=0)

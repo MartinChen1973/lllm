@@ -14,7 +14,8 @@ from dotenv import load_dotenv, find_dotenv
 from langchain_tools.retriever.LangChainRetriever import LangChainRetriever
 
 # Load the API key from the .env file   从.env文件中加载API密钥
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Langchain_tools question and context | FOLDER -----------------------------------
 # Get the directory where this script is located and combine with "md"

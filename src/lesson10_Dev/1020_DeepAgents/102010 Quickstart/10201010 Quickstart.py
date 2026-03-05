@@ -5,7 +5,8 @@ from tavily import TavilyClient
 from deepagents import create_deep_agent
 
 # Load environment variables from .env file
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 tavily_client = TavilyClient(api_key=os.environ["TAVILY_API_KEY"])
 

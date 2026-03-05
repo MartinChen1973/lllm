@@ -9,7 +9,8 @@ from langchain.chat_models import init_chat_model
 from langgraph.checkpoint.memory import InMemorySaver
 
 # Load environment variables from .env file
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # System prompt for the couplet generator agent
 SYSTEM_PROMPT = """You are an expert Chinese couplet (对联) writer. You create traditional Chinese couplets with matching upper line (上联), lower line (下联), and horizontal scroll (横批). Ensure proper tonal patterns, parallelism, and thematic coherence."""

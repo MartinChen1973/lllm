@@ -15,7 +15,8 @@ from deepagents import create_deep_agent
 from langgraph.checkpoint.memory import MemorySaver
 
 # Load environment variables from .env file
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 
 @tool

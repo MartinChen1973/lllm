@@ -22,7 +22,8 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), '..', '..'))
 from src.utilities.image_saver.image_saver import save_graph_image    
 
 # Load environment variables
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # =============================================
 # Define the data structure for the couplet response using Pydantic

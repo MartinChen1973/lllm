@@ -5,7 +5,8 @@ from langchain.agents import create_agent
 from langchain_community.tools.tavily_search import TavilySearchResults
 
 # Load environment variables from .env file
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 
 # Initialize Tavily search tool

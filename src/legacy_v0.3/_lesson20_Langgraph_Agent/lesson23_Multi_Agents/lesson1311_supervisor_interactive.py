@@ -5,7 +5,8 @@ from langgraph.checkpoint.memory import InMemorySaver
 
 from dotenv import load_dotenv, find_dotenv
 
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Create checkpointer for memory
 checkpointer = InMemorySaver()

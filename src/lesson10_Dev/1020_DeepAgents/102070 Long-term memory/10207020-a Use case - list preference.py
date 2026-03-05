@@ -20,7 +20,8 @@ from langgraph.store.memory import InMemoryStore
 from langgraph.checkpoint.memory import MemorySaver
 
 # Load environment variables from .env file
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Checkpointer is required for state persistence
 checkpointer = MemorySaver()

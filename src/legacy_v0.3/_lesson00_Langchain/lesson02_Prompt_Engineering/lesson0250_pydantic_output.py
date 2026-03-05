@@ -9,7 +9,8 @@ from langchain_core.prompts import PromptTemplate
 from dotenv import load_dotenv, find_dotenv
 
 # Load environment variables
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Initialize ChatOpenAI model with desired parameters
 model = ChatOpenAI(model="gpt-5-nano")

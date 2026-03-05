@@ -4,7 +4,8 @@ from langgraph_swarm import create_swarm, create_handoff_tool
 
 from dotenv import load_dotenv, find_dotenv
 
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 model = ChatOpenAI(model="gpt-5-nano")
 

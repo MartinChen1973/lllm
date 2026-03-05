@@ -4,7 +4,8 @@ from dotenv import load_dotenv, find_dotenv
 from langgraph.prebuilt import create_react_agent
 from langchain.chat_models import init_chat_model
 
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 
 def get_weather(city: str) -> str:  

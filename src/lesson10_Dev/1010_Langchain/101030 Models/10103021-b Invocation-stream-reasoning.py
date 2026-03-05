@@ -4,7 +4,8 @@ from dotenv import load_dotenv, find_dotenv
 from langchain.chat_models import init_chat_model
 
 # Load environment variables from .env file
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Initialize a model that supports reasoning
 model = init_chat_model("openai:deepseek-r1-250528")

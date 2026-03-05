@@ -8,7 +8,8 @@ from dotenv import load_dotenv, find_dotenv
 import os
 
 # Load the API key from the .env file   从.env文件中加载API密钥
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 current_dir = os.path.dirname(os.path.abspath(__file__))
 file_path = os.path.join(current_dir, 'data', 'sales2023_first_quarter.csv')

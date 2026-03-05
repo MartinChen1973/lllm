@@ -3,7 +3,8 @@
 from dotenv import load_dotenv, find_dotenv
 from langgraph.prebuilt.chat_agent_executor import create_react_agent
 
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 
 def get_weather(city: str) -> str:  

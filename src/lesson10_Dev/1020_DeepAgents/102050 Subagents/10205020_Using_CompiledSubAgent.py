@@ -4,7 +4,8 @@ from langchain.chat_models import init_chat_model
 from dotenv import load_dotenv, find_dotenv
 
 # load the environment variables
-load_dotenv(find_dotenv())
+load_dotenv(find_dotenv(), override=True)
+
 
 # Initialize the model
 model = init_chat_model("openai:gpt-4o-mini")
