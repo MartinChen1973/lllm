@@ -1,5 +1,5 @@
 from langchain_community.embeddings import DashScopeEmbeddings
-from langchain_openai import OpenAIEmbeddings
+from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from datasets import Dataset
 from ragas import evaluate
 from ragas.metrics import answer_correctness
@@ -7,7 +7,6 @@ import pandas as pd
 
 import os
 from dotenv import load_dotenv, find_dotenv
-from llama_index.llms.openai import OpenAI
 
 # 从当前文件夹或父文件夹中加载.env文件的配置（成为全局可访问的静态变量）。
 load_dotenv(find_dotenv(), override=True)
@@ -28,9 +27,9 @@ print("Evaluating with Ragas...")
 score = evaluate(
     dataset = dataset,
     metrics=[answer_correctness],
-    llm=OpenAI(model="gpt-5-nano"),
-    # embeddings=OpenAIEmbeddings()
-    embeddings=DashScopeEmbeddings(model="text-embedding-v3")
+    llm=ChatOpenAI(model="gpt-5-nano"),
+    embeddings=OpenAIEmbeddings(model="text-embedding-3-small"),
+    # embeddings=DashScopeEmbeddings(model="text-embedding-v3")
 )
 
 print("Evaluation results:")

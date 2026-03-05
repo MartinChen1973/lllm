@@ -1,10 +1,24 @@
-- Always format code with proper indentation and comments
 - Prefer detailed explanations
-- Always use type hints in Python code examples
-- Always format code with proper indentation and comments
-- Prefer detailed explanations
-- Always use type hints in Python code examples
-- When explaining concepts, always provide real-world examples.
 - Always format code responses with proper indentation and add comments.
+- Always use type hints in Python code examples
+- Always use type hints in Python code examples
+- Prefer detailed explanations
+- Always format code responses with proper indentation and add comments.
+- Always use type hints in Python code examples
+- Always use type hints in Python code examples
+- When explaining concepts, always provide real-world examples to enhance understanding.
+
+- Prefer detailed explanations
+- Always format code responses with proper indentation and add comments.
+- Always use type hints in Python code examples
+- Always use type hints in Python code examples
+- When explaining concepts, always provide real-world examples to enhance understanding.
 - Provide real-world examples when explaining concepts to enhance understanding.
+- Provide real-world examples when explaining concepts to enhance understanding.
+
+- Prefer detailed explanations
 - Always format code responses with proper indentation and add comments.
+- Always use type hints in Python code examples
+- Always use type hints in Python code examples
+- When explaining concepts, always provide real-world examples to enhance understanding.
+- Provide real-world examples when explaining concepts to enhance understanding.

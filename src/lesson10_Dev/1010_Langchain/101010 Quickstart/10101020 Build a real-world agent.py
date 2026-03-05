@@ -36,7 +36,7 @@ def get_user_location(runtime: ToolRuntime[Context]) -> str:
     return "Florida" if runtime.context.user_id == "1" else "SF"
 
 
-# Initialize the chat model
+## ⬇️ Initialize the chat model
 model = init_chat_model(
     "gpt-4o-mini",
     temperature=0,
@@ -51,18 +51,18 @@ model = init_chat_model(
     presence_penalty=0,
 )
 
-# Initialize memory checkpointer for conversation history
+## ⬇️ Initialize memory checkpointer for conversation history
 checkpointer = InMemorySaver()
 
 
-# Structured response format
+## ⬇️ Structured response format
 @dataclass
 class ResponseFormat:
     punny_response: str
     weather_conditions: str | None = None
 
 
-# Create the agent with all components
+## ⬇️ Create the agent with all components
 agent = create_agent(
     model=model,
     system_prompt=SYSTEM_PROMPT,
@@ -72,7 +72,7 @@ agent = create_agent(
     checkpointer=checkpointer
 )
 
-# Configuration for the conversation thread
+## ⬇️ Configuration for the conversation thread
 config = {"configurable": {"thread_id": "1"}}
 
 # Invoke the agent with a user message
