@@ -42,10 +42,7 @@ Question: {question}
 """
 prompt = ChatPromptTemplate.from_template(RAG_PROMPT)
 llm = ChatOpenAI(
-    model="gpt-4o-mini",
-    api_key=os.getenv("OPENAI_API_KEY"),
-    base_url=os.getenv("OPENAI_API_BASE"),
-    organization=os.getenv("OPENAI_ORG_ID"),
+    model="gpt-4o-mini"
 )
 
 rag_chain = (
@@ -73,10 +70,7 @@ def lookup_docs(query: str) -> str:
 ## ⬇️ Create deep agent with RAG tool
 checkpointer = MemorySaver()
 agent_model = init_chat_model(
-    model="openai:gpt-4o-mini",
-    api_key=os.getenv("OPENAI_API_KEY"),
-    base_url=os.getenv("OPENAI_API_BASE"),
-    organization=os.getenv("OPENAI_ORG_ID"),
+    model="openai:gpt-4o-mini"
 )
 agent = create_deep_agent(
     model=agent_model,

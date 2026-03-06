@@ -6,7 +6,6 @@ and persists the FAISS index to faiss/faiss_index/ for use by the agent script.
 Run this script first whenever documents change.
 """
 
-import os
 from pathlib import Path
 
 from dotenv import load_dotenv, find_dotenv
