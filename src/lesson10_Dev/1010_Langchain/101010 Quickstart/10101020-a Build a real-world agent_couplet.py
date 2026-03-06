@@ -25,7 +25,8 @@ class Context:
 # Initialize the chat model
 model = init_chat_model(
     "gpt-4o-mini",
-    temperature=0,
+    # "gpt-5-mini",
+    temperature=0.5,
     timeout=10,
     max_tokens=1000,
     max_retries=3,
@@ -64,7 +65,7 @@ config = {"configurable": {"thread_id": "1"}}
 
 # Invoke the agent with a user message
 response = agent.invoke(
-    {"messages": [{"role": "user", "content": "请写一个龙年的对联，上联9个字"}]},
+    {"messages": [{"role": "user", "content": "请写一个马年的对联，**注意**！上下联字数必须相同，且字数9个字"}]},
     config=config,
     context=Context(user_id="1")
 )
