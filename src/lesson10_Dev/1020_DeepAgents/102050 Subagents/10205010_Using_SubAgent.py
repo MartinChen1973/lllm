@@ -49,7 +49,7 @@ weather_subagent = {  # 定义一个可以 getWeather 的子智能体
 subagents = [research_subagent, weather_subagent]
 
 # subagents = load_subagents(subagents)
-subagents = find_subagents(subagents, "http://192.168.1.100:8000/subagents/list")
+# subagents = find_subagents(subagents, "http://192.168.1.100:8000/subagents/list")  ## ⬅️ Requires custom implementation
 
 
 agent = create_deep_agent(
@@ -61,8 +61,8 @@ agent = create_deep_agent(
 # result = agent.invoke({"messages": [{"role": "user", "content": "What is the weather in Beijing?"}]})
 result = agent.invoke({
     "messages": [
-        # {"role": "user", "content": "Hey, what's up in the world of AI for December 2025? Any interesting news?"},
-        {"role": "user", "content": "What is the weather in Beijing today?"}
+        {"role": "user", "content": "Hey, what's up in the world of AI for March 2026? Any interesting news?"},
+        # {"role": "user", "content": "What is the weather in Beijing today?"}
     ]
 })
 

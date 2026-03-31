@@ -38,6 +38,7 @@ checkpointer = MemorySaver()
 # Main agent: read_file is NOT available (only through subagent)
 # Subagent: read_file DOES require approval (override)
 agent = create_deep_agent(
+    name="main", 
     model="openai:gpt-4o-mini",
     tools=[delete_file],  # Main agent doesn't have read_file - only subagent does
     interrupt_on={

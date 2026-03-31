@@ -7,6 +7,7 @@ from ragas.metrics import (
     answer_relevancy,
     context_precision,
     context_recall,
+    answer_correctness
 )
 import json
 import pandas as pd
@@ -40,7 +41,7 @@ dataset = Dataset.from_dict(data_samples)
 print("Evaluating with Ragas...")
 score = evaluate(
     dataset = dataset,
-    metrics=[faithfulness, answer_relevancy, context_precision, context_recall],
+    metrics=[faithfulness, answer_relevancy, context_precision, context_recall, answer_correctness],
     llm=ChatOpenAI(model="gpt-5-nano"),
     embeddings=OpenAIEmbeddings(model="text-embedding-3-small"),
     # embeddings=DashScopeEmbeddings(model="text-embedding-v3")

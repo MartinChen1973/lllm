@@ -16,6 +16,7 @@ from langchain.tools import tool
 from langgraph.types import Command
 from deepagents import create_deep_agent
 from langgraph.checkpoint.memory import MemorySaver
+from langchain.agents.middleware.todo import TodoListMiddleware
 from human_in_the_loop_utils import get_user_decisions
 
 # Load environment variables from .env file
@@ -55,6 +56,7 @@ agent = create_deep_agent(
         "create_backup": {"allowed_decisions": ["approve", "reject"]},  # Only approve/reject
         "send_email": True,  # Default: approve, edit, reject (editing allowed)
     },
+    # middleware=[TodoListMiddleware()],
     checkpointer=checkpointer  # Required!
 )
 
@@ -69,6 +71,10 @@ result = agent.invoke({
         "content": "Delete important.txt, create a backup of data.db, and send email to admin@example.com about the cleanup"
     }]
 }, config=config)
+
+print("------------  todos ---------------")
+# print(result["todos"])  ## ⬅️ Array of todo items (empty if TodoListMiddleware not used)
+print("--------------------------------")
 
 # Check if execution was interrupted
 if result.get("__interrupt__"):

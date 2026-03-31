@@ -1,6 +1,66 @@
 {
   "models": [
     {
+      "name": "gpt-5.4-pro",
+      "url": "/model/gpt-5.4-pro",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 210.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 1260.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "Open AI"
+    },
+    {
+      "name": "gpt-5.4",
+      "url": "/model/gpt-5.4",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 17.5,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 105.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "Open AI"
+    },
+    {
+      "name": "gpt-5.3-codex",
+      "url": "/model/gpt-5.3-codex",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 12.25,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 98.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "Open AI"
+    },
+    {
       "name": "gpt-5.2-codex",
       "url": "/model/gpt-5.2-codex",
       "features": [
@@ -1494,6 +1554,52 @@
       "provider": "Open AI"
     },
     {
+      "name": "sora-2-pro-vip",
+      "url": "/model/sora-2-pro-vip",
+      "features": [
+        "支持全模态"
+      ],
+      "pricing": {
+        "type": null
+      },
+      "provider": "Open AI"
+    },
+    {
+      "name": "sora-2-vip",
+      "url": "/model/sora-2-vip",
+      "features": [
+        "支持全模态"
+      ],
+      "pricing": {
+        "type": null
+      },
+      "provider": "Open AI"
+    },
+    {
+      "name": "sora-2-pro-vip",
+      "url": "/model/sora-2-pro-vip",
+      "features": [
+        "支持工具",
+        "2.2元/秒"
+      ],
+      "pricing": {
+        "type": null
+      },
+      "provider": "Open AI"
+    },
+    {
+      "name": "sora-2-vip",
+      "url": "/model/sora-2-vip",
+      "features": [
+        "支持工具",
+        "0.6元/秒"
+      ],
+      "pricing": {
+        "type": null
+      },
+      "provider": "Open AI"
+    },
+    {
       "name": "sora-2-pro",
       "url": "/model/sora-2-pro",
       "features": [
@@ -2225,6 +2331,286 @@
         }
       },
       "provider": "百川"
+    },
+    {
+      "name": "qwen3.5-plus",
+      "url": "/model/qwen3.5-plus",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 0.8,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 4.8,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "阿里"
+    },
+    {
+      "name": "qwen3.5-397b-a17b",
+      "url": "/model/qwen3.5-397b-a17b",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 0.8,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 4.8,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "阿里"
+    },
+    {
+      "name": "qwen3-coder-480b-a35b-instruct",
+      "url": "/model/qwen3-coder-480b-a35b-instruct",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 6.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 24.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "阿里"
+    },
+    {
+      "name": "qwen-mt-turbo",
+      "url": "/model/qwen-mt-turbo",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 0.7,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 1.95,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "阿里"
+    },
+    {
+      "name": "qwen-mt-flash",
+      "url": "/model/qwen-mt-flash",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 0.7,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 1.95,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "阿里"
+    },
+    {
+      "name": "qwen-mt-plus",
+      "url": "/model/qwen-mt-plus",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 1.8,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 5.4,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "阿里"
+    },
+    {
+      "name": "qwen-flash",
+      "url": "/model/qwen-flash",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 1.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 4.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "阿里"
+    },
+    {
+      "name": "qwen3-vl-235b-a22b-instruct",
+      "url": "/model/qwen3-vl-235b-a22b-instruct",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 2.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 8.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "阿里"
+    },
+    {
+      "name": "qwen3-vl-235b-a22b-thinking",
+      "url": "/model/qwen3-vl-235b-a22b-thinking",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 2.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 20.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "阿里"
+    },
+    {
+      "name": "qwen3-vl-8b-instruct",
+      "url": "/model/qwen3-vl-8b-instruct",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 0.5,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 2.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "阿里"
+    },
+    {
+      "name": "qwen3-vl-8b-thinking",
+      "url": "/model/qwen3-vl-8b-thinking",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 0.5,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 5.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "阿里"
+    },
+    {
+      "name": "qwen3-vl-30b-a3b-instruct",
+      "url": "/model/qwen3-vl-30b-a3b-instruct",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 0.75,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 3.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "阿里"
+    },
+    {
+      "name": "qwen3-vl-32b-thinking",
+      "url": "/model/qwen3-vl-32b-thinking",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 0.75,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 7.5,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "阿里"
+    },
+    {
+      "name": "qwen3-max",
+      "url": "/model/qwen3-max",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 2.5,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 10.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "阿里"
     },
     {
       "name": "qwen3-next-80b-a3b-thinking",
@@ -3132,6 +3518,66 @@
       "provider": "360"
     },
     {
+      "name": "gemini-3.1-pro-preview",
+      "url": "/model/gemini-3.1-pro-preview",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 14.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 84.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "Google"
+    },
+    {
+      "name": "gemini-3-pro-deepsearch",
+      "url": "/model/gemini-3-pro-deepsearch",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 14.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 84.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "Google"
+    },
+    {
+      "name": "gemini-3-flash-deepsearch",
+      "url": "/model/gemini-3-flash-deepsearch",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 7.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 42.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "Google"
+    },
+    {
       "name": "gemini-3-flash-preview",
       "url": "/model/gemini-3-flash-preview",
       "features": [
@@ -3175,7 +3621,8 @@
       "name": "gemini-3-pro-preview",
       "url": "/model/gemini-3-pro-preview",
       "features": [
-        "支持文本"
+        "支持文本",
+        "上下文长度: 1048K"
       ],
       "pricing": {
         "type": "tokens",
@@ -3314,27 +3761,6 @@
       "provider": "Google"
     },
     {
-      "name": "gemma-7b-it",
-      "url": "/model/gemma-7b-it",
-      "features": [
-        "支持文本",
-        "上下文长度: 8K"
-      ],
-      "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        }
-      },
-      "provider": "Google"
-    },
-    {
       "name": "gemini-pro",
       "url": "/model/gemini-pro",
       "features": [
@@ -3352,6 +3778,17 @@
           "price": 10.5,
           "unit": "百万tokens"
         }
+      },
+      "provider": "Google"
+    },
+    {
+      "name": "gemini-3.1-flash-image-preview",
+      "url": "/model/gemini-3.1-flash-image-preview",
+      "features": [
+        "支持图像"
+      ],
+      "pricing": {
+        "type": null
       },
       "provider": "Google"
     },
@@ -3431,6 +3868,66 @@
         }
       },
       "provider": "Google"
+    },
+    {
+      "name": "claude-sonnet-4-6-thinking",
+      "url": "/model/claude-sonnet-4-6-thinking",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 21.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 105.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "Anthropic"
+    },
+    {
+      "name": "claude-sonnet-4-6",
+      "url": "/model/claude-sonnet-4-6",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 21.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 105.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "Anthropic"
+    },
+    {
+      "name": "claude-opus-4-6",
+      "url": "/model/claude-opus-4-6",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 35.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 175.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "Anthropic"
     },
     {
       "name": "claude-opus-4-5-20251101",
@@ -4286,6 +4783,46 @@
       "provider": "月之暗面"
     },
     {
+      "name": "doubao-seed-2-0-pro-260215",
+      "url": "/model/doubao-seed-2-0-pro-260215",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 3.2,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 16.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "豆包"
+    },
+    {
+      "name": "doubao-seed-1-8-251215",
+      "url": "/model/doubao-seed-1-8-251215",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 1.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 2.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "豆包"
+    },
+    {
       "name": "Doubao-Seed-1.6-thinking",
       "url": "/model/Doubao-Seed-1.6-thinking",
       "features": [
@@ -4841,8 +5378,68 @@
       "provider": "Cohere"
     },
     {
+      "name": "minimax-m2.5",
+      "url": "/model/minimax-m2.5",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 14.7,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 58.8,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "MiniMax"
+    },
+    {
+      "name": "minimax-m2.1-lightning",
+      "url": "/model/minimax-m2.1-lightning",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 2.1,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 16.8,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "MiniMax"
+    },
+    {
       "name": "minimax-m2",
       "url": "/model/minimax-m2",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 2.1,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 8.4,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "MiniMax"
+    },
+    {
+      "name": "minimax-m2.1",
+      "url": "/model/minimax-m2.1",
       "features": [
         "支持文本"
       ],
@@ -5125,6 +5722,46 @@
         ]
       },
       "provider": "Midjourney"
+    },
+    {
+      "name": "glm-5",
+      "url": "/model/glm-5",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 28.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 126.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "智谱"
+    },
+    {
+      "name": "glm-4.7",
+      "url": "/model/glm-4.7",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 4.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 16.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "智谱"
     },
     {
       "name": "glm-4.5",
@@ -5581,6 +6218,46 @@
         }
       },
       "provider": "Vidu"
+    },
+    {
+      "name": "Ring-1T",
+      "url": "/model/Ring-1T",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 4.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 16.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "蚂蚁百灵"
+    },
+    {
+      "name": "Ling-1T",
+      "url": "/model/Ling-1T",
+      "features": [
+        "支持文本"
+      ],
+      "pricing": {
+        "type": "tokens",
+        "unit": "百万tokens",
+        "input": {
+          "price": 4.0,
+          "unit": "百万tokens"
+        },
+        "output": {
+          "price": 16.0,
+          "unit": "百万tokens"
+        }
+      },
+      "provider": "蚂蚁百灵"
     },
     {
       "name": "gemini-1.5-pro",
