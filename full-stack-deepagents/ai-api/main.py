@@ -1,5 +1,5 @@
 """
-FastAPI chat endpoint backed by a deep agent with subagents (no external MCP tools).
+FastAPI chat endpoint backed by a deep agent with subagents and optional MCP tools.
 """
 
 from __future__ import annotations
@@ -17,6 +17,7 @@ from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from langchain.chat_models import init_chat_model
 from langchain_core.messages import AIMessage
+from langchain_mcp_adapters.client import MultiServerMCPClient
 from langgraph.checkpoint.memory import MemorySaver
 from pydantic import BaseModel, Field
 
@@ -47,6 +48,70 @@ class ChatResponse(BaseModel):
 
 
 logger = logging.getLogger(__name__)
+
+
+def _mcp_connections_from_env() -> dict[str, dict[str, str]]:
+    ## ⬇️ Comma-separated Streamable HTTP URLs; if set, replaces the two defaults
+    raw = (os.environ.get("MCP_SERVER_URLS") or "").strip()
+    if raw:
+        urls = [u.strip() for u in raw.split(",") if u.strip()]
+        return {
+            f"mcp_{i}": {"transport": "http", "url": url}
+            for i, url in enumerate(urls)
+        }
+    if os.environ.get("MCP_ENABLED", "true").strip().lower() in ("0", "false", "no", "off"):
+        return {}
+    u1 = (os.environ.get("MCP_RAG_URL") or "http://127.0.0.1:8501/mcp").strip()
+    u2 = (os.environ.get("MCP_AUX_URL") or "http://127.0.0.1:8502/mcp").strip()
+    out: dict[str, dict[str, str]] = {}
+    if u1:
+        out["rag"] = {"transport": "http", "url": u1}
+    if u2:
+        out["aux"] = {"transport": "http", "url": u2}
+    return out
+
+
+async def _load_mcp_tools_per_server(
+    connections: dict[str, dict[str, str]],
+) -> list[Any]:
+    ## ⬇️ Load each MCP server separately so one offline server does not block the other
+    if not connections:
+        return []
+    client = MultiServerMCPClient(connections)
+    all_tools: list[Any] = []
+    for name in connections:
+        try:
+            tools = await client.get_tools(server_name=name)
+            all_tools.extend(tools)
+            logger.info("MCP server %r: loaded %s tool(s)", name, len(tools))
+        except Exception:
+            logger.warning("MCP server %r: failed to load tools", name, exc_info=True)
+    return all_tools
+
+
+async def _load_mcp_tools_with_retry(
+    connections: dict[str, dict[str, str]],
+    *,
+    attempts: int = 10,
+    delay_sec: float = 1.25,
+) -> list[Any]:
+    ## ⬇️ MCP may start after uvicorn; avoid a single failed handshake leaving the agent tool-less for the whole process
+    if not connections:
+        return []
+    last: list[Any] = []
+    for i in range(attempts):
+        last = await _load_mcp_tools_per_server(connections)
+        if last:
+            return last
+        if i < attempts - 1:
+            logger.warning(
+                "MCP: no tools loaded yet (attempt %s/%s); retrying in %ss",
+                i + 1,
+                attempts,
+                delay_sec,
+            )
+            await asyncio.sleep(delay_sec)
+    return last
 
 
 def _content_to_text(content: Any) -> str:
@@ -102,16 +167,25 @@ def _build_subagents() -> list[dict[str, Any]]:
 
 @asynccontextmanager
 async def lifespan(fastapi_app: FastAPI):
-    ## ⬇️ Deep agent with no external tools (MCP can be added later)
     model = init_chat_model(DEFAULT_MODEL)
     checkpointer = MemorySaver()
+    connections = _mcp_connections_from_env()
+    mcp_tools = await _load_mcp_tools_with_retry(connections)
+    if connections and not mcp_tools:
+        logger.warning(
+            "No MCP tools loaded (%s server(s) configured); agent runs without MCP tools",
+            len(connections),
+        )
     system_prompt = (
         "You are a helpful assistant. You may delegate to subagents using the task tool "
-        "when their expertise fits the user request."
+        "when their expertise fits the user request. "
+        "When MCP tools are available: use `lookup_docs` for organization and leave-policy questions; "
+        "use `bingchuan` for 冰雪川 / Bingchuan ice cream or product-knowledge questions; "
+        "use `inspect_faiss` only for debugging the document index."
     )
     agent = create_deep_agent(
         model=model,
-        tools=[],
+        tools=mcp_tools,
         system_prompt=system_prompt,
         subagents=_build_subagents(),
         checkpointer=checkpointer,
@@ -148,15 +222,13 @@ async def chat(body: ChatRequest) -> ChatResponse:
         _preview(body.message),
     )
 
-    def _invoke() -> dict[str, Any]:
-        return agent.invoke(
+    t0 = time.perf_counter()
+    try:
+        ## ⬇️ MCP tools from langchain-mcp-adapters are async-only; sync agent.invoke hits StructuredTool sync path and fails
+        result = await agent.ainvoke(
             {"messages": [{"role": "user", "content": body.message}]},
             config,
         )
-
-    t0 = time.perf_counter()
-    try:
-        result = await asyncio.to_thread(_invoke)
     except Exception as e:
         elapsed_ms = int((time.perf_counter() - t0) * 1000)
         logger.exception("Agent invoke failed after %sms", elapsed_ms)

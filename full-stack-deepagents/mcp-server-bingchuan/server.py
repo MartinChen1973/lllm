@@ -1,6 +1,8 @@
 """
-Minimal MCP server: no custom tools; tools/list returns an empty list.
-Streamable HTTP at http://<host>:<port>/mcp (defaults: 127.0.0.1:8502; RAG server uses 8501).
+## ⬇️ Standalone stub — not used by full-stack-deepagents. The AI API (ai-api/main.py) never
+## ⬇️ registers this process: Bingchuan answers come from the `bingchuan` tool on **mcp-server-rag**
+## ⬇️ (port 8501, same stack as lookup_docs). Do not run this on 8501 while mcp-server-rag is up.
+## ⬇️ Minimal MCP: no @mcp.tool(); tools/list is empty. Streamable HTTP at http://<host>:<port>/mcp.
 """
 
 import asyncio
@@ -16,7 +18,7 @@ from starlette.responses import HTMLResponse, JSONResponse
 
 ## ⬇️ Port/host from environment so the AI API can point MCP_SERVER_URL consistently
 _host = os.environ.get("MCP_HOST", "127.0.0.1")
-_port = int(os.environ.get("MCP_PORT", "8502"))
+_port = int(os.environ.get("MCP_PORT", "8501"))
 
 mcp = FastMCP(
     "empty-tools-demo",

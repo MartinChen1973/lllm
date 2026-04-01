@@ -128,12 +128,18 @@ celerybeat.pid
 # SageMath parsed files
 *.sage.py
 
-# Environments
+# ⬇️ Secrets and local env files (never commit credentials; use *.example templates if needed)
 .env
-.venv
-env/
+.env.*
+!.env.example
+
+# ⬇️ Python virtual environments (machine-specific; commit requirements / lockfiles instead)
+.venv/
 venv/
+env/
 ENV/
+virtualenv/
+.virtualenv/
 env.bak/
 venv.bak/
 

@@ -4,3 +4,4 @@ python-dotenv>=1.0.0
 deepagents
 langchain>=1.0.0
 langchain-openai>=1.0.0
+langchain-mcp-adapters>=0.2.0

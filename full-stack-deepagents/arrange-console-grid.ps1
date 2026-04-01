@@ -73,6 +73,7 @@ function Classify-FromProcess {
   $name = $info.Name
   if ($null -ne $exe) {
     if ($exe -match '(?i)\\ai-api\\venv\\Scripts\\python(\.exe)?$') { return "ai" }
+    if ($exe -match '(?i)\\mcp-server-rag\\venv\\Scripts\\python(\.exe)?$') { return "mcp" }
     if ($exe -match '(?i)\\mcp-server\\venv\\Scripts\\python(\.exe)?$') { return "mcp" }
   }
   if ($null -ne $cmd) {
