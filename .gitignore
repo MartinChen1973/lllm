@@ -209,3 +209,6 @@ $RECYCLE.BIN/
 
 # IDE - Cursor
 .cursor/
+
+# IDE - Claude Code (local worktrees, settings.local.json, agent state)
+.claude/
