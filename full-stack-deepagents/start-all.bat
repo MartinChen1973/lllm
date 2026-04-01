@@ -7,7 +7,11 @@ echo Starting full-stack-deepagents (AI API -^> Node -^> Next; MCP optional)...
 echo Root: %ROOT%
 
 REM 1) FastAPI + deep agent (no MCP required for chat)
-start "AI API (8500)" /D "%ROOT%\ai-api" cmd /k "uvicorn main:app --host 127.0.0.1 --port 8500"
+if exist "%ROOT%\ai-api\venv\Scripts\python.exe" (
+  start "AI API (8500)" /D "%ROOT%\ai-api" "%ROOT%\ai-api\venv\Scripts\python.exe" -m uvicorn main:app --host 127.0.0.1 --port 8500
+) else (
+  start "AI API (8500)" /D "%ROOT%\ai-api" cmd /k "uvicorn main:app --host 127.0.0.1 --port 8500"
+)
 timeout /t 5 /nobreak >nul
 
 REM 2) Node proxy
@@ -19,7 +23,15 @@ start "Next frontend (3500)" /D "%ROOT%\frontend" cmd /k "npm run dev"
 timeout /t 8 /nobreak >nul
 
 REM 4) MCP Streamable HTTP (optional; not used by the AI API until tools are wired)
-start "MCP server (8501)" /D "%ROOT%\mcp-server" cmd /k "python server.py"
+if exist "%ROOT%\mcp-server\venv\Scripts\python.exe" (
+  start "MCP server (8501)" /D "%ROOT%\mcp-server" "%ROOT%\mcp-server\venv\Scripts\python.exe" server.py
+) else (
+  start "MCP server (8501)" /D "%ROOT%\mcp-server" cmd /k "python server.py"
+)
+
+REM ## ⬇️ Tile the four service consoles in a 2x2 grid on the primary monitor (process + title).
+timeout /t 4 /nobreak >nul
+powershell -NoProfile -ExecutionPolicy Bypass -File "%ROOT%\arrange-console-grid.ps1"
 
 REM Open UIs in one new browser window (four tabs only; avoids attaching to an existing window).
 REM Optional: set DEEPAGENTS_BROWSER to full path of chrome.exe, msedge.exe, etc. (Chromium-based).
