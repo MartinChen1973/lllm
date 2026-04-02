@@ -23,6 +23,8 @@ from pydantic import BaseModel, Field
 
 from deepagents import create_deep_agent
 
+from tools.internet_search import get_local_tools
+
 ## ⬇️ Repo-root .env (full-stack-deepagents/.env)
 load_dotenv(Path(__file__).resolve().parent.parent / ".env", override=True)
 ## ⬇️ LangChain OpenAI reads OPENAI_BASE_URL; this project’s .env may use OPENAI_API_BASE
@@ -176,16 +178,30 @@ async def lifespan(fastapi_app: FastAPI):
             "No MCP tools loaded (%s server(s) configured); agent runs without MCP tools",
             len(connections),
         )
+    local_tools = get_local_tools()
+    if local_tools:
+        logger.info("Local tools: registered %s (Tavily internet_search)", len(local_tools))
+    else:
+        logger.info("Local tools: none (set TAVILY_API_KEY for internet_search)")
+    all_tools = [*local_tools, *mcp_tools]
     system_prompt = (
         "You are a helpful assistant. You may delegate to subagents using the task tool "
         "when their expertise fits the user request. "
+    )
+    if local_tools:
+        system_prompt += (
+            "You have a local Python tool `internet_search`: use it for web search, current events, "
+            "or facts not covered by internal docs. Pass query, optional max_results (default 5), "
+            "topic (general|news|finance), and include_raw_content as needed. "
+        )
+    system_prompt += (
         "When MCP tools are available: use `lookup_docs` for organization and leave-policy questions; "
         "use `bingchuan` for 冰雪川 / Bingchuan ice cream or product-knowledge questions; "
         "use `inspect_faiss` only for debugging the document index."
     )
     agent = create_deep_agent(
         model=model,
-        tools=mcp_tools,
+        tools=all_tools,
         system_prompt=system_prompt,
         subagents=_build_subagents(),
         checkpointer=checkpointer,

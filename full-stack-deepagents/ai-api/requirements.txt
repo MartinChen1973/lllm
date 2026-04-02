@@ -5,3 +5,4 @@ deepagents
 langchain>=1.0.0
 langchain-openai>=1.0.0
 langchain-mcp-adapters>=0.2.0
+tavily-python>=0.5.0
