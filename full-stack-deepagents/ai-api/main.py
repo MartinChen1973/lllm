@@ -21,7 +21,10 @@ from langchain_mcp_adapters.client import MultiServerMCPClient
 from langgraph.checkpoint.memory import MemorySaver
 from pydantic import BaseModel, Field
 
+from langchain.tools import ToolRuntime
+
 from deepagents import create_deep_agent
+from deepagents.backends import CompositeBackend, FilesystemBackend, StateBackend
 
 from tools.internet_search import get_local_tools
 
@@ -38,6 +41,78 @@ DEFAULT_CORS_ORIGINS = os.environ.get(
     "CORS_ORIGINS",
     "http://localhost:3500,http://127.0.0.1:3500,http://localhost:3501,http://127.0.0.1:3501",
 ).split(",")
+
+## ⬇️ Persistent long-term memory on disk (one global profile + preferences for all sessions)
+STORAGE_DIR = Path(__file__).resolve().parent / "storage"
+GLOBAL_MEMORIES_DIR = STORAGE_DIR / "memories"
+
+
+def _ensure_memories_dir(memories_dir: Path) -> None:
+    ## ⬇️ Only create the folder — do not seed profile/preferences: `write_file` refuses to overwrite existing files
+    memories_dir.mkdir(parents=True, exist_ok=True)
+
+
+def make_memory_backend(runtime: ToolRuntime) -> CompositeBackend:
+    ## ⬇️ Ephemeral workspace + /memories/* persisted under storage/memories/ (shared globally)
+    _ensure_memories_dir(GLOBAL_MEMORIES_DIR)
+    return CompositeBackend(
+        default=StateBackend(runtime),
+        routes={
+            "/memories/": FilesystemBackend(
+                root_dir=str(GLOBAL_MEMORIES_DIR),
+                virtual_mode=True,
+            )
+        },
+    )
+
+
+## ⬇️ Reuses the lesson list+disk rules; split into profile vs preferences files
+LONG_TERM_MEMORY_SYSTEM_PROMPT = """
+## Long-term memory (disk)
+
+You have two persistent files under `/memories/` (survive restarts; **shared across every chat session and thread** — the same files for all users of this API instance):
+
+1. **`/memories/profile.txt`** — stable facts about the user: name, age, gender, job, employer, location, timezone, contact hints they volunteered, etc.
+   Use lines like `Key: value` (one fact per line). Comment lines may start with `#`.
+
+2. **`/memories/preferences.txt`** — hobbies, language preferences, coding preferences, explanation depth, tone, tools they like, etc.
+   Store these as an **unordered bullet list** (`-` or `*`), one preference per line.
+
+### Tools: `write_file` vs `edit_file` (required)
+
+The filesystem backend **does not allow `write_file` on a path that already exists**. If `read_file` succeeds, you **must** use `edit_file` (after reading) to change that file. Use `write_file` **only** when `read_file` reports that the file does not exist (first-time creation). Trying `write_file` on an existing `/memories/profile.txt` or `/memories/preferences.txt` will fail — that is not a system outage; switch to `read_file` + `edit_file`.
+
+### CRITICAL RULES for `/memories/preferences.txt`
+
+1. **FORMAT:** Each preference is its own bullet on its own line.
+
+2. **MANDATORY UPDATE PROCEDURE** when adding a preference:
+   - **STEP 1:** Read the current file with `read_file`.
+   - **STEP 2:** Copy **ALL** existing bullet lines. Do **not** skip any.
+   - **STEP 3:** Append the new preference as a **new** bullet at the end.
+   - **STEP 4:** When using `edit_file`, include **ALL** existing bullets **plus** the new one. `edit_file` replaces the whole file — never write only the new bullet.
+
+   **CORRECT:** previous bullets unchanged + one new bullet at the end.  
+   **WRONG:** replacing the file with only the new bullet (drops history).
+
+3. **NEVER REMOVE** bullet items unless the user explicitly contradicts an older item; then replace only the conflicting line and keep everything else.
+
+4. **ENHANCEMENT:** If the user elaborates on one preference, you may rewrite that single bullet; preserve all other bullets.
+
+5. **VERIFICATION:** After adding one preference, bullet count should increase by one unless you resolved a conflict.
+
+### CRITICAL RULES for `/memories/profile.txt`
+
+1. **READ FIRST** before answering questions that depend on who the user is.
+
+2. **UPDATES:** Read the file first. If it is missing, create it once with `write_file` (full desired content). If it exists, merge new or corrected `Key: value` lines using `edit_file` only. Update a line when the user gives a new value for the same key (e.g. age, job). Do **not** drop unrelated keys.
+
+3. **REMOVAL:** Remove or change a field only when the user corrects it or asks to forget that field.
+
+### When to read memory
+
+At the start of substantive replies, if the question is personal, stylistic, or ongoing work, read `/memories/profile.txt` and `/memories/preferences.txt` so you stay consistent across sessions. If the user shares new profile facts or preferences, update the appropriate file using the rules above.
+""".strip()
 
 
 class ChatRequest(BaseModel):
@@ -184,7 +259,8 @@ async def lifespan(fastapi_app: FastAPI):
     else:
         logger.info("Local tools: none (set TAVILY_API_KEY for internet_search)")
     all_tools = [*local_tools, *mcp_tools]
-    system_prompt = (
+    system_prompt = LONG_TERM_MEMORY_SYSTEM_PROMPT + "\n\n"
+    system_prompt += (
         "You are a helpful assistant. You may delegate to subagents using the task tool "
         "when their expertise fits the user request. "
     )
@@ -205,7 +281,9 @@ async def lifespan(fastapi_app: FastAPI):
         system_prompt=system_prompt,
         subagents=_build_subagents(),
         checkpointer=checkpointer,
+        backend=make_memory_backend,
     )
+    logger.info("Long-term memory directory (global): %s", GLOBAL_MEMORIES_DIR)
     fastapi_app.state.agent = agent
     yield
 

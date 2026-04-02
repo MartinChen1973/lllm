@@ -212,3 +212,6 @@ $RECYCLE.BIN/
 
 # IDE - Claude Code (local worktrees, settings.local.json, agent state)
 .claude/
+
+# ⬇️ DeepAgents ai-api on-disk long-term memory (profile / preferences); do not commit user data
+full-stack-deepagents/ai-api/storage/
