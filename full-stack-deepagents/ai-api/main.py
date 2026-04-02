@@ -18,7 +18,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from langchain.chat_models import init_chat_model
 from langchain_core.messages import AIMessage
 from langchain_mcp_adapters.client import MultiServerMCPClient
-from langgraph.checkpoint.memory import MemorySaver
+from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
 from pydantic import BaseModel, Field
 
 from langchain.tools import ToolRuntime
@@ -29,7 +29,8 @@ from deepagents.backends import CompositeBackend, FilesystemBackend, StateBacken
 from tools.internet_search import get_local_tools
 
 ## ⬇️ Repo-root .env (full-stack-deepagents/.env)
-load_dotenv(Path(__file__).resolve().parent.parent / ".env", override=True)
+from dotenv import find_dotenv
+load_dotenv(find_dotenv(), override=True)
 ## ⬇️ LangChain OpenAI reads OPENAI_BASE_URL; this project’s .env may use OPENAI_API_BASE
 if os.environ.get("OPENAI_API_BASE") and not os.environ.get("OPENAI_BASE_URL"):
     os.environ["OPENAI_BASE_URL"] = os.environ["OPENAI_API_BASE"].rstrip("/")
@@ -45,11 +46,20 @@ DEFAULT_CORS_ORIGINS = os.environ.get(
 ## ⬇️ Persistent long-term memory on disk (one global profile + preferences for all sessions)
 STORAGE_DIR = Path(__file__).resolve().parent / "storage"
 GLOBAL_MEMORIES_DIR = STORAGE_DIR / "memories"
+## ⬇️ LangGraph thread checkpoints (conversation state per session_id); override with CHECKPOINT_DB_PATH
+CHECKPOINT_DB_PATH = Path(
+    os.environ.get("CHECKPOINT_DB_PATH", str(STORAGE_DIR / "checkpoints.sqlite"))
+)
 
 
 def _ensure_memories_dir(memories_dir: Path) -> None:
     ## ⬇️ Only create the folder — do not seed profile/preferences: `write_file` refuses to overwrite existing files
     memories_dir.mkdir(parents=True, exist_ok=True)
+
+
+def _ensure_storage_dir_for_db(db_path: Path) -> None:
+    ## ⬇️ SQLite file path must live in an existing directory
+    db_path.parent.mkdir(parents=True, exist_ok=True)
 
 
 def make_memory_backend(runtime: ToolRuntime) -> CompositeBackend:
@@ -122,6 +132,10 @@ class ChatRequest(BaseModel):
 
 class ChatResponse(BaseModel):
     reply: str
+
+
+class DeleteSessionResponse(BaseModel):
+    ok: bool = True
 
 
 logger = logging.getLogger(__name__)
@@ -245,47 +259,51 @@ def _build_subagents() -> list[dict[str, Any]]:
 @asynccontextmanager
 async def lifespan(fastapi_app: FastAPI):
     model = init_chat_model(DEFAULT_MODEL)
-    checkpointer = MemorySaver()
-    connections = _mcp_connections_from_env()
-    mcp_tools = await _load_mcp_tools_with_retry(connections)
-    if connections and not mcp_tools:
-        logger.warning(
-            "No MCP tools loaded (%s server(s) configured); agent runs without MCP tools",
-            len(connections),
-        )
-    local_tools = get_local_tools()
-    if local_tools:
-        logger.info("Local tools: registered %s (Tavily internet_search)", len(local_tools))
-    else:
-        logger.info("Local tools: none (set TAVILY_API_KEY for internet_search)")
-    all_tools = [*local_tools, *mcp_tools]
-    system_prompt = LONG_TERM_MEMORY_SYSTEM_PROMPT + "\n\n"
-    system_prompt += (
-        "You are a helpful assistant. You may delegate to subagents using the task tool "
-        "when their expertise fits the user request. "
-    )
-    if local_tools:
+    _ensure_storage_dir_for_db(CHECKPOINT_DB_PATH)
+    async with AsyncSqliteSaver.from_conn_string(str(CHECKPOINT_DB_PATH)) as checkpointer:
+        await checkpointer.setup()
+        connections = _mcp_connections_from_env()
+        mcp_tools = await _load_mcp_tools_with_retry(connections)
+        if connections and not mcp_tools:
+            logger.warning(
+                "No MCP tools loaded (%s server(s) configured); agent runs without MCP tools",
+                len(connections),
+            )
+        local_tools = get_local_tools()
+        if local_tools:
+            logger.info("Local tools: registered %s (Tavily internet_search)", len(local_tools))
+        else:
+            logger.info("Local tools: none (set TAVILY_API_KEY for internet_search)")
+        all_tools = [*local_tools, *mcp_tools]
+        system_prompt = LONG_TERM_MEMORY_SYSTEM_PROMPT + "\n\n"
         system_prompt += (
-            "You have a local Python tool `internet_search`: use it for web search, current events, "
-            "or facts not covered by internal docs. Pass query, optional max_results (default 5), "
-            "topic (general|news|finance), and include_raw_content as needed. "
+            "You are a helpful assistant. You may delegate to subagents using the task tool "
+            "when their expertise fits the user request. "
         )
-    system_prompt += (
-        "When MCP tools are available: use `lookup_docs` for organization and leave-policy questions; "
-        "use `bingchuan` for 冰雪川 / Bingchuan ice cream or product-knowledge questions; "
-        "use `inspect_faiss` only for debugging the document index."
-    )
-    agent = create_deep_agent(
-        model=model,
-        tools=all_tools,
-        system_prompt=system_prompt,
-        subagents=_build_subagents(),
-        checkpointer=checkpointer,
-        backend=make_memory_backend,
-    )
-    logger.info("Long-term memory directory (global): %s", GLOBAL_MEMORIES_DIR)
-    fastapi_app.state.agent = agent
-    yield
+        if local_tools:
+            system_prompt += (
+                "You have a local Python tool `internet_search`: use it for web search, current events, "
+                "or facts not covered by internal docs. Pass query, optional max_results (default 5), "
+                "topic (general|news|finance), and include_raw_content as needed. "
+            )
+        system_prompt += (
+            "When MCP tools are available: use `lookup_docs` for organization and leave-policy questions; "
+            "use `bingchuan` for 冰川 / Bingchuan ice cream or product-knowledge questions; "
+            "use `inspect_faiss` only for debugging the document index."
+        )
+        agent = create_deep_agent(
+            model=model,
+            tools=all_tools,
+            system_prompt=system_prompt,
+            subagents=_build_subagents(),
+            checkpointer=checkpointer,
+            backend=make_memory_backend,
+        )
+        logger.info("Long-term memory directory (global): %s", GLOBAL_MEMORIES_DIR)
+        logger.info("Checkpoint database: %s", CHECKPOINT_DB_PATH.resolve())
+        fastapi_app.state.agent = agent
+        fastapi_app.state.checkpointer = checkpointer
+        yield
 
 
 app = FastAPI(title="DeepAgents AI API", lifespan=lifespan)
@@ -345,3 +363,19 @@ async def chat(body: ChatRequest) -> ChatResponse:
             _preview(reply, 120),
         )
     return ChatResponse(reply=reply)
+
+
+@app.delete("/sessions/{session_id}", response_model=DeleteSessionResponse)
+async def delete_session(session_id: str) -> DeleteSessionResponse:
+    ## ⬇️ Remove all LangGraph checkpoints for this thread (sidebar "delete conversation")
+    tid = session_id.strip()
+    if not tid:
+        raise HTTPException(status_code=422, detail="session_id must not be empty")
+    if len(tid) > 512:
+        raise HTTPException(status_code=422, detail="session_id too long")
+    checkpointer = getattr(app.state, "checkpointer", None)
+    if checkpointer is None:
+        raise HTTPException(status_code=503, detail="checkpointer not initialized")
+    await checkpointer.adelete_thread(tid)
+    logger.info("DELETE /sessions thread_id=%s", tid[:48] + ("…" if len(tid) > 48 else ""))
+    return DeleteSessionResponse()

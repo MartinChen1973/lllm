@@ -1,7 +1,7 @@
 "use client";
 
 import type { CSSProperties } from "react";
-import { useCallback, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 type ChatMessage = {
   role: "user" | "assistant";
@@ -61,6 +61,10 @@ export default function ChatShell() {
     [sessions, activeId]
   );
 
+  useEffect(() => {
+    setActiveId((aid) => (sessions.some((s) => s.id === aid) ? aid : sessions[0]!.id));
+  }, [sessions]);
+
   const activeRef = useRef(active);
   const sendingRef = useRef(sending);
   activeRef.current = active;
@@ -76,6 +80,34 @@ export default function ChatShell() {
     setActiveId(s.id);
     setInput("");
     setError(null);
+  }, []);
+
+  const deleteSession = useCallback(async (id: string) => {
+    try {
+      const res = await fetch(`${backendBase}/sessions/${encodeURIComponent(id)}`, {
+        method: "DELETE",
+      });
+      const resText = await res.text();
+      let data: unknown = {};
+      try {
+        data = resText ? JSON.parse(resText) : {};
+      } catch {
+        if (!res.ok) {
+          throw new Error(resText.slice(0, 200) || `HTTP ${res.status}`);
+        }
+      }
+      if (!res.ok) {
+        throw new Error(errorMessageFromResponseBody(data, res.status));
+      }
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Delete failed");
+      return;
+    }
+    setError(null);
+    setSessions((prev) => {
+      const next = prev.filter((s) => s.id !== id);
+      return next.length === 0 ? [defaultSession()] : next;
+    });
   }, []);
 
   const submitMessage = useCallback(
@@ -174,20 +206,49 @@ export default function ChatShell() {
         <nav className="flex-1 overflow-y-auto p-2">
           <ul className="flex flex-col gap-1">
             {sessions.map((s) => (
-              <li key={s.id}>
+              <li
+                key={s.id}
+                className="group flex items-stretch gap-0.5 rounded-xl transition hover:bg-white/[0.04]"
+              >
                 <button
                   type="button"
                   onClick={() => {
                     setActiveId(s.id);
                     setError(null);
                   }}
-                  className={`w-full rounded-xl px-3 py-2.5 text-left text-sm transition ${
+                  className={`min-w-0 flex-1 rounded-l-xl px-3 py-2.5 text-left text-sm transition ${
                     s.id === active?.id
                       ? "bg-[#2a2a2c] text-white"
-                      : "text-white/80 hover:bg-white/5"
+                      : "text-white/80 group-hover:bg-white/5"
                   }`}
                 >
                   <span className="line-clamp-2">{s.title}</span>
+                </button>
+                <button
+                  type="button"
+                  title="Delete"
+                  aria-label={`Delete conversation: ${s.title}`}
+                  className={`flex w-9 shrink-0 items-center justify-center rounded-r-xl text-white/50 transition hover:bg-red-500/20 hover:text-red-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-red-400/80 ${
+                    s.id === active?.id ? "bg-[#2a2a2c]" : ""
+                  } opacity-0 group-hover:opacity-100`}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    void deleteSession(s.id);
+                  }}
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 20 20"
+                    fill="currentColor"
+                    className="h-4 w-4"
+                    aria-hidden
+                  >
+                    <path
+                      fillRule="evenodd"
+                      d="M8.75 1A2.75 2.75 0 0 0 6 3.75v.443c-.795.077-1.584.176-2.365.298a.75.75 0 1 0 .23 1.482l.149-.022.841 10.518A1.75 1.75 0 0 0 7.596 19h4.807a1.75 1.75 0 0 0 1.742-1.96l.841-10.52.149.023a.75.75 0 0 0 .23-1.482A41.03 41.03 0 0 0 14 4.193V3.75A2.75 2.75 0 0 0 11.25 1h-2.5ZM10 4c.84 0 1.673.025 2.5.075V3.75c0-.69-.56-1.25-1.25-1.25h-2.5c-.69 0-1.25.56-1.25 1.25v.325C8.327 4.025 9.16 4 10 4ZM8.58 7.72a.75.75 0 0 0-1.5.06l.3 7.5a.75.75 0 1 0 1.5-.06l-.3-7.5Zm4.34.06a.75.75 0 1 0-1.5-.06l-.3 7.5a.75.75 0 1 0 1.5.06l.3-7.5Z"
+                      clipRule="evenodd"
+                    />
+                  </svg>
                 </button>
               </li>
             ))}
@@ -204,7 +265,9 @@ export default function ChatShell() {
           <div className="mx-auto flex max-w-3xl flex-col gap-4">
             {(active?.messages ?? []).length === 0 && (
               <p className="text-center text-sm text-white/45">
-                Start a conversation. Messages are kept in this browser session only.
+                Start a conversation. The assistant keeps each chat&apos;s context on the server
+                (SQLite); this sidebar list resets if you reload the page. Hover a title to delete
+                a chat from the server.
               </p>
             )}
             {(active?.messages ?? []).map((m, i) => (

@@ -59,6 +59,22 @@ const openApiSpec = {
         },
       },
     },
+    "/sessions/{session_id}": {
+      delete: {
+        summary: "Delete conversation checkpoints on AI API",
+        parameters: [
+          {
+            name: "session_id",
+            in: "path",
+            required: true,
+            schema: { type: "string" },
+          },
+        ],
+        responses: {
+          "200": { description: "Forwarded response from AI API (e.g. { ok: true })" },
+        },
+      },
+    },
   },
 };
 
@@ -94,6 +110,38 @@ function preview(text, maxLen = 80) {
   const t = text.replace(/\s+/g, " ").trim();
   return t.length <= maxLen ? t : `${t.slice(0, maxLen)}…`;
 }
+
+app.delete("/sessions/:sessionId", async (req, res) => {
+  const raw = req.params.sessionId ?? "";
+  const sessionId = decodeURIComponent(raw);
+  const url = `${AI_API_URL}/sessions/${encodeURIComponent(sessionId)}`;
+  console.log(`[proxy] DELETE /sessions -> ${url}`);
+  const t0 = Date.now();
+  try {
+    const r = await fetch(url, { method: "DELETE" });
+    const text = await r.text();
+    const ms = Date.now() - t0;
+    console.log(
+      `[proxy] upstream DELETE status=${r.status} body_bytes=${text.length} elapsed_ms=${ms}`
+    );
+    res.status(r.status);
+    try {
+      res.json(JSON.parse(text));
+    } catch {
+      res.type("text/plain").send(text);
+    }
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error(
+      `[proxy] DELETE /sessions FAILED after ${Date.now() - t0}ms — cannot reach AI API:`,
+      url,
+      msg
+    );
+    res.status(502).json({
+      detail: `Proxy could not reach AI API (${AI_API_URL}): ${msg}`,
+    });
+  }
+});
 
 app.post("/chat", async (req, res) => {
   const url = `${AI_API_URL}/chat`;

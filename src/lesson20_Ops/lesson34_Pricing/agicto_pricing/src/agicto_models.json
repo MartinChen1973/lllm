@@ -4,19 +4,10 @@
       "name": "gpt-5.4-pro",
       "url": "/model/gpt-5.4-pro",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 210.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 1260.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -24,19 +15,11 @@
       "name": "gpt-5.4",
       "url": "/model/gpt-5.4",
       "features": [
-        "支持文本"
+        "Use case文本",
+        "上下文长度: 400K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 17.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -44,19 +27,10 @@
       "name": "gpt-5.3-codex",
       "url": "/model/gpt-5.3-codex",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 12.25,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 98.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -64,19 +38,10 @@
       "name": "gpt-5.2-codex",
       "url": "/model/gpt-5.2-codex",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 12.25,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 98.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -84,19 +49,10 @@
       "name": "gpt-5.1-codex-high",
       "url": "/model/gpt-5.1-codex-high",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 7.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -104,20 +60,11 @@
       "name": "gpt-5.2-pro",
       "url": "/model/gpt-5.2-pro",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 400K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 147.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 1176.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -125,20 +72,11 @@
       "name": "gpt-5.2-chat-latest",
       "url": "/model/gpt-5.2-chat-latest",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 400K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 12.25,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 98.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -146,20 +84,11 @@
       "name": "gpt-5.2",
       "url": "/model/gpt-5.2",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 400K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 12.25,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 98.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -167,20 +96,11 @@
       "name": "gpt-5.1-chat",
       "url": "/model/gpt-5.1-chat",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 400K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 8.75,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -188,20 +108,11 @@
       "name": "gpt-5.1-chat-latest",
       "url": "/model/gpt-5.1-chat-latest",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 400K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 8.75,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -209,20 +120,11 @@
       "name": "gpt-5.1-codex",
       "url": "/model/gpt-5.1-codex",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 400K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 8.75,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -230,19 +132,10 @@
       "name": "gpt-5.1",
       "url": "/model/gpt-5.1",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 8.75,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -250,19 +143,10 @@
       "name": "gpt-5.1-all",
       "url": "/model/gpt-5.1-all",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 10.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -270,20 +154,11 @@
       "name": "gpt-5",
       "url": "/model/gpt-5",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 400K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 8.75,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -291,20 +166,11 @@
       "name": "gpt-5-chat-latest",
       "url": "/model/gpt-5-chat-latest",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 400K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 8.75,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -312,20 +178,11 @@
       "name": "gpt-5-mini",
       "url": "/model/gpt-5-mini",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 400K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 1.75,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 14.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -333,20 +190,11 @@
       "name": "gpt-5-nano",
       "url": "/model/gpt-5-nano",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 400K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.35,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 2.8,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -354,19 +202,10 @@
       "name": "gpt-oss-120b",
       "url": "/model/gpt-oss-120b",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 8.4,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 16.8,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -374,19 +213,10 @@
       "name": "gpt-oss-20b",
       "url": "/model/gpt-oss-20b",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.1,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 8.4,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -394,20 +224,11 @@
       "name": "o1",
       "url": "/model/o1",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 420.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -415,20 +236,11 @@
       "name": "o4-mini",
       "url": "/model/o4-mini",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 7.7,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 30.8,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -436,20 +248,11 @@
       "name": "o4-mini-2025-04-16",
       "url": "/model/o4-mini-2025-04-16",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 7.7,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 30.8,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -457,20 +260,11 @@
       "name": "o3",
       "url": "/model/o3",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 14.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 56.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -478,20 +272,11 @@
       "name": "o3-2025-04-16",
       "url": "/model/o3-2025-04-16",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 14.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 56.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -499,20 +284,11 @@
       "name": "o3-mini-high",
       "url": "/model/o3-mini-high",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 7.7,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 30.8,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -520,20 +296,11 @@
       "name": "o3-mini-2025-01-31-high",
       "url": "/model/o3-mini-2025-01-31-high",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 7.7,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 30.8,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -541,20 +308,11 @@
       "name": "o3-mini-low",
       "url": "/model/o3-mini-low",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 7.7,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 30.8,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -562,20 +320,11 @@
       "name": "o3-mini-2025-01-31-low",
       "url": "/model/o3-mini-2025-01-31-low",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 7.7,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 30.8,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -583,20 +332,11 @@
       "name": "o3-mini-medium",
       "url": "/model/o3-mini-medium",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 7.7,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 30.8,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -604,20 +344,11 @@
       "name": "o3-mini-2025-01-31-medium",
       "url": "/model/o3-mini-2025-01-31-medium",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 7.7,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 30.8,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -625,20 +356,11 @@
       "name": "gpt-4.1-nano",
       "url": "/model/gpt-4.1-nano",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 1047K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.7,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 2.8,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -646,20 +368,11 @@
       "name": "gpt-4.1-mini",
       "url": "/model/gpt-4.1-mini",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 1047K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.8,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 11.2,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -667,20 +380,11 @@
       "name": "gpt-4.1",
       "url": "/model/gpt-4.1",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 1047K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 14.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 56.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -688,20 +392,11 @@
       "name": "o3-mini",
       "url": "/model/o3-mini",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 7.7,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 30.8,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -709,20 +404,11 @@
       "name": "o3-mini-2025-01-31",
       "url": "/model/o3-mini-2025-01-31",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 7.7,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 30.8,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -730,20 +416,11 @@
       "name": "gpt-4o-audio-preview-2024-10-01",
       "url": "/model/gpt-4o-audio-preview-2024-10-01",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 700.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 1400.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -751,20 +428,11 @@
       "name": "gpt-4o-audio-preview-2024-12-17",
       "url": "/model/gpt-4o-audio-preview-2024-12-17",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 280.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 560.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -772,20 +440,11 @@
       "name": "gpt-4o-audio-preview",
       "url": "/model/gpt-4o-audio-preview",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 700.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 1400.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -793,20 +452,11 @@
       "name": "gpt-4o-2024-11-20",
       "url": "/model/gpt-4o-2024-11-20",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 17.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -814,20 +464,11 @@
       "name": "o1-mini-2024-09-12",
       "url": "/model/o1-mini-2024-09-12",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 21.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 84.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -835,20 +476,11 @@
       "name": "o1-mini",
       "url": "/model/o1-mini",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 21.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 84.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -856,20 +488,11 @@
       "name": "o1-preview-2024-09-12",
       "url": "/model/o1-preview-2024-09-12",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 420.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -877,20 +500,11 @@
       "name": "o1-preview",
       "url": "/model/o1-preview",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 420.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -898,20 +512,11 @@
       "name": "chatgpt-4o-latest",
       "url": "/model/chatgpt-4o-latest",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 35.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -919,20 +524,11 @@
       "name": "gpt-4o-2024-08-06",
       "url": "/model/gpt-4o-2024-08-06",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 17.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -940,20 +536,11 @@
       "name": "gpt-4o-mini",
       "url": "/model/gpt-4o-mini",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 1.05,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 4.2,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -961,20 +548,11 @@
       "name": "gpt-4o",
       "url": "/model/gpt-4o",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 17.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -982,20 +560,11 @@
       "name": "gpt-4-turbo-preview",
       "url": "/model/gpt-4-turbo-preview",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 210.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1003,20 +572,11 @@
       "name": "gpt-4-turbo",
       "url": "/model/gpt-4-turbo",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 210.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1024,20 +584,11 @@
       "name": "gpt-4-turbo-2024-04-09",
       "url": "/model/gpt-4-turbo-2024-04-09",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 210.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1045,20 +596,11 @@
       "name": "gpt-4-32k",
       "url": "/model/gpt-4-32k",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 32K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 420.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 840.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1066,20 +608,11 @@
       "name": "gpt-4-32k-0314",
       "url": "/model/gpt-4-32k-0314",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 32K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 420.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 840.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1087,20 +620,11 @@
       "name": "gpt-4-0613",
       "url": "/model/gpt-4-0613",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 210.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 420.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1108,20 +632,11 @@
       "name": "gpt-4-0314",
       "url": "/model/gpt-4-0314",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 210.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 420.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1129,20 +644,11 @@
       "name": "gpt-4",
       "url": "/model/gpt-4",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 210.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 420.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1150,20 +656,11 @@
       "name": "gpt-4-1106-vision-preview",
       "url": "/model/gpt-4-1106-vision-preview",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 210.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1171,20 +668,11 @@
       "name": "gpt-4-1106-preview",
       "url": "/model/gpt-4-1106-preview",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 210.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1192,20 +680,11 @@
       "name": "gpt-4-0125-preview",
       "url": "/model/gpt-4-0125-preview",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 210.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1213,20 +692,11 @@
       "name": "gpt-3.5-turbo-16k-0613",
       "url": "/model/gpt-3.5-turbo-16k-0613",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 16K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 21.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 28.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1234,20 +704,11 @@
       "name": "gpt-3.5-turbo-16k",
       "url": "/model/gpt-3.5-turbo-16k",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 16K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 21.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 28.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1255,20 +716,11 @@
       "name": "gpt-3.5-turbo-instruct",
       "url": "/model/gpt-3.5-turbo-instruct",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 4K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 10.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 14.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1276,20 +728,11 @@
       "name": "gpt-3.5-turbo-0613",
       "url": "/model/gpt-3.5-turbo-0613",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 4K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 10.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 14.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1297,20 +740,11 @@
       "name": "gpt-3.5-turbo-0125",
       "url": "/model/gpt-3.5-turbo-0125",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 16K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 3.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 10.5,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1318,20 +752,11 @@
       "name": "gpt-3.5-turbo-1106",
       "url": "/model/gpt-3.5-turbo-1106",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 16K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 7.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 14.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1339,20 +764,11 @@
       "name": "gpt-3.5-turbo",
       "url": "/model/gpt-3.5-turbo",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 16K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 3.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 10.5,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1360,7 +776,7 @@
       "name": "gpt-image-1.5",
       "url": "/model/gpt-image-1.5",
       "features": [
-        "支持图像"
+        "Use case图像"
       ],
       "pricing": {
         "type": null
@@ -1371,7 +787,7 @@
       "name": "gpt-image-1",
       "url": "/model/gpt-image-1",
       "features": [
-        "支持图像"
+        "Use case图像"
       ],
       "pricing": {
         "type": "image",
@@ -1424,7 +840,7 @@
       "name": "dall-e-3",
       "url": "/model/dall-e-3",
       "features": [
-        "支持图像"
+        "Use case图像"
       ],
       "pricing": {
         "type": "image",
@@ -1462,7 +878,7 @@
       "name": "dall-e-2",
       "url": "/model/dall-e-2",
       "features": [
-        "支持图像"
+        "Use case图像"
       ],
       "pricing": {
         "type": "image",
@@ -1485,19 +901,10 @@
       "name": "text-embedding-ada-002",
       "url": "/model/text-embedding-ada-002",
       "features": [
-        "支持向量"
+        "Use case向量"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.7,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1505,19 +912,10 @@
       "name": "text-embedding-3-large",
       "url": "/model/text-embedding-3-large",
       "features": [
-        "支持向量"
+        "Use case向量"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.91,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1525,19 +923,10 @@
       "name": "text-embedding-3-small",
       "url": "/model/text-embedding-3-small",
       "features": [
-        "支持向量"
+        "Use case向量"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.14,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1545,7 +934,7 @@
       "name": "whisper-1",
       "url": "/model/whisper-1",
       "features": [
-        "支持音频",
+        "Use case音频",
         "语音转文本"
       ],
       "pricing": {
@@ -1557,7 +946,7 @@
       "name": "sora-2-pro-vip",
       "url": "/model/sora-2-pro-vip",
       "features": [
-        "支持全模态"
+        "Use case全模态"
       ],
       "pricing": {
         "type": null
@@ -1568,7 +957,7 @@
       "name": "sora-2-vip",
       "url": "/model/sora-2-vip",
       "features": [
-        "支持全模态"
+        "Use case全模态"
       ],
       "pricing": {
         "type": null
@@ -1579,7 +968,7 @@
       "name": "sora-2-pro-vip",
       "url": "/model/sora-2-pro-vip",
       "features": [
-        "支持工具",
+        "Use case工具",
         "2.2元/秒"
       ],
       "pricing": {
@@ -1591,7 +980,7 @@
       "name": "sora-2-vip",
       "url": "/model/sora-2-vip",
       "features": [
-        "支持工具",
+        "Use case工具",
         "0.6元/秒"
       ],
       "pricing": {
@@ -1603,19 +992,10 @@
       "name": "sora-2-pro",
       "url": "/model/sora-2-pro",
       "features": [
-        "支持工具"
+        "Use case工具"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1623,19 +1003,10 @@
       "name": "sora-2",
       "url": "/model/sora-2",
       "features": [
-        "支持工具"
+        "Use case工具"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Open AI"
     },
@@ -1643,20 +1014,11 @@
       "name": "ernie-4.5-vl-28b-a3b",
       "url": "/model/ernie-4.5-vl-28b-a3b",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 30K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 3.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 9.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -1664,20 +1026,11 @@
       "name": "ernie-4.5-21b-a3b",
       "url": "/model/ernie-4.5-21b-a3b",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 120K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 3.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 9.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -1685,20 +1038,11 @@
       "name": "ernie-4.5-0.3b",
       "url": "/model/ernie-4.5-0.3b",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 120K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 3.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 9.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -1706,20 +1050,11 @@
       "name": "ernie-4.5-turbo-vl-preview",
       "url": "/model/ernie-4.5-turbo-vl-preview",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 123K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 3.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 9.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -1727,20 +1062,11 @@
       "name": "ernie-x1-turbo-32k",
       "url": "/model/ernie-x1-turbo-32k",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 32K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 1.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 4.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -1748,20 +1074,11 @@
       "name": "ernie-4.5-turbo-128k",
       "url": "/model/ernie-4.5-turbo-128k",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.8,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 3.2,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -1769,20 +1086,11 @@
       "name": "ernie-4.5-turbo-32k",
       "url": "/model/ernie-4.5-turbo-32k",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 32K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.8,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 3.2,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -1790,20 +1098,11 @@
       "name": "ERNIE-3.5-128K",
       "url": "/model/ERNIE-3.5-128K",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 8.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 24.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -1811,20 +1110,11 @@
       "name": "ERNIE-3.5-8K-Preview",
       "url": "/model/ERNIE-3.5-8K-Preview",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 12.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 12.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -1832,20 +1122,11 @@
       "name": "ERNIE-3.5-8K",
       "url": "/model/ERNIE-3.5-8K",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 4.8,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 4.8,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -1853,20 +1134,11 @@
       "name": "ERNIE-4.0-Turbo-8K-Preview",
       "url": "/model/ERNIE-4.0-Turbo-8K-Preview",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 30.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 60.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -1874,20 +1146,11 @@
       "name": "ERNIE-4.0-Turbo-8K",
       "url": "/model/ERNIE-4.0-Turbo-8K",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 30.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 60.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -1895,20 +1158,11 @@
       "name": "ERNIE-4.0-8K-Latest",
       "url": "/model/ERNIE-4.0-8K-Latest",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 40.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 120.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -1916,20 +1170,11 @@
       "name": "ERNIE-4.0-8K-Preview-0518",
       "url": "/model/ERNIE-4.0-8K-Preview-0518",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 120.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 120.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -1937,20 +1182,11 @@
       "name": "ERNIE-4.0-8K-Preview",
       "url": "/model/ERNIE-4.0-8K-Preview",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 40.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 120.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -1958,20 +1194,11 @@
       "name": "ERNIE-4.0-8K",
       "url": "/model/ERNIE-4.0-8K",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 40.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 120.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -1979,20 +1206,11 @@
       "name": "ERNIE-Tiny-8K",
       "url": "/model/ERNIE-Tiny-8K",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -2000,20 +1218,11 @@
       "name": "ERNIE-Lite-8K",
       "url": "/model/ERNIE-Lite-8K",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -2021,20 +1230,11 @@
       "name": "ERNIE-Lite-8K-0922",
       "url": "/model/ERNIE-Lite-8K-0922",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -2042,20 +1242,11 @@
       "name": "ERNIE-Speed-128K",
       "url": "/model/ERNIE-Speed-128K",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -2063,20 +1254,11 @@
       "name": "ERNIE-Speed-8K",
       "url": "/model/ERNIE-Speed-8K",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -2084,20 +1266,11 @@
       "name": "ERNIE-Bot-turbo",
       "url": "/model/ERNIE-Bot-turbo",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 12.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 12.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -2105,20 +1278,11 @@
       "name": "ERNIE-Bot-8K",
       "url": "/model/ERNIE-Bot-8K",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 24.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 48.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -2126,20 +1290,11 @@
       "name": "ERNIE-Bot-4.0",
       "url": "/model/ERNIE-Bot-4.0",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 120.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 120.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -2147,20 +1302,11 @@
       "name": "ERNIE-Bot",
       "url": "/model/ERNIE-Bot",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 12.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 12.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百度"
     },
@@ -2168,20 +1314,11 @@
       "name": "generalv3.5",
       "url": "/model/generalv3.5",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 30.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 30.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "讯飞"
     },
@@ -2189,20 +1326,11 @@
       "name": "pro-128k",
       "url": "/model/pro-128k",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 30.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 30.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "讯飞"
     },
@@ -2210,20 +1338,11 @@
       "name": "generalv3",
       "url": "/model/generalv3",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 20.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 20.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "讯飞"
     },
@@ -2231,20 +1350,11 @@
       "name": "spark-V1.5",
       "url": "/model/spark-V1.5",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 15.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 15.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "讯飞"
     },
@@ -2252,20 +1362,11 @@
       "name": "Baichuan2-53B",
       "url": "/model/Baichuan2-53B",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 32K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 140.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 140.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百川"
     },
@@ -2273,20 +1374,11 @@
       "name": "Baichuan3-Turbo-128k",
       "url": "/model/Baichuan3-Turbo-128k",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 24.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 24.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百川"
     },
@@ -2294,20 +1386,11 @@
       "name": "Baichuan3-Turbo",
       "url": "/model/Baichuan3-Turbo",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 32K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 12.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 12.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百川"
     },
@@ -2315,20 +1398,11 @@
       "name": "Baichuan4",
       "url": "/model/Baichuan4",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 32K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 100.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 100.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "百川"
     },
@@ -2336,19 +1410,10 @@
       "name": "qwen3.5-plus",
       "url": "/model/qwen3.5-plus",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.8,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 4.8,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2356,19 +1421,10 @@
       "name": "qwen3.5-397b-a17b",
       "url": "/model/qwen3.5-397b-a17b",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.8,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 4.8,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2376,19 +1432,10 @@
       "name": "qwen3-coder-480b-a35b-instruct",
       "url": "/model/qwen3-coder-480b-a35b-instruct",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 6.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 24.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2396,19 +1443,10 @@
       "name": "qwen-mt-turbo",
       "url": "/model/qwen-mt-turbo",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.7,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 1.95,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2416,19 +1454,10 @@
       "name": "qwen-mt-flash",
       "url": "/model/qwen-mt-flash",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.7,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 1.95,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2436,19 +1465,10 @@
       "name": "qwen-mt-plus",
       "url": "/model/qwen-mt-plus",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 1.8,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 5.4,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2456,19 +1476,10 @@
       "name": "qwen-flash",
       "url": "/model/qwen-flash",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 1.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 4.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2476,19 +1487,10 @@
       "name": "qwen3-vl-235b-a22b-instruct",
       "url": "/model/qwen3-vl-235b-a22b-instruct",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 8.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2496,19 +1498,10 @@
       "name": "qwen3-vl-235b-a22b-thinking",
       "url": "/model/qwen3-vl-235b-a22b-thinking",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 20.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2516,19 +1509,10 @@
       "name": "qwen3-vl-8b-instruct",
       "url": "/model/qwen3-vl-8b-instruct",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 2.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2536,19 +1520,10 @@
       "name": "qwen3-vl-8b-thinking",
       "url": "/model/qwen3-vl-8b-thinking",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 5.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2556,19 +1531,10 @@
       "name": "qwen3-vl-30b-a3b-instruct",
       "url": "/model/qwen3-vl-30b-a3b-instruct",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.75,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 3.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2576,19 +1542,10 @@
       "name": "qwen3-vl-32b-thinking",
       "url": "/model/qwen3-vl-32b-thinking",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.75,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 7.5,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2596,19 +1553,10 @@
       "name": "qwen3-max",
       "url": "/model/qwen3-max",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 10.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2616,19 +1564,10 @@
       "name": "qwen3-next-80b-a3b-thinking",
       "url": "/model/qwen3-next-80b-a3b-thinking",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 1.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 4.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2636,19 +1575,10 @@
       "name": "qwen3-next-80b-a3b-instruct",
       "url": "/model/qwen3-next-80b-a3b-instruct",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 1.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 4.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2656,19 +1586,10 @@
       "name": "gpt-oss-120b",
       "url": "/model/gpt-oss-120b",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 8.4,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 16.8,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2676,19 +1597,10 @@
       "name": "qwen3-vl-plus",
       "url": "/model/qwen3-vl-plus",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 1.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 10.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2696,19 +1608,10 @@
       "name": "qwen3-coder-plus",
       "url": "/model/qwen3-coder-plus",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 4.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 16.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2716,19 +1619,10 @@
       "name": "qwen3-max-preview",
       "url": "/model/qwen3-max-preview",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 6.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 24.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2736,19 +1630,10 @@
       "name": "qwen3-32b",
       "url": "/model/qwen3-32b",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 20.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2756,19 +1641,10 @@
       "name": "qwen3-30b-a3b",
       "url": "/model/qwen3-30b-a3b",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.75,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 7.5,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2776,19 +1652,10 @@
       "name": "qwen3-235b-a22b",
       "url": "/model/qwen3-235b-a22b",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 20.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2796,20 +1663,11 @@
       "name": "qwq-plus",
       "url": "/model/qwq-plus",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 1.6,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 4.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2817,20 +1675,11 @@
       "name": "qwen-max",
       "url": "/model/qwen-max",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 32K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.4,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 9.6,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2838,20 +1687,11 @@
       "name": "qwen-vl-plus-latest",
       "url": "/model/qwen-vl-plus-latest",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 1.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 4.5,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2859,22 +1699,13 @@
       "name": "qwen-vl-plus",
       "url": "/model/qwen-vl-plus",
       "features": [
-        "支持文本",
+        "Use case文本",
         "图片理解",
         "视频理解",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 1.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 4.5,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2882,22 +1713,13 @@
       "name": "qwen-vl-max-latest",
       "url": "/model/qwen-vl-max-latest",
       "features": [
-        "支持文本",
+        "Use case文本",
         "图片理解",
         "视频理解",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 3.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 9.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2905,22 +1727,13 @@
       "name": "qwen-vl-max",
       "url": "/model/qwen-vl-max",
       "features": [
-        "支持文本",
+        "Use case文本",
         "图片理解",
         "视频理解",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 3.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 9.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2928,20 +1741,11 @@
       "name": "qwen-turbo-latest",
       "url": "/model/qwen-turbo-latest",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.3,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 6.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2949,20 +1753,11 @@
       "name": "qwen-plus-latest",
       "url": "/model/qwen-plus-latest",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.3,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 6.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2970,20 +1765,11 @@
       "name": "qwen-max-latest",
       "url": "/model/qwen-max-latest",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 32K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.4,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 9.6,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -2991,20 +1777,11 @@
       "name": "qwen-plus",
       "url": "/model/qwen-plus",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 32K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.8,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 2.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -3012,20 +1789,11 @@
       "name": "qwen-turbo",
       "url": "/model/qwen-turbo",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.3,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.6,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -3033,21 +1801,12 @@
       "name": "qwen-omni-turbo",
       "url": "/model/qwen-omni-turbo",
       "features": [
-        "支持文本",
+        "Use case文本",
         "全模态，支持文本/图像/语音/视频混合输入",
         "上下文长度: 32K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 25.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 50.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -3055,21 +1814,12 @@
       "name": "qwen-omni-turbo-latest",
       "url": "/model/qwen-omni-turbo-latest",
       "features": [
-        "支持文本",
+        "Use case文本",
         "全模态，支持文本/图像/语音/视频混合输入",
         "上下文长度: 32K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 25.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 50.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -3077,7 +1827,7 @@
       "name": "qwen-image-edit",
       "url": "/model/qwen-image-edit",
       "features": [
-        "支持图像",
+        "Use case图像",
         "图片编辑"
       ],
       "pricing": {
@@ -3089,7 +1839,7 @@
       "name": "wan2.2-t2i-plus",
       "url": "/model/wan2.2-t2i-plus",
       "features": [
-        "支持图像"
+        "Use case图像"
       ],
       "pricing": {
         "type": null
@@ -3100,7 +1850,7 @@
       "name": "wan2.2-t2i-flash",
       "url": "/model/wan2.2-t2i-flash",
       "features": [
-        "支持图像"
+        "Use case图像"
       ],
       "pricing": {
         "type": null
@@ -3111,19 +1861,10 @@
       "name": "text-embedding-v4",
       "url": "/model/text-embedding-v4",
       "features": [
-        "支持向量"
+        "Use case向量"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.7,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.7,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -3131,19 +1872,10 @@
       "name": "text-embedding-v3",
       "url": "/model/text-embedding-v3",
       "features": [
-        "支持向量"
+        "Use case向量"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.7,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -3151,19 +1883,10 @@
       "name": "text-embedding-v2",
       "url": "/model/text-embedding-v2",
       "features": [
-        "支持向量"
+        "Use case向量"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.7,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -3171,19 +1894,10 @@
       "name": "text-embedding-v1",
       "url": "/model/text-embedding-v1",
       "features": [
-        "支持向量"
+        "Use case向量"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.7,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -3191,15 +1905,10 @@
       "name": "qwen3-rerank",
       "url": "/model/qwen3-rerank",
       "features": [
-        "支持排序"
+        "Use case排序"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.5,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -3207,19 +1916,10 @@
       "name": "gte-rerank-v2",
       "url": "/model/gte-rerank-v2",
       "features": [
-        "支持排序"
+        "Use case排序"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.8,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "阿里"
     },
@@ -3227,7 +1927,7 @@
       "name": "qwen-tts",
       "url": "/model/qwen-tts",
       "features": [
-        "支持音频",
+        "Use case音频",
         "文本转语音"
       ],
       "pricing": {
@@ -3248,20 +1948,11 @@
       "name": "hunyuan-t1-latest",
       "url": "/model/%09%0D%0Ahunyuan-t1-latest",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 28K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 1.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 4.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "腾讯"
     },
@@ -3269,20 +1960,11 @@
       "name": "hunyuan-turbos-latest",
       "url": "/model/hunyuan-turbos-latest",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 24K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.8,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 2.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "腾讯"
     },
@@ -3290,20 +1972,11 @@
       "name": "hunyuan-turbo-latest",
       "url": "/model/hunyuan-turbo-latest",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 24K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.4,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 9.6,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "腾讯"
     },
@@ -3311,20 +1984,11 @@
       "name": "hunyuan-large-longcontext",
       "url": "/model/hunyuan-large-longcontext",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 6.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 18.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "腾讯"
     },
@@ -3332,20 +1996,11 @@
       "name": "hunyuan-large",
       "url": "/model/hunyuan-large",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 28K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 4.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 12.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "腾讯"
     },
@@ -3353,20 +2008,11 @@
       "name": "hunyuan-turbo",
       "url": "/model/hunyuan-turbo",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 28K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.4,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 9.6,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "腾讯"
     },
@@ -3374,20 +2020,11 @@
       "name": "hunyuan-vision",
       "url": "/model/hunyuan-vision",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 16K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 18.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 18.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "腾讯"
     },
@@ -3395,20 +2032,11 @@
       "name": "hunyuan-standard-256K",
       "url": "/model/hunyuan-standard-256K",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 250K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 2.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "腾讯"
     },
@@ -3416,20 +2044,11 @@
       "name": "hunyuan-standard",
       "url": "/model/hunyuan-standard",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 30K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.8,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 2.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "腾讯"
     },
@@ -3437,20 +2056,11 @@
       "name": "hunyuan-lite",
       "url": "/model/hunyuan-lite",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 250K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.4,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 1.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "腾讯"
     },
@@ -3458,20 +2068,11 @@
       "name": "360gpt2-pro",
       "url": "/model/360gpt2-pro",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 4K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 5.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 5.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "360"
     },
@@ -3479,20 +2080,11 @@
       "name": "360gpt-turbo",
       "url": "/model/360gpt-turbo",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 4K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 2.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "360"
     },
@@ -3500,20 +2092,11 @@
       "name": "360gpt-pro",
       "url": "/model/360gpt-pro",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 4K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 12.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 12.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "360"
     },
@@ -3521,19 +2104,11 @@
       "name": "gemini-3.1-pro-preview",
       "url": "/model/gemini-3.1-pro-preview",
       "features": [
-        "支持文本"
+        "Use case文本",
+        "上下文长度: 1048K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 14.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 84.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Google"
     },
@@ -3541,19 +2116,10 @@
       "name": "gemini-3-pro-deepsearch",
       "url": "/model/gemini-3-pro-deepsearch",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 14.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 84.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Google"
     },
@@ -3561,19 +2127,10 @@
       "name": "gemini-3-flash-deepsearch",
       "url": "/model/gemini-3-flash-deepsearch",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 7.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 42.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Google"
     },
@@ -3581,19 +2138,10 @@
       "name": "gemini-3-flash-preview",
       "url": "/model/gemini-3-flash-preview",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 3.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 21.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Google"
     },
@@ -3601,19 +2149,10 @@
       "name": "gemini-3-pro-preview-thinking",
       "url": "/model/gemini-3-pro-preview-thinking",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 14.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 84.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Google"
     },
@@ -3621,20 +2160,11 @@
       "name": "gemini-3-pro-preview",
       "url": "/model/gemini-3-pro-preview",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 1048K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 14.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 84.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Google"
     },
@@ -3642,19 +2172,10 @@
       "name": "gemini-2.5-pro",
       "url": "/model/gemini-2.5-pro",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 8.75,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Google"
     },
@@ -3662,19 +2183,10 @@
       "name": "gemini-2.5-flash",
       "url": "/model/gemini-2.5-flash",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 8.75,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 42.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Google"
     },
@@ -3682,19 +2194,10 @@
       "name": "gemini-2.5-pro-preview-06-05",
       "url": "/model/gemini-2.5-pro-preview-06-05",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 8.75,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Google"
     },
@@ -3702,20 +2205,11 @@
       "name": "gemini-2.5-pro-preview-05-06",
       "url": "/model/gemini-2.5-pro-preview-05-06",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 8.75,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Google"
     },
@@ -3723,20 +2217,11 @@
       "name": "gemini-2.5-pro-preview-03-25",
       "url": "/model/gemini-2.5-pro-preview-03-25",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 1000K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 8.82,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 35.28,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Google"
     },
@@ -3744,19 +2229,10 @@
       "name": "gemini-2.5-pro-exp-03-25",
       "url": "/model/gemini-2.5-pro-exp-03-25",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 8.75,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Google"
     },
@@ -3764,20 +2240,24 @@
       "name": "gemini-pro",
       "url": "/model/gemini-pro",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 32K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 3.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 10.5,
-          "unit": "百万tokens"
-        }
+        "type": null
+      },
+      "provider": "Google"
+    },
+    {
+      "name": "gemini-3.1-flash-image-preview-vip",
+      "url": "/model/gemini-3.1-flash-image-preview-vip",
+      "features": [
+        "Use case图像"
+      ],
+      "pricing": {
+        "type": "per_use",
+        "price": 0.4,
+        "unit": "次"
       },
       "provider": "Google"
     },
@@ -3785,7 +2265,7 @@
       "name": "gemini-3.1-flash-image-preview",
       "url": "/model/gemini-3.1-flash-image-preview",
       "features": [
-        "支持图像"
+        "Use case图像"
       ],
       "pricing": {
         "type": null
@@ -3796,11 +2276,11 @@
       "name": "gemini-3-pro-image-preview-vip",
       "url": "/model/gemini-3-pro-image-preview-vip",
       "features": [
-        "支持图像"
+        "Use case图像"
       ],
       "pricing": {
         "type": "per_use",
-        "price": 0.55,
+        "price": 0.45,
         "unit": "次"
       },
       "provider": "Google"
@@ -3809,7 +2289,7 @@
       "name": "gemini-3-pro-image-preview",
       "url": "/model/gemini-3-pro-image-preview",
       "features": [
-        "支持图像",
+        "Use case图像",
         "nano banana2"
       ],
       "pricing": {
@@ -3821,7 +2301,7 @@
       "name": "gemini-2.5-flash-image-preview",
       "url": "/model/gemini-2.5-flash-image-preview",
       "features": [
-        "支持图像",
+        "Use case图像",
         "nano banana"
       ],
       "pricing": {
@@ -3833,19 +2313,10 @@
       "name": "veo3.1-pro",
       "url": "/model/veo3.1-pro",
       "features": [
-        "支持工具"
+        "Use case工具"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Google"
     },
@@ -3853,39 +2324,45 @@
       "name": "veo3.1",
       "url": "/model/veo3.1",
       "features": [
-        "支持工具"
+        "Use case工具"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Google"
+    },
+    {
+      "name": "claude-sonnet-4-5-20250929-thinking",
+      "url": "/model/claude-sonnet-4-5-20250929-thinking",
+      "features": [
+        "Use case文本"
+      ],
+      "pricing": {
+        "type": null
+      },
+      "provider": "Anthropic"
+    },
+    {
+      "name": "claude-opus-4-6-thinking",
+      "url": "/model/claude-opus-4-6-thinking",
+      "features": [
+        "Use case文本",
+        "上下文长度: 200K"
+      ],
+      "pricing": {
+        "type": null
+      },
+      "provider": "Anthropic"
     },
     {
       "name": "claude-sonnet-4-6-thinking",
       "url": "/model/claude-sonnet-4-6-thinking",
       "features": [
-        "支持文本"
+        "Use case文本",
+        "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 21.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -3893,19 +2370,11 @@
       "name": "claude-sonnet-4-6",
       "url": "/model/claude-sonnet-4-6",
       "features": [
-        "支持文本"
+        "Use case文本",
+        "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 21.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -3913,19 +2382,10 @@
       "name": "claude-opus-4-6",
       "url": "/model/claude-opus-4-6",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 35.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 175.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -3933,19 +2393,10 @@
       "name": "claude-opus-4-5-20251101",
       "url": "/model/claude-opus-4-5-20251101",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 35.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 175.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -3953,19 +2404,10 @@
       "name": "claude-haiku-4-5-20251001-thinking",
       "url": "/model/claude-haiku-4-5-20251001-thinking",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 3.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 17.5,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -3973,19 +2415,10 @@
       "name": "claude-haiku-4-5-20251001",
       "url": "/model/claude-haiku-4-5-20251001",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 3.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 17.5,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -3993,19 +2426,10 @@
       "name": "claude-opus-4-1-20250805-thinking",
       "url": "/model/claude-opus-4-1-20250805-thinking",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 525.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -4013,19 +2437,10 @@
       "name": "claude-opus-4-1-20250805",
       "url": "/model/claude-opus-4-1-20250805",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 525.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -4033,19 +2448,10 @@
       "name": "claude-sonnet-4-5-20250929",
       "url": "/model/claude-sonnet-4-5-20250929",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 21.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -4053,20 +2459,11 @@
       "name": "claude-opus-4-thinking",
       "url": "/model/claude-opus-4-thinking",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 525.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -4074,20 +2471,11 @@
       "name": "claude-opus-4",
       "url": "/model/claude-opus-4",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 525.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -4095,20 +2483,11 @@
       "name": "claude-opus-4-20250514-thinking",
       "url": "/model/claude-opus-4-20250514-thinking",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 525.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -4116,20 +2495,11 @@
       "name": "claude-opus-4-20250514",
       "url": "/model/claude-opus-4-20250514",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 525.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -4137,20 +2507,11 @@
       "name": "claude-sonnet-4-20250514-thinking",
       "url": "/model/claude-sonnet-4-20250514-thinking",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 21.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -4158,20 +2519,11 @@
       "name": "claude-sonnet-4-20250514",
       "url": "/model/claude-sonnet-4-20250514",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 21.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -4179,20 +2531,11 @@
       "name": "claude-3-7-sonnet-thinking",
       "url": "/model/claude-3-7-sonnet-thinking",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 21.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -4200,20 +2543,11 @@
       "name": "claude-3-7-sonnet-20250219",
       "url": "/model/claude-3-7-sonnet-20250219",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 21.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -4221,20 +2555,11 @@
       "name": "claude-3-5-sonnet-20241022",
       "url": "/model/claude-3-5-sonnet-20241022",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 21.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -4242,20 +2567,11 @@
       "name": "claude-3-5-haiku-20241022",
       "url": "/model/claude-3-5-haiku-20241022",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 7.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 35.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -4263,20 +2579,11 @@
       "name": "claude-3-5-sonnet-20240620",
       "url": "/model/claude-3-5-sonnet-20240620",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 21.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -4284,20 +2591,11 @@
       "name": "claude-3-haiku-20240307",
       "url": "/model/claude-3-haiku-20240307",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 7.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 35.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -4305,20 +2603,11 @@
       "name": "claude-3-sonnet-20240229",
       "url": "/model/claude-3-sonnet-20240229",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 21.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -4326,20 +2615,11 @@
       "name": "claude-3-opus-20240229",
       "url": "/model/claude-3-opus-20240229",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 525.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Anthropic"
     },
@@ -4347,20 +2627,11 @@
       "name": "mistral-large-latest",
       "url": "/model/mistral-large-latest",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 32K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 431.2,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 1293.6,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Mistral"
     },
@@ -4368,20 +2639,11 @@
       "name": "mistral-small-latest",
       "url": "/model/mistral-small-latest",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 32K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 107.8,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 323.4,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Mistral"
     },
@@ -4389,20 +2651,11 @@
       "name": "open-mixtral-8x7b",
       "url": "/model/open-mixtral-8x7b",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 32K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 37.8,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 37.8,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Mistral"
     },
@@ -4410,20 +2663,11 @@
       "name": "open-mistral-7b",
       "url": "/model/open-mistral-7b",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 32K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 13.3,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 13.3,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Mistral"
     },
@@ -4431,20 +2675,11 @@
       "name": "Llama-3-70b-chat-hf",
       "url": "/model/Llama-3-70b-chat-hf",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 7.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 7.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Meta AI"
     },
@@ -4452,20 +2687,11 @@
       "name": "Llama-3-8b-chat-hf",
       "url": "/model/Llama-3-8b-chat-hf",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.1,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 2.1,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Meta AI"
     },
@@ -4473,20 +2699,11 @@
       "name": "OLMo-7B",
       "url": "/model/OLMo-7B",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 2K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 1.4,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 1.4,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "allenai"
     },
@@ -4494,20 +2711,11 @@
       "name": "OLMo-7B-Twin-2T",
       "url": "/model/OLMo-7B-Twin-2T",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 2K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 1.4,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 1.4,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "allenai"
     },
@@ -4515,20 +2723,11 @@
       "name": "OLMo-7B-Instruct",
       "url": "/model/OLMo-7B-Instruct",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 2K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 10.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 10.5,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "allenai"
     },
@@ -4536,19 +2735,11 @@
       "name": "yi-large-preview",
       "url": "/model/yi-large-preview",
       "features": [
+        "Use case",
         "上下文长度: 16K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 20.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 20.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "零一万物"
     },
@@ -4556,20 +2747,11 @@
       "name": "yi-large-turbo",
       "url": "/model/yi-large-turbo",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 16K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 12.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 12.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "零一万物"
     },
@@ -4577,20 +2759,11 @@
       "name": "yi-large-rag",
       "url": "/model/yi-large-rag",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 16K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 25.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 25.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "零一万物"
     },
@@ -4598,20 +2771,11 @@
       "name": "yi-spark",
       "url": "/model/yi-spark",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 16K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 1.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 1.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "零一万物"
     },
@@ -4619,20 +2783,11 @@
       "name": "yi-medium-200k",
       "url": "/model/yi-medium-200k",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 12.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 12.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "零一万物"
     },
@@ -4640,20 +2795,11 @@
       "name": "yi-vision",
       "url": "/model/yi-vision",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 4K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 6.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 6.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "零一万物"
     },
@@ -4661,20 +2807,11 @@
       "name": "yi-medium",
       "url": "/model/yi-medium",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 16K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 2.5,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "零一万物"
     },
@@ -4682,20 +2819,11 @@
       "name": "yi-large",
       "url": "/model/yi-large",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 32K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 20.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 20.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "零一万物"
     },
@@ -4703,19 +2831,10 @@
       "name": "kimi-k2-0711-preview",
       "url": "/model/kimi-k2-0711-preview",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 12.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 32.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "月之暗面"
     },
@@ -4723,20 +2842,11 @@
       "name": "moonshot-v1-128k",
       "url": "/model/moonshot-v1-128k",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 60.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 60.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "月之暗面"
     },
@@ -4744,20 +2854,11 @@
       "name": "moonshot-v1-32k",
       "url": "/model/moonshot-v1-32k",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 32K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 24.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 24.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "月之暗面"
     },
@@ -4765,20 +2866,11 @@
       "name": "moonshot-v1-8k",
       "url": "/model/moonshot-v1-8k",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 12.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 12.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "月之暗面"
     },
@@ -4786,39 +2878,21 @@
       "name": "doubao-seed-2-0-pro-260215",
       "url": "/model/doubao-seed-2-0-pro-260215",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 3.2,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 16.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "豆包"
     },
     {
-      "name": "doubao-seed-1-8-251215",
-      "url": "/model/doubao-seed-1-8-251215",
+      "name": "doubao-seed-1-8-251228",
+      "url": "/model/doubao-seed-1-8-251228",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 1.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 2.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "豆包"
     },
@@ -4826,21 +2900,12 @@
       "name": "Doubao-Seed-1.6-thinking",
       "url": "/model/Doubao-Seed-1.6-thinking",
       "features": [
-        "支持文本",
+        "Use case文本",
         "多模态",
         "上下文长度: 256K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.8,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 8.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "豆包"
     },
@@ -4848,21 +2913,12 @@
       "name": "Doubao-Seed-1.6-flash",
       "url": "/model/Doubao-Seed-1.6-flash",
       "features": [
-        "支持文本",
+        "Use case文本",
         "多模态",
         "上下文长度: 256K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.15,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 1.5,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "豆包"
     },
@@ -4870,21 +2926,12 @@
       "name": "Doubao-Seed-1.6",
       "url": "/model/Doubao-Seed-1.6",
       "features": [
-        "支持文本",
+        "Use case文本",
         "多模态",
         "上下文长度: 256K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.8,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 8.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "豆包"
     },
@@ -4892,20 +2939,11 @@
       "name": "Doubao-1.5-vision-pro",
       "url": "/model/Doubao-1.5-vision-pro",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 32K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 3.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 9.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "豆包"
     },
@@ -4913,20 +2951,11 @@
       "name": "Doubao-lite-128k",
       "url": "/model/Doubao-lite-128k",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.8,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 1.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "豆包"
     },
@@ -4934,20 +2963,11 @@
       "name": "Doubao-lite-32k",
       "url": "/model/Doubao-lite-32k",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 32K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.3,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.6,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "豆包"
     },
@@ -4955,7 +2975,7 @@
       "name": "doubao-seedream-4-5-251128",
       "url": "/model/doubao-seedream-4-5-251128",
       "features": [
-        "支持图像"
+        "Use case图像"
       ],
       "pricing": {
         "type": null
@@ -4966,7 +2986,7 @@
       "name": "doubao-seededit-3-0-i2i-250628",
       "url": "/model/doubao-seededit-3-0-i2i-250628",
       "features": [
-        "支持图像",
+        "Use case图像",
         "文生图",
         "图像编辑"
       ],
@@ -4979,7 +2999,7 @@
       "name": "doubao-seedream-3-0-t2i-250415",
       "url": "/model/doubao-seedream-3-0-t2i-250415",
       "features": [
-        "支持图像",
+        "Use case图像",
         "文生图"
       ],
       "pricing": {
@@ -4991,21 +3011,12 @@
       "name": "Doubao-Seedance-1.0-pro",
       "url": "/model/Doubao-Seedance-1.0-pro",
       "features": [
-        "支持工具",
+        "Use case工具",
         "文生视频",
         "首帧图生视频"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 15.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 15.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "豆包"
     },
@@ -5013,19 +3024,10 @@
       "name": "deepseek-v3.2-thinking",
       "url": "/model/deepseek-v3.2-thinking",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 3.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "DeepSeek"
     },
@@ -5033,19 +3035,10 @@
       "name": "deepseek-v3.2",
       "url": "/model/deepseek-v3.2",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 3.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "DeepSeek"
     },
@@ -5053,19 +3046,10 @@
       "name": "deepseek-v3.2-exp",
       "url": "/model/deepseek-v3.2-exp",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 3.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "DeepSeek"
     },
@@ -5073,19 +3057,10 @@
       "name": "deepseek-ocr",
       "url": "/model/deepseek-ocr",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "DeepSeek"
     },
@@ -5093,19 +3068,10 @@
       "name": "deepseek-v3.1",
       "url": "/model/deepseek-v3.1",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 4.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 12.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "DeepSeek"
     },
@@ -5113,20 +3079,11 @@
       "name": "deepseek-r1-250528",
       "url": "/model/deepseek-r1-250528",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 4.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 16.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "DeepSeek"
     },
@@ -5134,20 +3091,11 @@
       "name": "deepseek-v3-0324",
       "url": "/model/deepseek-v3-0324",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 64K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.45,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 9.1,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "DeepSeek"
     },
@@ -5155,21 +3103,12 @@
       "name": "deepseek-r1",
       "url": "/model/deepseek-r1",
       "features": [
-        "支持文本",
+        "Use case文本",
         "开源版671B",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 4.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 16.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "DeepSeek"
     },
@@ -5177,20 +3116,11 @@
       "name": "deepseek-reasoner",
       "url": "/model/deepseek-reasoner",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 64K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 4.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 16.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "DeepSeek"
     },
@@ -5198,20 +3128,11 @@
       "name": "deepseek-chat",
       "url": "/model/deepseek-chat",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 8.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "DeepSeek"
     },
@@ -5219,20 +3140,11 @@
       "name": "command-light-nightly",
       "url": "/model/command-light-nightly",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 4K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 3.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 10.5,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Cohere"
     },
@@ -5240,20 +3152,11 @@
       "name": "command-light",
       "url": "/model/command-light",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 4K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 3.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 10.5,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Cohere"
     },
@@ -5261,20 +3164,11 @@
       "name": "command-nightly",
       "url": "/model/command-nightly",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 3.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 10.5,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Cohere"
     },
@@ -5282,20 +3176,11 @@
       "name": "command",
       "url": "/model/command",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 4K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 3.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 10.5,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Cohere"
     },
@@ -5303,20 +3188,11 @@
       "name": "command-r",
       "url": "/model/command-r",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 3.5,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 10.5,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Cohere"
     },
@@ -5324,20 +3200,11 @@
       "name": "command-r-plus",
       "url": "/model/command-r-plus",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 21.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Cohere"
     },
@@ -5345,7 +3212,7 @@
       "name": "rerank-v3.5",
       "url": "/model/rerank-v3.5",
       "features": [
-        "支持排序",
+        "Use case排序",
         "按次计费"
       ],
       "pricing": {
@@ -5357,7 +3224,7 @@
       "name": "rerank-english-v3.0",
       "url": "/model/rerank-english-v3.0",
       "features": [
-        "支持排序",
+        "Use case排序",
         "按次计费"
       ],
       "pricing": {
@@ -5369,7 +3236,7 @@
       "name": "rerank-multilingual-v3.0",
       "url": "/model/rerank-multilingual-v3.0",
       "features": [
-        "支持排序",
+        "Use case排序",
         "按次计费"
       ],
       "pricing": {
@@ -5381,19 +3248,10 @@
       "name": "minimax-m2.5",
       "url": "/model/minimax-m2.5",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 14.7,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 58.8,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "MiniMax"
     },
@@ -5401,19 +3259,10 @@
       "name": "minimax-m2.1-lightning",
       "url": "/model/minimax-m2.1-lightning",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.1,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 16.8,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "MiniMax"
     },
@@ -5421,19 +3270,10 @@
       "name": "minimax-m2",
       "url": "/model/minimax-m2",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.1,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 8.4,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "MiniMax"
     },
@@ -5441,19 +3281,10 @@
       "name": "minimax-m2.1",
       "url": "/model/minimax-m2.1",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.1,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 8.4,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "MiniMax"
     },
@@ -5461,19 +3292,10 @@
       "name": "minimax-m1-80k",
       "url": "/model/minimax-m1-80k",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 4.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 16.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "MiniMax"
     },
@@ -5481,20 +3303,11 @@
       "name": "abab5.5-chat-pro",
       "url": "/model/abab5.5-chat-pro",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 16K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 5.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 5.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "MiniMax"
     },
@@ -5502,20 +3315,11 @@
       "name": "abab5.5s-chat-pro",
       "url": "/model/abab5.5s-chat-pro",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 15.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 15.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "MiniMax"
     },
@@ -5523,20 +3327,11 @@
       "name": "abab6.5s-chat-pro",
       "url": "/model/abab6.5s-chat-pro",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 245K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 10.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 10.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "MiniMax"
     },
@@ -5544,20 +3339,11 @@
       "name": "abab6.5-chat-pro",
       "url": "/model/abab6.5-chat-pro",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 30.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 30.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "MiniMax"
     },
@@ -5565,20 +3351,11 @@
       "name": "abab5.5s-chat",
       "url": "/model/abab5.5s-chat",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 5.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 5.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "MiniMax"
     },
@@ -5586,20 +3363,11 @@
       "name": "abab5.5-chat",
       "url": "/model/abab5.5-chat",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 16K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 15.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 15.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "MiniMax"
     },
@@ -5607,20 +3375,11 @@
       "name": "abab6.5g-chat",
       "url": "/model/abab6.5g-chat",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 5.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 5.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "MiniMax"
     },
@@ -5628,20 +3387,11 @@
       "name": "abab6.5t-chat",
       "url": "/model/abab6.5t-chat",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 5.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 5.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "MiniMax"
     },
@@ -5649,20 +3399,11 @@
       "name": "abab6.5s-chat",
       "url": "/model/abab6.5s-chat",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 245K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 10.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 10.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "MiniMax"
     },
@@ -5670,20 +3411,11 @@
       "name": "abab6.5-chat",
       "url": "/model/abab6.5-chat",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 30.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 30.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "MiniMax"
     },
@@ -5691,7 +3423,7 @@
       "name": "mj-relax",
       "url": "/model/mj-relax",
       "features": [
-        "支持图像"
+        "Use case图像"
       ],
       "pricing": {
         "type": "image",
@@ -5709,7 +3441,7 @@
       "name": "mj-fast",
       "url": "/model/mj-fast",
       "features": [
-        "支持图像"
+        "Use case图像"
       ],
       "pricing": {
         "type": "image",
@@ -5727,19 +3459,10 @@
       "name": "glm-5",
       "url": "/model/glm-5",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 28.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 126.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "智谱"
     },
@@ -5747,19 +3470,10 @@
       "name": "glm-4.7",
       "url": "/model/glm-4.7",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 4.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 16.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "智谱"
     },
@@ -5767,19 +3481,10 @@
       "name": "glm-4.5",
       "url": "/model/glm-4.5",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 4.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 16.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "智谱"
     },
@@ -5787,20 +3492,11 @@
       "name": "glm-4-flash",
       "url": "/model/glm-4-flash",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 1.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 1.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "智谱"
     },
@@ -5808,20 +3504,11 @@
       "name": "glm-4-flashx",
       "url": "/model/glm-4-flashx",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 1.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 1.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "智谱"
     },
@@ -5829,20 +3516,11 @@
       "name": "glm-4-long",
       "url": "/model/glm-4-long",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 1000K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 1.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 1.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "智谱"
     },
@@ -5850,20 +3528,11 @@
       "name": "glm-4-airx",
       "url": "/model/glm-4-airx",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 10.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 10.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "智谱"
     },
@@ -5871,20 +3540,11 @@
       "name": "glm-4-air",
       "url": "/model/glm-4-air",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 1.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 1.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "智谱"
     },
@@ -5892,20 +3552,11 @@
       "name": "glm-4",
       "url": "/model/glm-4",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 100.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 100.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "智谱"
     },
@@ -5913,20 +3564,11 @@
       "name": "glm-4-plus",
       "url": "/model/glm-4-plus",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 128K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 5.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 5.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "智谱"
     },
@@ -5934,19 +3576,10 @@
       "name": "grok-4-fast-reasoning",
       "url": "/model/grok-4-fast-reasoning",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 7.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 17.5,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Xai"
     },
@@ -5954,19 +3587,11 @@
       "name": "grok-4",
       "url": "/model/grok-4",
       "features": [
-        "支持文本"
+        "Use case文本",
+        "上下文长度: 256K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 21.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Xai"
     },
@@ -5974,20 +3599,11 @@
       "name": "grok-3-reasoner",
       "url": "/model/grok-3-reasoner",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 131K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 140.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 28.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Xai"
     },
@@ -5995,20 +3611,11 @@
       "name": "grok-3-deepsearch",
       "url": "/model/grok-3-deepsearch",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 131K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 140.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 28.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Xai"
     },
@@ -6016,20 +3623,11 @@
       "name": "grok-3",
       "url": "/model/grok-3",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 131K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 140.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 28.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Xai"
     },
@@ -6037,20 +3635,11 @@
       "name": "grok-beta",
       "url": "/model/grok-beta",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 131K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 35.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Xai"
     },
@@ -6058,20 +3647,11 @@
       "name": "grok-vision-beta",
       "url": "/model/grok-vision-beta",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 105.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 35.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Xai"
     },
@@ -6079,20 +3659,11 @@
       "name": "grok-2-vision-latest",
       "url": "/model/grok-2-vision-latest",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 14.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Xai"
     },
@@ -6100,20 +3671,11 @@
       "name": "grok-2-vision",
       "url": "/model/grok-2-vision",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 8K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 14.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Xai"
     },
@@ -6121,20 +3683,11 @@
       "name": "grok-2-latest",
       "url": "/model/grok-2-latest",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 131K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 14.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Xai"
     },
@@ -6142,20 +3695,11 @@
       "name": "grok-2",
       "url": "/model/grok-2",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 131K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 70.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 14.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Xai"
     },
@@ -6163,19 +3707,10 @@
       "name": "kling-video-o1",
       "url": "/model/kling-video-o1",
       "features": [
-        "支持工具"
+        "Use case工具"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "可灵"
     },
@@ -6183,19 +3718,10 @@
       "name": "viduq2-pro_720p",
       "url": "/model/viduq2-pro_720p",
       "features": [
-        "支持工具"
+        "Use case工具"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Vidu"
     },
@@ -6203,19 +3729,10 @@
       "name": "viduq2-pro_1080p",
       "url": "/model/viduq2-pro_1080p",
       "features": [
-        "支持工具"
+        "Use case工具"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 0.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Vidu"
     },
@@ -6223,19 +3740,10 @@
       "name": "Ring-1T",
       "url": "/model/Ring-1T",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 4.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 16.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "蚂蚁百灵"
     },
@@ -6243,19 +3751,10 @@
       "name": "Ling-1T",
       "url": "/model/Ling-1T",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 4.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 16.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "蚂蚁百灵"
     },
@@ -6263,20 +3762,11 @@
       "name": "gemini-1.5-pro",
       "url": "/model/gemini-1.5-pro",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 200K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 8.75,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 35.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Google"
     },
@@ -6284,20 +3774,11 @@
       "name": "gemini-1.5-flash",
       "url": "/model/gemini-1.5-flash",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 100K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 0.49,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 2.1,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Google"
     },
@@ -6305,19 +3786,10 @@
       "name": "gemini-2.5-flash-thinking",
       "url": "/model/gemini-2.5-flash-thinking",
       "features": [
-        "支持文本"
+        "Use case文本"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 8.75,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 140.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "Google"
     },
@@ -6325,20 +3797,11 @@
       "name": "deepseek-v3",
       "url": "/model/deepseek-v3",
       "features": [
-        "支持文本",
+        "Use case文本",
         "上下文长度: 64K"
       ],
       "pricing": {
-        "type": "tokens",
-        "unit": "百万tokens",
-        "input": {
-          "price": 2.0,
-          "unit": "百万tokens"
-        },
-        "output": {
-          "price": 8.0,
-          "unit": "百万tokens"
-        }
+        "type": null
       },
       "provider": "DeepSeek"
     }
