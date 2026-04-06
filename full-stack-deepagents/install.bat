@@ -12,19 +12,23 @@ set "ROOT=%ROOT:~0,-1%"
 
 echo.
 
-echo === full-stack-deepagents: install (5 ends) ===
+echo === full-stack-deepagents: install (7 ends) ===
 
 echo Root: %ROOT%
 
-echo   1^) ai-api           - Python venv + requirements.txt
+echo   1^) ai-api                 - Python venv + requirements.txt
 
-echo   2^) mcp-server-rag   - Python venv + FAISS RAG MCP ^(8501^)
+echo   2^) mcp-server-oa          - Python venv + OA FAISS MCP ^(8501^)
 
-echo   3^) mcp-server       - Python venv + auxiliary MCP ^(8502^)
+echo   3^) mcp-server-bingchuan   - Python venv + Bingchuan FAISS MCP ^(8503^)
 
-echo   4^) backend          - npm install
+echo   4^) mcp-server-rag         - Python venv + legacy combined RAG ^(backup only^)
 
-echo   5^) frontend         - npm install
+echo   5^) mcp-server             - Python venv + auxiliary MCP ^(8502^)
+
+echo   6^) backend                - npm install
+
+echo   7^) frontend               - npm install
 
 echo.
 
@@ -58,7 +62,7 @@ if errorlevel 1 goto ErrNoNpm
 
 REM ## ⬇️ ai-api: create venv if missing, then install dependencies
 
-echo [1/5] ai-api...
+echo [1/7] ai-api...
 
 if not exist "%ROOT%\ai-api\venv\Scripts\python.exe" (
 
@@ -90,9 +94,77 @@ echo.
 
 
 
-REM ## ⬇️ mcp-server-rag: create venv if missing, then install dependencies
+REM ## ⬇️ mcp-server-oa: OA FAISS MCP (default port 8501)
 
-echo [2/5] mcp-server-rag...
+echo [2/7] mcp-server-oa...
+
+if not exist "%ROOT%\mcp-server-oa\venv\Scripts\python.exe" (
+
+  echo   Creating venv "%ROOT%\mcp-server-oa\venv"...
+
+  %PY% -m venv "%ROOT%\mcp-server-oa\venv"
+
+)
+
+if not exist "%ROOT%\mcp-server-oa\venv\Scripts\python.exe" (
+
+  echo ERROR: Failed to create mcp-server-oa venv.
+
+)
+
+if not exist "%ROOT%\mcp-server-oa\venv\Scripts\python.exe" goto PauseExit
+
+"%ROOT%\mcp-server-oa\venv\Scripts\python.exe" -m pip install --upgrade pip
+
+if errorlevel 1 goto PauseExit
+
+"%ROOT%\mcp-server-oa\venv\Scripts\python.exe" -m pip install -r "%ROOT%\mcp-server-oa\requirements.txt"
+
+if errorlevel 1 goto PauseExit
+
+echo   OK.
+
+echo.
+
+
+
+REM ## ⬇️ mcp-server-bingchuan: Bingchuan FAISS MCP (set MCP_PORT=8503 when running)
+
+echo [3/7] mcp-server-bingchuan...
+
+if not exist "%ROOT%\mcp-server-bingchuan\venv\Scripts\python.exe" (
+
+  echo   Creating venv "%ROOT%\mcp-server-bingchuan\venv"...
+
+  %PY% -m venv "%ROOT%\mcp-server-bingchuan\venv"
+
+)
+
+if not exist "%ROOT%\mcp-server-bingchuan\venv\Scripts\python.exe" (
+
+  echo ERROR: Failed to create mcp-server-bingchuan venv.
+
+)
+
+if not exist "%ROOT%\mcp-server-bingchuan\venv\Scripts\python.exe" goto PauseExit
+
+"%ROOT%\mcp-server-bingchuan\venv\Scripts\python.exe" -m pip install --upgrade pip
+
+if errorlevel 1 goto PauseExit
+
+"%ROOT%\mcp-server-bingchuan\venv\Scripts\python.exe" -m pip install -r "%ROOT%\mcp-server-bingchuan\requirements.txt"
+
+if errorlevel 1 goto PauseExit
+
+echo   OK.
+
+echo.
+
+
+
+REM ## ⬇️ mcp-server-rag: legacy combined index (backup; not used by ai-api)
+
+echo [4/7] mcp-server-rag...
 
 if not exist "%ROOT%\mcp-server-rag\venv\Scripts\python.exe" (
 
@@ -126,7 +198,7 @@ echo.
 
 REM ## ⬇️ mcp-server: auxiliary Streamable HTTP MCP (default port 8502)
 
-echo [3/5] mcp-server...
+echo [5/7] mcp-server...
 
 if not exist "%ROOT%\mcp-server\venv\Scripts\python.exe" (
 
@@ -160,7 +232,7 @@ echo.
 
 REM ## ⬇️ Node backend
 
-echo [4/5] backend ^(npm^)...
+echo [6/7] backend ^(npm^)...
 
 pushd "%ROOT%\backend"
 
@@ -178,7 +250,7 @@ echo.
 
 REM ## ⬇️ Next.js frontend
 
-echo [5/5] frontend ^(npm^)...
+echo [7/7] frontend ^(npm^)...
 
 pushd "%ROOT%\frontend"
 
@@ -194,7 +266,7 @@ echo.
 
 
 
-echo All five ends are installed.
+echo All seven ends are installed.
 
 echo Run start-all.bat from this folder to launch services ^(start-all uses venv Python when present^).
 

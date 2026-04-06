@@ -1,8 +1,8 @@
 """
-MCP server: FAISS RAG tools (lookup_docs, bingchuan) + inspect_faiss.
-
-Streamable HTTP at http://<host>:<port>/mcp (defaults: 127.0.0.1:8501).
-Build the index first: python build_faiss_index.py
+## ⬇️ Legacy backup: combined OA + Bingchuan corpus in one FAISS index and one MCP process.
+## ⬇️ The ai-api stack uses mcp-server-oa (8501) and mcp-server-bingchuan (8503) instead; do not wire this server there.
+## ⬇️ FAISS RAG tools: lookup_docs, bingchuan, inspect_faiss. Streamable HTTP at http://<host>:<port>/mcp (default 8501).
+## ⬇️ Build index: python build_faiss_index.py (after merging docs under docs/).
 """
 
 import asyncio
@@ -11,7 +11,7 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 from mcp.server.fastmcp import FastMCP
-from starlette.responses import HTMLResponse, JSONResponse
+from starlette.responses import HTMLResponse, JSONResponse, Response
 
 from rag_engine import answer_from_docs, inspect_faiss_text
 
@@ -57,6 +57,7 @@ _OPENAPI_SPEC = {
 
 _DOCS_HTML = """<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"/><title>MCP RAG server — OpenAPI</title>
+<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
 <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css"/>
 <style>body{margin:0}</style></head><body>
 <div id="swagger-ui"></div>
@@ -73,6 +74,18 @@ window.onload=function(){
 };
 </script>
 </body></html>"""
+
+_FAVICON_ICO_CACHE: bytes | None = None
+
+
+def _stack_assets_favicon_ico() -> bytes:
+    ## ⬇️ Shared with other FastMCP stacks under full-stack-deepagents/assets/
+    global _FAVICON_ICO_CACHE
+    if _FAVICON_ICO_CACHE is None:
+        _FAVICON_ICO_CACHE = (
+            Path(__file__).resolve().parent.parent / "assets" / "favicon.ico"
+        ).read_bytes()
+    return _FAVICON_ICO_CACHE
 
 
 def _rag_error(exc: BaseException) -> str:
@@ -121,6 +134,15 @@ async def _openapi_json(_request):
 @mcp.custom_route("/docs", methods=["GET"], include_in_schema=False)
 async def _swagger_docs(_request):
     return HTMLResponse(_DOCS_HTML)
+
+
+@mcp.custom_route("/favicon.ico", methods=["GET"], include_in_schema=False)
+async def _favicon(_request):
+    ## ⬇️ Browsers request this with /docs; serve real ICO to avoid 404 log noise
+    return Response(
+        content=_stack_assets_favicon_ico(),
+        media_type="image/x-icon",
+    )
 
 
 if __name__ == "__main__":

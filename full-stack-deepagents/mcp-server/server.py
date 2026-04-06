@@ -1,6 +1,6 @@
 """
 Minimal MCP server: no custom tools; tools/list returns an empty list.
-Streamable HTTP at http://<host>:<port>/mcp (defaults: 127.0.0.1:8502; RAG server uses 8501).
+Streamable HTTP at http://<host>:<port>/mcp (defaults: 127.0.0.1:8502; mcp-server-oa uses 8501, mcp-server-bingchuan 8503).
 """
 
 import asyncio
@@ -12,7 +12,7 @@ from mcp.server.fastmcp import FastMCP
 
 ## ⬇️ Repo-root .env (full-stack-deepagents/.env), same as backend and ai-api
 load_dotenv(Path(__file__).resolve().parent.parent / ".env", override=True)
-from starlette.responses import HTMLResponse, JSONResponse
+from starlette.responses import HTMLResponse, JSONResponse, Response
 
 ## ⬇️ Port/host from environment so the AI API can point MCP_SERVER_URL consistently
 _host = os.environ.get("MCP_HOST", "127.0.0.1")
@@ -50,6 +50,7 @@ _OPENAPI_SPEC = {
 
 _DOCS_HTML = """<!DOCTYPE html>
 <html lang="en"><head><meta charset="utf-8"/><title>MCP server — OpenAPI</title>
+<link rel="icon" href="/favicon.ico" type="image/x-icon"/>
 <link rel="stylesheet" href="https://unpkg.com/swagger-ui-dist@5/swagger-ui.css"/>
 <style>body{margin:0}</style></head><body>
 <div id="swagger-ui"></div>
@@ -67,6 +68,18 @@ window.onload=function(){
 </script>
 </body></html>"""
 
+_FAVICON_ICO_CACHE: bytes | None = None
+
+
+def _stack_assets_favicon_ico() -> bytes:
+    ## ⬇️ Shared with other FastMCP stacks under full-stack-deepagents/assets/
+    global _FAVICON_ICO_CACHE
+    if _FAVICON_ICO_CACHE is None:
+        _FAVICON_ICO_CACHE = (
+            Path(__file__).resolve().parent.parent / "assets" / "favicon.ico"
+        ).read_bytes()
+    return _FAVICON_ICO_CACHE
+
 
 @mcp.custom_route("/openapi.json", methods=["GET"], include_in_schema=False)
 async def _openapi_json(_request):
@@ -76,6 +89,15 @@ async def _openapi_json(_request):
 @mcp.custom_route("/docs", methods=["GET"], include_in_schema=False)
 async def _swagger_docs(_request):
     return HTMLResponse(_DOCS_HTML)
+
+
+@mcp.custom_route("/favicon.ico", methods=["GET"], include_in_schema=False)
+async def _favicon(_request):
+    ## ⬇️ Browsers request this with /docs; serve real ICO to avoid 404 log noise
+    return Response(
+        content=_stack_assets_favicon_ico(),
+        media_type="image/x-icon",
+    )
 
 
 if __name__ == "__main__":

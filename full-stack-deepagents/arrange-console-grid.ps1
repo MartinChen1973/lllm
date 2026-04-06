@@ -1,4 +1,4 @@
-# ## ⬇️ Place the four start-all service consoles in a 2x2 grid on the primary monitor.
+# ## ⬇️ Place start-all service consoles in a 3x2 grid on the primary monitor (five tiles + one spare).
 $ErrorActionPreference = "Stop"
 Add-Type -AssemblyName System.Windows.Forms
 Add-Type @"
@@ -73,20 +73,29 @@ function Classify-FromProcess {
   $name = $info.Name
   if ($null -ne $exe) {
     if ($exe -match '(?i)\\ai-api\\venv\\Scripts\\python(\.exe)?$') { return "ai" }
-    if ($exe -match '(?i)\\mcp-server-rag\\venv\\Scripts\\python(\.exe)?$') { return "mcp" }
-    if ($exe -match '(?i)\\mcp-server\\venv\\Scripts\\python(\.exe)?$') { return "mcp" }
+    if ($exe -match '(?i)\\mcp-server-oa\\venv\\Scripts\\python(\.exe)?$') { return "mcp_oa" }
+    if ($exe -match '(?i)\\mcp-server-bingchuan\\venv\\Scripts\\python(\.exe)?$') { return "mcp_bc" }
+    if ($exe -match '(?i)\\mcp-server\\venv\\Scripts\\python(\.exe)?$') { return "mcp_aux" }
+    if ($exe -match '(?i)\\mcp-server-rag\\venv\\Scripts\\python(\.exe)?$') { return "mcp_oa" }
   }
   if ($null -ne $cmd) {
     if ($name -eq 'cmd' -or $name -eq 'cmd.exe') {
       if ($cmd -match '(?i)npm\s+run\s+dev') { return "next" }
       if ($cmd -match '(?i)npm\s+start') { return "node" }
+      # ## ⬇️ start-all.bat may launch frontend/backend with node.exe only (avoids npm retitling the console).
+      if ($cmd -match '(?i)node(\.exe)?\s+.*server\.js') { return "node" }
+      if ($cmd -match '(?i)node_modules[/\\]next[/\\]dist[/\\]bin[/\\]next') { return "next" }
+      if ($cmd -match '(?i)dev-console-title\.js') { return "next" }
     }
     if ($name -eq 'node' -or $name -eq 'node.exe') {
       if ($cmd -match '(?i)next.*dev|next\.js|\\frontend\\') { return "next" }
       if ($cmd -match '(?i)\\backend\\.*server\.js|server\.js') { return "node" }
     }
     if ($cmd -match '(?i)uvicorn|main:app') { return "ai" }
-    if ($cmd -match '(?i)server\.py(\s|$|")') { return "mcp" }
+    if ($cmd -match '(?i)mcp-server-oa') { if ($cmd -match '(?i)server\.py') { return "mcp_oa" } }
+    if ($cmd -match '(?i)mcp-server-bingchuan') { if ($cmd -match '(?i)server\.py') { return "mcp_bc" } }
+    if ($cmd -match '(?i)\\mcp-server\\') { if ($cmd -match '(?i)server\.py') { if ($cmd -notmatch '(?i)bingchuan') { return "mcp_aux" } } }
+    if ($cmd -match '(?i)server\.py(\s|$|")') { return "mcp_oa" }
   }
   return $null
 }
@@ -103,9 +112,11 @@ function Get-ServiceSlot {
     if ($null -ne $slot) { return $slot }
   }
   # ## ⬇️ Title-only hints (Next.js replaces the cmd title with next-server)
-  if ($Title -like '*next-server*' -or $Title -like '*Next.js*') { return "next" }
+  if ($Title -like '*Node frontend (3500)*' -or $Title -like '*next-server*' -or $Title -like '*Next.js*') { return "next" }
   if ($Title -like '*AI API (8500)*' -or $Title -like '*uvicorn*') { return "ai" }
-  if ($Title -like '*MCP server (8501)*') { return "mcp" }
+  if ($Title -like '*MCP Bingchuan (8503)*' -or $Title -like '*MCP Bingchuan (8501)*') { return "mcp_bc" }
+  if ($Title -like '*MCP OA (8501)*' -or $Title -like '*MCP server (8501)*') { return "mcp_oa" }
+  if ($Title -like '*MCP aux (8502)*' -or $Title -like '*MCP OA (8502)*' -or $Title -like '*MCP server (8502)*') { return "mcp_aux" }
   if ($Title -like '*Node backend (3501)*') { return "node" }
   return $null
 }
@@ -128,17 +139,19 @@ function Find-HwndByTitlePatterns {
 $area = [System.Windows.Forms.Screen]::PrimaryScreen.WorkingArea
 $left = $area.Left
 $top = $area.Top
-$wHalf = [int][Math]::Floor($area.Width / 2)
+$wThird = [int][Math]::Floor($area.Width / 3)
 $hHalf = [int][Math]::Floor($area.Height / 2)
-if ($wHalf -lt 320) { $wHalf = [int]$area.Width }
+if ($wThird -lt 280) { $wThird = [int][Math]::Floor($area.Width / 2) }
 if ($hHalf -lt 240) { $hHalf = [int]$area.Height }
 
-# ## ⬇️ Top row: AI API | Node — bottom row: Next | MCP (matches start-all order)
+# ## ⬇️ Top row: AI | Node | Next — bottom row: MCP OA (8501) | MCP Bingchuan (8503) | MCP aux (8502)
 $layout = @(
-  @{ Id = "ai";   X = $left;            Y = $top;            W = $wHalf; H = $hHalf; TitleFallback = @("AI API (8500)", "uvicorn") }
-  @{ Id = "node"; X = $left + $wHalf;  Y = $top;            W = $wHalf; H = $hHalf; TitleFallback = @("Node backend (3501)", "npm start", "server.js") }
-  @{ Id = "next"; X = $left;            Y = $top + $hHalf;  W = $wHalf; H = $hHalf; TitleFallback = @("Next frontend (3500)", "next-server", "localhost:3500", "127.0.0.1:3500") }
-  @{ Id = "mcp";  X = $left + $wHalf;  Y = $top + $hHalf;  W = $wHalf; H = $hHalf; TitleFallback = @("MCP server (8501)") }
+  @{ Id = "ai";       X = $left;                 Y = $top;           W = $wThird; H = $hHalf; TitleFallback = @("AI API (8500)", "uvicorn") }
+  @{ Id = "node";     X = $left + $wThird;      Y = $top;           W = $wThird; H = $hHalf; TitleFallback = @("Node backend (3501)", "npm start", "server.js") }
+  @{ Id = "next";     X = $left + 2 * $wThird;  Y = $top;           W = $wThird; H = $hHalf; TitleFallback = @("Node frontend (3500)", "next-server", "localhost:3500", "127.0.0.1:3500") }
+  @{ Id = "mcp_oa";   X = $left;                 Y = $top + $hHalf; W = $wThird; H = $hHalf; TitleFallback = @("MCP OA (8501)", "MCP server (8501)") }
+  @{ Id = "mcp_bc";   X = $left + $wThird;      Y = $top + $hHalf; W = $wThird; H = $hHalf; TitleFallback = @("MCP Bingchuan (8503)", "MCP Bingchuan (8501)", "MCP server (8501)") }
+  @{ Id = "mcp_aux";  X = $left + 2 * $wThird;  Y = $top + $hHalf; W = $wThird; H = $hHalf; TitleFallback = @("MCP aux (8502)", "MCP server (8502)") }
 )
 
 $usedHwnd = [System.Collections.Generic.HashSet[IntPtr]]::new()
@@ -170,6 +183,6 @@ for ($attempt = 0; $attempt -lt 30; $attempt++) {
     }
   }
 
-  if ($placedId.Count -ge 4) { break }
+  if ($placedId.Count -ge 6) { break }
   Start-Sleep -Milliseconds 350
 }

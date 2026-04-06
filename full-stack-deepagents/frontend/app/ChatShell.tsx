@@ -21,6 +21,15 @@ const backendBase = (
 /** Stable id so SSR and hydration match; random UUIDs per tab break activeId ↔ session. */
 const DEFAULT_SESSION_ID = "default-session";
 
+/** Remember last-opened thread after reload (server list must include this id). */
+const ACTIVE_SESSION_STORAGE_KEY = "fs-deepagents-active-session";
+
+type ApiSessionPayload = {
+  session_id: string;
+  title: string;
+  messages: ChatMessage[];
+};
+
 function newSession(): Session {
   return {
     id: crypto.randomUUID(),
@@ -35,6 +44,17 @@ function defaultSession(): Session {
     title: "New chat",
     messages: [],
   };
+}
+
+function sessionsFromApi(rows: ApiSessionPayload[]): Session[] {
+  return rows.map((p) => ({
+    id: p.session_id,
+    title: p.title?.trim() || "New chat",
+    messages: (p.messages ?? []).map((m) => ({
+      role: m.role,
+      content: m.content,
+    })),
+  }));
 }
 
 function errorMessageFromResponseBody(data: unknown, status: number): string {
@@ -55,6 +75,7 @@ export default function ChatShell() {
   const [input, setInput] = useState("");
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [historyError, setHistoryError] = useState<string | null>(null);
 
   const active = useMemo(
     () => sessions.find((s) => s.id === activeId) ?? sessions[0],
@@ -64,6 +85,65 @@ export default function ChatShell() {
   useEffect(() => {
     setActiveId((aid) => (sessions.some((s) => s.id === aid) ? aid : sessions[0]!.id));
   }, [sessions]);
+
+  useEffect(() => {
+    try {
+      sessionStorage.setItem(ACTIVE_SESSION_STORAGE_KEY, activeId);
+    } catch {
+      /* quota / private mode */
+    }
+  }, [activeId]);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(`${backendBase}/sessions`);
+        const resText = await res.text();
+        let data: { sessions?: ApiSessionPayload[] } = {};
+        try {
+          data = resText ? (JSON.parse(resText) as { sessions?: ApiSessionPayload[] }) : {};
+        } catch {
+          if (!res.ok) {
+            throw new Error(resText.slice(0, 200) || `HTTP ${res.status}`);
+          }
+        }
+        if (!res.ok) {
+          throw new Error(errorMessageFromResponseBody(data, res.status));
+        }
+        if (cancelled) return;
+        const rows = data.sessions ?? [];
+        if (rows.length === 0) {
+          const d = defaultSession();
+          setSessions([d]);
+          setActiveId(d.id);
+          setHistoryError(null);
+          return;
+        }
+        const next = sessionsFromApi(rows);
+        setSessions(next);
+        let preferred: string | null = null;
+        try {
+          preferred = sessionStorage.getItem(ACTIVE_SESSION_STORAGE_KEY);
+        } catch {
+          preferred = null;
+        }
+        if (preferred && next.some((s) => s.id === preferred)) {
+          setActiveId(preferred);
+        } else {
+          setActiveId(next[0]!.id);
+        }
+        setHistoryError(null);
+      } catch (e) {
+        if (!cancelled) {
+          setHistoryError(e instanceof Error ? e.message : "Could not load conversation history");
+        }
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   const activeRef = useRef(active);
   const sendingRef = useRef(sending);
@@ -263,11 +343,17 @@ export default function ChatShell() {
 
         <div className="flex-1 overflow-y-auto px-4 py-6 md:px-12">
           <div className="mx-auto flex max-w-3xl flex-col gap-4">
+            {historyError && (
+              <p className="text-center text-sm text-amber-400/90">
+                Could not load saved chats ({historyError}). Starting a fresh session; sends still
+                work if the chat API is up.
+              </p>
+            )}
             {(active?.messages ?? []).length === 0 && (
               <p className="text-center text-sm text-white/45">
-                Start a conversation. The assistant keeps each chat&apos;s context on the server
-                (SQLite); this sidebar list resets if you reload the page. Hover a title to delete
-                a chat from the server.
+                Start a conversation. Threads are stored in SQLite on the AI server and reload here
+                after you refresh or restart the stack. Hover a title to delete a thread from the
+                server.
               </p>
             )}
             {(active?.messages ?? []).map((m, i) => (

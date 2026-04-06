@@ -10,13 +10,13 @@ import os
 import time
 from contextlib import asynccontextmanager
 from pathlib import Path
-from typing import Any
+from typing import Any, Literal
 
 from dotenv import load_dotenv
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Query
 from fastapi.middleware.cors import CORSMiddleware
 from langchain.chat_models import init_chat_model
-from langchain_core.messages import AIMessage
+from langchain_core.messages import AIMessage, HumanMessage, SystemMessage, ToolMessage
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
 from pydantic import BaseModel, Field
@@ -138,11 +138,26 @@ class DeleteSessionResponse(BaseModel):
     ok: bool = True
 
 
+class UiChatMessage(BaseModel):
+    role: Literal["user", "assistant"]
+    content: str
+
+
+class SessionPayload(BaseModel):
+    session_id: str
+    title: str
+    messages: list[UiChatMessage]
+
+
+class SessionsListResponse(BaseModel):
+    sessions: list[SessionPayload]
+
+
 logger = logging.getLogger(__name__)
 
 
 def _mcp_connections_from_env() -> dict[str, dict[str, str]]:
-    ## ⬇️ Comma-separated Streamable HTTP URLs; if set, replaces the two defaults
+    ## ⬇️ Comma-separated Streamable HTTP URLs; if set, replaces the defaults below
     raw = (os.environ.get("MCP_SERVER_URLS") or "").strip()
     if raw:
         urls = [u.strip() for u in raw.split(",") if u.strip()]
@@ -152,32 +167,43 @@ def _mcp_connections_from_env() -> dict[str, dict[str, str]]:
         }
     if os.environ.get("MCP_ENABLED", "true").strip().lower() in ("0", "false", "no", "off"):
         return {}
-    u1 = (os.environ.get("MCP_RAG_URL") or "http://127.0.0.1:8501/mcp").strip()
-    u2 = (os.environ.get("MCP_AUX_URL") or "http://127.0.0.1:8502/mcp").strip()
+    ## ⬇️ mcp-server-oa (8501), mcp-server-bingchuan (8503), optional mcp-server aux (8502); mcp-server-rag is not used
+    u_oa = (os.environ.get("MCP_OA_URL") or "http://127.0.0.1:8501/mcp").strip()
+    u_bc = (os.environ.get("MCP_BINGCHUAN_URL") or "http://127.0.0.1:8503/mcp").strip()
+    u_aux = (os.environ.get("MCP_AUX_URL") or "http://127.0.0.1:8502/mcp").strip()
     out: dict[str, dict[str, str]] = {}
-    if u1:
-        out["rag"] = {"transport": "http", "url": u1}
-    if u2:
-        out["aux"] = {"transport": "http", "url": u2}
+    if u_oa:
+        out["oa"] = {"transport": "http", "url": u_oa}
+    if u_bc:
+        out["bingchuan"] = {"transport": "http", "url": u_bc}
+    if u_aux:
+        out["aux"] = {"transport": "http", "url": u_aux}
     return out
 
 
-async def _load_mcp_tools_per_server(
+async def _load_mcp_tools_round(
     connections: dict[str, dict[str, str]],
-) -> list[Any]:
-    ## ⬇️ Load each MCP server separately so one offline server does not block the other
-    if not connections:
-        return []
-    client = MultiServerMCPClient(connections)
-    all_tools: list[Any] = []
-    for name in connections:
+    loaded: dict[str, list[Any]],
+    last_errors: dict[str, BaseException],
+) -> set[str]:
+    ## ⬇️ Load only servers not yet in loaded; returns names that failed this round (caller may retry)
+    pending = {k: v for k, v in connections.items() if k not in loaded}
+    if not pending:
+        return set()
+    client = MultiServerMCPClient(pending)
+    failed: set[str] = set()
+    for name in pending:
         try:
             tools = await client.get_tools(server_name=name)
-            all_tools.extend(tools)
+            loaded[name] = tools
+            last_errors.pop(name, None)
             logger.info("MCP server %r: loaded %s tool(s)", name, len(tools))
-        except Exception:
-            logger.warning("MCP server %r: failed to load tools", name, exc_info=True)
-    return all_tools
+        except Exception as e:  ## ⬅️ expected while peers start; details at DEBUG only
+            failed.add(name)
+            last_errors[name] = e
+            logger.debug("MCP server %r: handshake not ready yet", name, exc_info=True)
+            logger.info("MCP server %r: not ready yet; will retry if attempts remain", name)
+    return failed
 
 
 async def _load_mcp_tools_with_retry(
@@ -186,23 +212,38 @@ async def _load_mcp_tools_with_retry(
     attempts: int = 10,
     delay_sec: float = 1.25,
 ) -> list[Any]:
-    ## ⬇️ MCP may start after uvicorn; avoid a single failed handshake leaving the agent tool-less for the whole process
+    ## ⬇️ MCP processes may start after uvicorn; retry until every server loads or attempts exhausted — not "any tools"
     if not connections:
         return []
-    last: list[Any] = []
+    loaded: dict[str, list[Any]] = {}
+    last_errors: dict[str, BaseException] = {}
     for i in range(attempts):
-        last = await _load_mcp_tools_per_server(connections)
-        if last:
-            return last
+        failed = await _load_mcp_tools_round(connections, loaded, last_errors)
+        if not failed:
+            break
         if i < attempts - 1:
-            logger.warning(
-                "MCP: no tools loaded yet (attempt %s/%s); retrying in %ss",
+            logger.info(
+                "MCP: waiting for %s server(s) [%s]; attempt %s/%s, next retry in %ss",
+                len(failed),
+                ", ".join(sorted(failed)),
                 i + 1,
                 attempts,
                 delay_sec,
             )
             await asyncio.sleep(delay_sec)
-    return last
+    for name in connections:
+        if name not in loaded:
+            err = last_errors.get(name)
+            logger.warning(
+                "MCP server %r: no tools after %s attempts%s",
+                name,
+                attempts,
+                f" — {err}" if err else "",
+            )
+    out: list[Any] = []
+    for name in connections:
+        out.extend(loaded.get(name, []))
+    return out
 
 
 def _content_to_text(content: Any) -> str:
@@ -236,6 +277,49 @@ def _last_assistant_reply(messages: list[Any]) -> str:
         if isinstance(m, AIMessage):
             return _content_to_text(m.content)
     return ""
+
+
+def _transcript_for_ui(messages: list[Any]) -> list[UiChatMessage]:
+    ## ⬇️ Skip system/tool/internal turns; only show user + assistant text the UI can render
+    out: list[UiChatMessage] = []
+    for m in messages:
+        if isinstance(m, (SystemMessage, ToolMessage)):
+            continue
+        if isinstance(m, HumanMessage):
+            text = _content_to_text(m.content).strip()
+            if text:
+                out.append(UiChatMessage(role="user", content=text))
+        elif isinstance(m, AIMessage):
+            text = _content_to_text(m.content).strip()
+            if text:
+                out.append(UiChatMessage(role="assistant", content=text))
+    return out
+
+
+def _session_title_from_transcript(rows: list[UiChatMessage]) -> str:
+    ## ⬇️ Match sidebar behaviour: first user line, truncated
+    for row in rows:
+        if row.role == "user" and row.content.strip():
+            t = row.content.strip()
+            return t[:48] + ("…" if len(t) > 48 else "")
+    return "New chat"
+
+
+async def _ordered_thread_ids(checkpointer: AsyncSqliteSaver, *, limit: int) -> list[str]:
+    ## ⬇️ Root graph only (checkpoint_ns ''); one row per conversation thread
+    async with checkpointer.conn.execute(
+        """
+        SELECT thread_id
+        FROM checkpoints
+        WHERE checkpoint_ns = ''
+        GROUP BY thread_id
+        ORDER BY MAX(checkpoint_id) DESC
+        LIMIT ?
+        """,
+        (limit,),
+    ) as cur:
+        fetched = await cur.fetchall()
+    return [str(r[0]) for r in fetched if r and r[0]]
 
 
 def _build_subagents() -> list[dict[str, Any]]:
@@ -287,9 +371,9 @@ async def lifespan(fastapi_app: FastAPI):
                 "topic (general|news|finance), and include_raw_content as needed. "
             )
         system_prompt += (
-            "When MCP tools are available: use `lookup_docs` for organization and leave-policy questions; "
-            "use `bingchuan` for 冰川 / Bingchuan ice cream or product-knowledge questions; "
-            "use `inspect_faiss` only for debugging the document index."
+            "When MCP tools are available: use `lookup_docs` for organization and leave-policy questions "
+            "(OA corpus); use `bingchuan` for 冰雪川 / Bingchuan ice cream or product-knowledge questions; "
+            "use `inspect_faiss_oa` or `inspect_faiss_bingchuan` only for debugging the respective FAISS indexes."
         )
         agent = create_deep_agent(
             model=model,
@@ -321,6 +405,35 @@ def _preview(text: str, max_len: int = 80) -> str:
     if len(t) <= max_len:
         return t
     return t[: max_len - 1] + "…"
+
+
+@app.get("/sessions", response_model=SessionsListResponse)
+async def list_sessions(
+    limit: int = Query(50, ge=1, le=200, description="Max conversations to return, newest first"),
+) -> SessionsListResponse:
+    ## ⬇️ Hydrate the UI from LangGraph SQLite (same threads as POST /chat uses)
+    agent = getattr(app.state, "agent", None)
+    checkpointer = getattr(app.state, "checkpointer", None)
+    if agent is None or checkpointer is None:
+        raise HTTPException(status_code=503, detail="Agent not initialized")
+    thread_ids = await _ordered_thread_ids(checkpointer, limit=limit)
+    payloads: list[SessionPayload] = []
+    for tid in thread_ids:
+        config = {"configurable": {"thread_id": tid}}
+        snap = await agent.aget_state(config)
+        raw = (snap.values or {}).get("messages") or []
+        transcript = _transcript_for_ui(raw)
+        if not transcript:
+            continue
+        payloads.append(
+            SessionPayload(
+                session_id=tid,
+                title=_session_title_from_transcript(transcript),
+                messages=transcript,
+            )
+        )
+    logger.info("GET /sessions count=%s (limit=%s)", len(payloads), limit)
+    return SessionsListResponse(sessions=payloads)
 
 
 @app.post("/chat", response_model=ChatResponse)

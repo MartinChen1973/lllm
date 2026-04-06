@@ -59,6 +59,24 @@ const openApiSpec = {
         },
       },
     },
+    "/sessions": {
+      get: {
+        summary: "List saved conversations from AI API (checkpoint threads)",
+        parameters: [
+          {
+            name: "limit",
+            in: "query",
+            required: false,
+            schema: { type: "integer", default: 50 },
+          },
+        ],
+        responses: {
+          "200": {
+            description: "Forwarded JSON with sessions array (session_id, title, messages)",
+          },
+        },
+      },
+    },
     "/sessions/{session_id}": {
       delete: {
         summary: "Delete conversation checkpoints on AI API",
@@ -110,6 +128,41 @@ function preview(text, maxLen = 80) {
   const t = text.replace(/\s+/g, " ").trim();
   return t.length <= maxLen ? t : `${t.slice(0, maxLen)}…`;
 }
+
+app.get("/sessions", async (req, res) => {
+  const base = new URL(`${AI_API_URL}/sessions`);
+  const lim = req.query?.limit;
+  if (lim != null && lim !== "") {
+    base.searchParams.set("limit", String(lim));
+  }
+  const url = base.toString();
+  console.log(`[proxy] GET /sessions -> ${url}`);
+  const t0 = Date.now();
+  try {
+    const r = await fetch(url, { method: "GET" });
+    const text = await r.text();
+    const ms = Date.now() - t0;
+    console.log(
+      `[proxy] upstream GET /sessions status=${r.status} body_bytes=${text.length} elapsed_ms=${ms}`
+    );
+    res.status(r.status);
+    try {
+      res.json(JSON.parse(text));
+    } catch {
+      res.type("text/plain").send(text);
+    }
+  } catch (err) {
+    const msg = err instanceof Error ? err.message : String(err);
+    console.error(
+      `[proxy] GET /sessions FAILED after ${Date.now() - t0}ms — cannot reach AI API:`,
+      url,
+      msg
+    );
+    res.status(502).json({
+      detail: `Proxy could not reach AI API (${AI_API_URL}): ${msg}`,
+    });
+  }
+});
 
 app.delete("/sessions/:sessionId", async (req, res) => {
   const raw = req.params.sessionId ?? "";
@@ -182,6 +235,18 @@ app.post("/chat", async (req, res) => {
   }
 });
 
-app.listen(PORT, () => {
+const server = app.listen(PORT, () => {
   console.log(`Proxy listening on http://127.0.0.1:${PORT} -> ${AI_API_URL}`);
+});
+server.on("error", (err) => {
+  if (err && err.code === "EADDRINUSE") {
+    console.error(
+      `\nPort ${PORT} is already in use (EADDRINUSE). Another "Node backend" from a previous run may still be open.`
+    );
+    console.error(
+      `Close that console or stop the process, then run npm start again. (PowerShell: Get-NetTCPConnection -LocalPort ${PORT} -State Listen)`
+    );
+    process.exit(1);
+  }
+  throw err;
 });
