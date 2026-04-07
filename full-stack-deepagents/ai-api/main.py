@@ -57,6 +57,13 @@ CHECKPOINT_DB_PATH = Path(
 MCP_CONFIG_PATH = STORAGE_DIR / "mcp_config.json"
 
 _MCP_SERVER_ID_RE = re.compile(r"^[a-zA-Z][a-zA-Z0-9_-]{0,63}$")
+## ⬇️ Strip a prior attribution line so server-side tool detection can replace wrong model text
+_ATTRIBUTION_LEADING_LINE_RE = re.compile(
+    r"^\s*To answer this question, I used the following tool\(s\):\s*[^\n]+\n*",
+    re.IGNORECASE,
+)
+## ⬇️ Prefix before each tool name in the server-built attribution line (UI)
+_TOOL_ATTRIBUTION_ICON = "🛠️ "
 
 
 def _ensure_memories_dir(memories_dir: Path) -> None:
@@ -463,12 +470,57 @@ def _connection_url(conn: dict[str, Any]) -> str:
     return str(conn.get("url") or "")
 
 
+def _ordered_tool_uses(messages: list[Any]) -> list[str]:
+    ## ⬇️ First-seen order of tool calls in the given slice (must be this user turn only — not full thread)
+    seen: set[str] = set()
+    out: list[str] = []
+    for m in messages:
+        if not isinstance(m, ToolMessage):
+            continue
+        name = getattr(m, "name", None)
+        if not isinstance(name, str) or not name.strip():
+            continue
+        name = name.strip()
+        if name in seen:
+            continue
+        seen.add(name)
+        out.append(name)
+    return out
+
+
+def _tool_attribution_display_names(names: list[str]) -> list[str]:
+    ## ⬇️ Clarify Tavily-backed search; icon before each name for the UI
+    out: list[str] = []
+    for n in names:
+        label = "internet_search (Tavily)" if n == "internet_search" else n
+        out.append(f"{_TOOL_ATTRIBUTION_ICON}{label}")
+    return out
+
+
+def _ensure_tool_attribution(reply: str, tools_used: list[str]) -> str:
+    ## ⬇️ Normalize attribution from actual ToolMessages; removes a wrong leading line from the model
+    if not tools_used:
+        return reply
+    listed = ", ".join(_tool_attribution_display_names(tools_used))
+    marker = "To answer this question, I used the following tool(s)"
+    prefix = f"{marker}: {listed}.\n\n"
+    body = _ATTRIBUTION_LEADING_LINE_RE.sub("", (reply or "").lstrip(), count=1).lstrip()
+    return prefix + body
+
+
 def _compose_agent_system_prompt(local_tools: list[Any], mcp_tools: list[Any]) -> str:
     ## ⬇️ Matches prior behaviour: OA / Bingchuan hints only when any MCP tool is registered
     system_prompt = LONG_TERM_MEMORY_SYSTEM_PROMPT + "\n\n"
     system_prompt += (
         "You are a helpful assistant. You may delegate to subagents using the task tool "
         "when their expertise fits the user request. "
+    )
+    system_prompt += (
+        "**Whenever you call any tool** (built-in filesystem tools, `task`, `internet_search`, MCP tools, etc.), "
+        "start your final answer with exactly: "
+        '"To answer this question, I used the following tool(s): " followed by a comma-separated list of the '
+        "exact tool names you invoked (Tavily web search is the tool `internet_search`). "
+        "Use that line only once per reply; omit it only if you used no tools for that answer."
     )
     if local_tools:
         system_prompt += (
@@ -701,6 +753,18 @@ async def chat(body: ChatRequest) -> ChatResponse:
         _preview(body.message),
     )
 
+    n_before = 0
+    try:
+        snap_before = await agent.aget_state(config)
+        prev_msgs = (
+            (snap_before.values or {}).get("messages")
+            if snap_before and snap_before.values
+            else None
+        )
+        n_before = len(prev_msgs or [])
+    except Exception:
+        logger.debug("aget_state before /chat failed; tool attribution may span full thread", exc_info=True)
+
     t0 = time.perf_counter()
     try:
         ## ⬇️ MCP tools from langchain-mcp-adapters are async-only; sync agent.invoke hits StructuredTool sync path and fails
@@ -715,6 +779,10 @@ async def chat(body: ChatRequest) -> ChatResponse:
 
     elapsed_ms = int((time.perf_counter() - t0) * 1000)
     raw_messages = result.get("messages") or []
+    if len(raw_messages) < n_before:
+        delta_messages = raw_messages
+    else:
+        delta_messages = raw_messages[n_before:]
     reply = _last_assistant_reply(raw_messages)
     if not reply and raw_messages:
         logger.warning(
@@ -729,6 +797,8 @@ async def chat(body: ChatRequest) -> ChatResponse:
             len(reply),
             _preview(reply, 120),
         )
+    used = _ordered_tool_uses(delta_messages)
+    reply = _ensure_tool_attribution(reply, used)
     return ChatResponse(reply=reply)
 
 
