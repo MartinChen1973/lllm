@@ -5,10 +5,13 @@ FastAPI chat endpoint backed by a deep agent with subagents and optional MCP too
 from __future__ import annotations
 
 import asyncio
+import json
 import logging
 import os
+import re
 import time
 from contextlib import asynccontextmanager
+from dataclasses import dataclass
 from pathlib import Path
 from typing import Any, Literal
 
@@ -19,7 +22,7 @@ from langchain.chat_models import init_chat_model
 from langchain_core.messages import AIMessage, HumanMessage, SystemMessage, ToolMessage
 from langchain_mcp_adapters.client import MultiServerMCPClient
 from langgraph.checkpoint.sqlite.aio import AsyncSqliteSaver
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, field_validator, model_validator
 
 from langchain.tools import ToolRuntime
 
@@ -50,6 +53,10 @@ GLOBAL_MEMORIES_DIR = STORAGE_DIR / "memories"
 CHECKPOINT_DB_PATH = Path(
     os.environ.get("CHECKPOINT_DB_PATH", str(STORAGE_DIR / "checkpoints.sqlite"))
 )
+## ⬇️ Optional JSON list of MCP servers; when present and non-empty, overrides env-based URLs until cleared via API
+MCP_CONFIG_PATH = STORAGE_DIR / "mcp_config.json"
+
+_MCP_SERVER_ID_RE = re.compile(r"^[a-zA-Z][a-zA-Z0-9_-]{0,63}$")
 
 
 def _ensure_memories_dir(memories_dir: Path) -> None:
@@ -153,10 +160,76 @@ class SessionsListResponse(BaseModel):
     sessions: list[SessionPayload]
 
 
+class McpServerEntryIn(BaseModel):
+    ## ⬇️ Unique id for MultiServerMCPClient (letters, digits, hyphen, underscore)
+    id: str = Field(..., min_length=1, max_length=64)
+    url: str = Field(..., min_length=1)
+    headers: dict[str, str] = Field(default_factory=dict)
+
+    @field_validator("id")
+    @classmethod
+    def validate_id(cls, v: str) -> str:
+        if not _MCP_SERVER_ID_RE.match(v.strip()):
+            raise ValueError(
+                "id must start with a letter and contain only letters, digits, hyphen, underscore (max 64 chars)"
+            )
+        return v.strip()
+
+    @field_validator("url")
+    @classmethod
+    def validate_url(cls, v: str) -> str:
+        u = v.strip()
+        if not (u.startswith("http://") or u.startswith("https://")):
+            raise ValueError("url must be an http(s) MCP Streamable HTTP endpoint")
+        return u
+
+
+class McpSettingsPutBody(BaseModel):
+    servers: list[McpServerEntryIn] = Field(default_factory=list)
+
+    @model_validator(mode="after")
+    def unique_server_ids(self) -> McpSettingsPutBody:
+        ids = [s.id for s in self.servers]
+        if len(ids) != len(set(ids)):
+            raise ValueError("Each MCP server must have a unique id")
+        return self
+
+
+class McpServerStatusOut(BaseModel):
+    id: str
+    url: str
+    connected: bool
+    tool_count: int
+    error: str | None = None
+    ## ⬇️ Declared HTTP headers for Streamable HTTP (empty when the active config comes from environment variables only)
+    headers: dict[str, str] = Field(default_factory=dict)
+
+
+class McpSettingsResponse(BaseModel):
+    source: Literal["file", "environment"]
+    servers: list[McpServerStatusOut]
+    total_tools: int
+    configured_servers: int
+    connected_servers: int
+
+
+@dataclass(frozen=True)
+class McpServerLoadDetail:
+    tool_count: int
+    connected: bool
+    error: str | None
+
+
+@dataclass
+class McpToolsLoadOutcome:
+    tools: list[Any]
+    per_server: dict[str, McpServerLoadDetail]
+
+
 logger = logging.getLogger(__name__)
 
 
-def _mcp_connections_from_env() -> dict[str, dict[str, str]]:
+def _mcp_connections_from_env() -> dict[str, dict[str, Any]]:
     ## ⬇️ Comma-separated Streamable HTTP URLs; if set, replaces the defaults below
     raw = (os.environ.get("MCP_SERVER_URLS") or "").strip()
     if raw:
@@ -171,7 +244,7 @@ def _mcp_connections_from_env() -> dict[str, dict[str, str]]:
     u_oa = (os.environ.get("MCP_OA_URL") or "http://127.0.0.1:8501/mcp").strip()
     u_bc = (os.environ.get("MCP_BINGCHUAN_URL") or "http://127.0.0.1:8503/mcp").strip()
     u_aux = (os.environ.get("MCP_AUX_URL") or "http://127.0.0.1:8502/mcp").strip()
-    out: dict[str, dict[str, str]] = {}
+    out: dict[str, dict[str, Any]] = {}
     if u_oa:
         out["oa"] = {"transport": "http", "url": u_oa}
     if u_bc:
@@ -181,8 +254,39 @@ def _mcp_connections_from_env() -> dict[str, dict[str, str]]:
     return out
 
 
+def _http_mcp_connection(url: str, headers: dict[str, str] | None) -> dict[str, Any]:
+    ## ⬇️ LangChain accepts transport "http" as an alias for Streamable HTTP
+    conn: dict[str, Any] = {"transport": "http", "url": url.strip()}
+    if headers:
+        conn["headers"] = headers
+    return conn
+
+
+def _read_mcp_config_servers_from_disk() -> list[McpServerEntryIn] | None:
+    if not MCP_CONFIG_PATH.is_file():
+        return None
+    try:
+        raw = json.loads(MCP_CONFIG_PATH.read_text(encoding="utf-8"))
+        body = McpSettingsPutBody.model_validate(raw)
+        return body.servers
+    except Exception as e:
+        logger.warning("Ignoring invalid %s: %s", MCP_CONFIG_PATH, e)
+        return None
+
+
+def _resolve_mcp_connections() -> tuple[dict[str, dict[str, Any]], Literal["file", "environment"]]:
+    ## ⬇️ Non-empty saved list overrides environment; empty/missing file uses .env defaults
+    entries = _read_mcp_config_servers_from_disk()
+    if entries:
+        conns: dict[str, dict[str, Any]] = {}
+        for s in entries:
+            conns[s.id] = _http_mcp_connection(s.url, s.headers or None)
+        return conns, "file"
+    return _mcp_connections_from_env(), "environment"
+
+
 async def _load_mcp_tools_round(
-    connections: dict[str, dict[str, str]],
+    connections: dict[str, dict[str, Any]],
     loaded: dict[str, list[Any]],
     last_errors: dict[str, BaseException],
 ) -> set[str]:
@@ -207,14 +311,14 @@ async def _load_mcp_tools_round(
 
 
 async def _load_mcp_tools_with_retry(
-    connections: dict[str, dict[str, str]],
+    connections: dict[str, dict[str, Any]],
     *,
     attempts: int = 10,
     delay_sec: float = 1.25,
-) -> list[Any]:
+) -> McpToolsLoadOutcome:
     ## ⬇️ MCP processes may start after uvicorn; retry until every server loads or attempts exhausted — not "any tools"
     if not connections:
-        return []
+        return McpToolsLoadOutcome(tools=[], per_server={})
     loaded: dict[str, list[Any]] = {}
     last_errors: dict[str, BaseException] = {}
     for i in range(attempts):
@@ -231,19 +335,24 @@ async def _load_mcp_tools_with_retry(
                 delay_sec,
             )
             await asyncio.sleep(delay_sec)
+    per: dict[str, McpServerLoadDetail] = {}
     for name in connections:
-        if name not in loaded:
-            err = last_errors.get(name)
-            logger.warning(
-                "MCP server %r: no tools after %s attempts%s",
-                name,
-                attempts,
-                f" — {err}" if err else "",
-            )
+        if name in loaded:
+            per[name] = McpServerLoadDetail(len(loaded[name]), True, None)
+            continue
+        err = last_errors.get(name)
+        logger.warning(
+            "MCP server %r: no tools after %s attempts%s",
+            name,
+            attempts,
+            f" — {err}" if err else "",
+        )
+        err_s = str(err) if err else None
+        per[name] = McpServerLoadDetail(0, False, err_s)
     out: list[Any] = []
     for name in connections:
         out.extend(loaded.get(name, []))
-    return out
+    return McpToolsLoadOutcome(tools=out, per_server=per)
 
 
 def _content_to_text(content: Any) -> str:
@@ -340,53 +449,125 @@ def _build_subagents() -> list[dict[str, Any]]:
     ]
 
 
+def _connection_url(conn: dict[str, Any]) -> str:
+    return str(conn.get("url") or "")
+
+
+def _compose_agent_system_prompt(local_tools: list[Any], mcp_tools: list[Any]) -> str:
+    ## ⬇️ Matches prior behaviour: OA / Bingchuan hints only when any MCP tool is registered
+    system_prompt = LONG_TERM_MEMORY_SYSTEM_PROMPT + "\n\n"
+    system_prompt += (
+        "You are a helpful assistant. You may delegate to subagents using the task tool "
+        "when their expertise fits the user request. "
+    )
+    if local_tools:
+        system_prompt += (
+            "You have a local Python tool `internet_search`: use it for web search, current events, "
+            "or facts not covered by internal docs. Pass query, optional max_results (default 5), "
+            "topic (general|news|finance), and include_raw_content as needed. "
+        )
+    if mcp_tools:
+        system_prompt += (
+            "When MCP tools are available: use `lookup_docs` for organization and leave-policy questions "
+            "(OA corpus); use `bingchuan` for 冰雪川 / Bingchuan ice cream or product-knowledge questions; "
+            "use `inspect_faiss_oa` or `inspect_faiss_bingchuan` only for debugging the respective FAISS indexes."
+        )
+    return system_prompt
+
+
+def _mcp_settings_response_from_load(
+    connections: dict[str, dict[str, Any]],
+    source: Literal["file", "environment"],
+    outcome: McpToolsLoadOutcome,
+) -> McpSettingsResponse:
+    servers: list[McpServerStatusOut] = []
+    for name in connections:
+        conn = connections[name]
+        d = outcome.per_server.get(name) or McpServerLoadDetail(0, False, "unknown")
+        raw_h = conn.get("headers")
+        hdrs: dict[str, str] = {}
+        if isinstance(raw_h, dict):
+            hdrs = {str(k): str(v) for k, v in raw_h.items()}
+        servers.append(
+            McpServerStatusOut(
+                id=name,
+                url=_connection_url(conn),
+                connected=d.connected,
+                tool_count=d.tool_count,
+                error=d.error,
+                headers=hdrs,
+            )
+        )
+    total_tools = sum(s.tool_count for s in servers)
+    connected_servers = sum(1 for s in servers if s.connected)
+    return McpSettingsResponse(
+        source=source,
+        servers=servers,
+        total_tools=total_tools,
+        configured_servers=len(servers),
+        connected_servers=connected_servers,
+    )
+
+
+def _persist_mcp_settings(body: McpSettingsPutBody) -> None:
+    STORAGE_DIR.mkdir(parents=True, exist_ok=True)
+    if not body.servers:
+        if MCP_CONFIG_PATH.exists():
+            MCP_CONFIG_PATH.unlink()
+        return
+    MCP_CONFIG_PATH.write_text(body.model_dump_json(indent=2), encoding="utf-8")
+
+
+async def _build_agent_and_mcp_status(fastapi_app: FastAPI) -> McpSettingsResponse:
+    model = fastapi_app.state.chat_model
+    checkpointer = fastapi_app.state.checkpointer
+    connections, source = _resolve_mcp_connections()
+    outcome = await _load_mcp_tools_with_retry(connections)
+    mcp_tools = outcome.tools
+    if connections and not mcp_tools:
+        logger.warning(
+            "No MCP tools loaded (%s server(s) configured); agent runs without MCP tools",
+            len(connections),
+        )
+    local_tools = get_local_tools()
+    if local_tools:
+        logger.info("Local tools: registered %s (Tavily internet_search)", len(local_tools))
+    else:
+        logger.info("Local tools: none (set TAVILY_API_KEY for internet_search)")
+    all_tools = [*local_tools, *mcp_tools]
+    system_prompt = _compose_agent_system_prompt(local_tools, mcp_tools)
+    agent = create_deep_agent(
+        model=model,
+        tools=all_tools,
+        system_prompt=system_prompt,
+        subagents=_build_subagents(),
+        checkpointer=checkpointer,
+        backend=make_memory_backend,
+    )
+    fastapi_app.state.agent = agent
+    resp = _mcp_settings_response_from_load(connections, source, outcome)
+    fastapi_app.state.mcp_settings_response = resp
+    logger.info(
+        "MCP summary: source=%s total_tools=%s connected_servers=%s/%s",
+        source,
+        resp.total_tools,
+        resp.connected_servers,
+        resp.configured_servers,
+    )
+    return resp
+
+
 @asynccontextmanager
 async def lifespan(fastapi_app: FastAPI):
     model = init_chat_model(DEFAULT_MODEL)
     _ensure_storage_dir_for_db(CHECKPOINT_DB_PATH)
     async with AsyncSqliteSaver.from_conn_string(str(CHECKPOINT_DB_PATH)) as checkpointer:
         await checkpointer.setup()
-        connections = _mcp_connections_from_env()
-        mcp_tools = await _load_mcp_tools_with_retry(connections)
-        if connections and not mcp_tools:
-            logger.warning(
-                "No MCP tools loaded (%s server(s) configured); agent runs without MCP tools",
-                len(connections),
-            )
-        local_tools = get_local_tools()
-        if local_tools:
-            logger.info("Local tools: registered %s (Tavily internet_search)", len(local_tools))
-        else:
-            logger.info("Local tools: none (set TAVILY_API_KEY for internet_search)")
-        all_tools = [*local_tools, *mcp_tools]
-        system_prompt = LONG_TERM_MEMORY_SYSTEM_PROMPT + "\n\n"
-        system_prompt += (
-            "You are a helpful assistant. You may delegate to subagents using the task tool "
-            "when their expertise fits the user request. "
-        )
-        if local_tools:
-            system_prompt += (
-                "You have a local Python tool `internet_search`: use it for web search, current events, "
-                "or facts not covered by internal docs. Pass query, optional max_results (default 5), "
-                "topic (general|news|finance), and include_raw_content as needed. "
-            )
-        system_prompt += (
-            "When MCP tools are available: use `lookup_docs` for organization and leave-policy questions "
-            "(OA corpus); use `bingchuan` for 冰雪川 / Bingchuan ice cream or product-knowledge questions; "
-            "use `inspect_faiss_oa` or `inspect_faiss_bingchuan` only for debugging the respective FAISS indexes."
-        )
-        agent = create_deep_agent(
-            model=model,
-            tools=all_tools,
-            system_prompt=system_prompt,
-            subagents=_build_subagents(),
-            checkpointer=checkpointer,
-            backend=make_memory_backend,
-        )
+        fastapi_app.state.chat_model = model
+        fastapi_app.state.checkpointer = checkpointer
+        await _build_agent_and_mcp_status(fastapi_app)
         logger.info("Long-term memory directory (global): %s", GLOBAL_MEMORIES_DIR)
         logger.info("Checkpoint database: %s", CHECKPOINT_DB_PATH.resolve())
-        fastapi_app.state.agent = agent
-        fastapi_app.state.checkpointer = checkpointer
         yield
 
 
@@ -405,6 +586,31 @@ def _preview(text: str, max_len: int = 80) -> str:
     if len(t) <= max_len:
         return t
     return t[: max_len - 1] + "…"
+
+
+@app.get("/settings/mcp", response_model=McpSettingsResponse)
+async def get_mcp_settings() -> McpSettingsResponse:
+    ## ⬇️ Last MCP load outcome (startup or after PUT /settings/mcp)
+    snap = getattr(app.state, "mcp_settings_response", None)
+    if snap is None:
+        raise HTTPException(status_code=503, detail="Service not ready")
+    return snap
+
+
+@app.put("/settings/mcp", response_model=McpSettingsResponse)
+async def put_mcp_settings(body: McpSettingsPutBody) -> McpSettingsResponse:
+    ## ⬇️ Persist Streamable HTTP MCP servers and rebuild the deep agent with fresh tool bindings
+    if getattr(app.state, "checkpointer", None) is None or getattr(app.state, "chat_model", None) is None:
+        raise HTTPException(status_code=503, detail="Service not ready")
+    try:
+        _persist_mcp_settings(body)
+    except OSError as e:
+        raise HTTPException(status_code=500, detail=str(e)) from e
+    try:
+        return await _build_agent_and_mcp_status(app)
+    except Exception as e:
+        logger.exception("MCP settings reload failed")
+        raise HTTPException(status_code=500, detail=str(e)) from e
 
 
 @app.get("/sessions", response_model=SessionsListResponse)

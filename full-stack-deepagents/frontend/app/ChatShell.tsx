@@ -1,7 +1,10 @@
 "use client";
 
 import type { CSSProperties } from "react";
+import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+
+import type { McpSettingsResponse } from "./SettingsPanel";
 
 type ChatMessage = {
   role: "user" | "assistant";
@@ -76,6 +79,8 @@ export default function ChatShell() {
   const [sending, setSending] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [historyError, setHistoryError] = useState<string | null>(null);
+  const [mcpStatus, setMcpStatus] = useState<McpSettingsResponse | null>(null);
+  const [mcpStatusError, setMcpStatusError] = useState<string | null>(null);
 
   const active = useMemo(
     () => sessions.find((s) => s.id === activeId) ?? sessions[0],
@@ -93,6 +98,39 @@ export default function ChatShell() {
       /* quota / private mode */
     }
   }, [activeId]);
+
+  useEffect(() => {
+    let cancelled = false;
+    (async () => {
+      try {
+        const res = await fetch(`${backendBase}/settings/mcp`);
+        const resText = await res.text();
+        let data: unknown = {};
+        try {
+          data = resText ? JSON.parse(resText) : {};
+        } catch {
+          if (!res.ok) {
+            throw new Error(resText.slice(0, 120) || `HTTP ${res.status}`);
+          }
+        }
+        if (!res.ok) {
+          throw new Error(errorMessageFromResponseBody(data, res.status));
+        }
+        if (!cancelled) {
+          setMcpStatus(data as McpSettingsResponse);
+          setMcpStatusError(null);
+        }
+      } catch (e) {
+        if (!cancelled) {
+          setMcpStatus(null);
+          setMcpStatusError(e instanceof Error ? e.message : "MCP status unavailable");
+        }
+      }
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     let cancelled = false;
@@ -337,8 +375,37 @@ export default function ChatShell() {
       </aside>
 
       <section className="flex min-w-0 flex-1 flex-col">
-        <header className="flex h-14 shrink-0 items-center border-b border-white/10 px-6 text-sm font-medium text-white/90">
-          {active?.title ?? "Chat"}
+        <header className="flex h-14 shrink-0 items-center justify-between gap-3 border-b border-white/10 px-4 md:px-6">
+          <span className="min-w-0 truncate text-sm font-medium text-white/90">
+            {active?.title ?? "Chat"}
+          </span>
+          <div className="flex shrink-0 items-center gap-2">
+            {mcpStatus && !mcpStatusError && (
+              <span
+                className="max-w-[11rem] truncate rounded-full border border-emerald-500/25 bg-emerald-500/10 px-2.5 py-1 text-[11px] text-emerald-200/95 md:max-w-none"
+                title={`MCP source: ${mcpStatus.source}; ${mcpStatus.total_tools} tools; ${mcpStatus.connected_servers}/${mcpStatus.configured_servers} servers connected`}
+              >
+                {mcpStatus.total_tools} tools · {mcpStatus.connected_servers}/
+                {mcpStatus.configured_servers} MCP
+              </span>
+            )}
+            {mcpStatusError && (
+              <span
+                className="max-w-[6rem] truncate text-[11px] text-amber-400/90"
+                title={mcpStatusError}
+              >
+                MCP ?
+              </span>
+            )}
+            <Link
+              href="/settings"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="rounded-full border border-white/15 bg-white/5 px-3 py-1.5 text-xs font-medium text-white/90 transition hover:bg-white/10"
+            >
+              Settings
+            </Link>
+          </div>
         </header>
 
         <div className="flex-1 overflow-y-auto px-4 py-6 md:px-12">
