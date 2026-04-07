@@ -165,6 +165,8 @@ class McpServerEntryIn(BaseModel):
     id: str = Field(..., min_length=1, max_length=64)
     url: str = Field(..., min_length=1)
     headers: dict[str, str] = Field(default_factory=dict)
+    ## ⬇️ Soft-removed servers stay in mcp_config.json and can be restored from the settings UI
+    deleted: bool = False
 
     @field_validator("id")
     @classmethod
@@ -203,6 +205,8 @@ class McpServerStatusOut(BaseModel):
     error: str | None = None
     ## ⬇️ Declared HTTP headers for Streamable HTTP (empty when the active config comes from environment variables only)
     headers: dict[str, str] = Field(default_factory=dict)
+    ## ⬇️ Deleted entries are kept on disk only; they are not connected to the MCP client
+    status: Literal["active", "deleted"] = "active"
 
 
 class McpSettingsResponse(BaseModel):
@@ -274,15 +278,21 @@ def _read_mcp_config_servers_from_disk() -> list[McpServerEntryIn] | None:
         return None
 
 
-def _resolve_mcp_connections() -> tuple[dict[str, dict[str, Any]], Literal["file", "environment"]]:
-    ## ⬇️ Non-empty saved list overrides environment; empty/missing file uses .env defaults
+def _resolve_mcp_catalog_and_connections() -> tuple[
+    list[McpServerEntryIn] | None,
+    dict[str, dict[str, Any]],
+    Literal["file", "environment"],
+]:
+    ## ⬇️ Non-empty saved list overrides environment; empty/missing file uses .env defaults; deleted rows stay in file but are omitted from connections
     entries = _read_mcp_config_servers_from_disk()
     if entries:
         conns: dict[str, dict[str, Any]] = {}
         for s in entries:
+            if s.deleted:
+                continue
             conns[s.id] = _http_mcp_connection(s.url, s.headers or None)
-        return conns, "file"
-    return _mcp_connections_from_env(), "environment"
+        return entries, conns, "file"
+    return None, _mcp_connections_from_env(), "environment"
 
 
 async def _load_mcp_tools_round(
@@ -476,35 +486,73 @@ def _compose_agent_system_prompt(local_tools: list[Any], mcp_tools: list[Any]) -
 
 
 def _mcp_settings_response_from_load(
+    catalog: list[McpServerEntryIn] | None,
     connections: dict[str, dict[str, Any]],
     source: Literal["file", "environment"],
     outcome: McpToolsLoadOutcome,
 ) -> McpSettingsResponse:
     servers: list[McpServerStatusOut] = []
-    for name in connections:
-        conn = connections[name]
-        d = outcome.per_server.get(name) or McpServerLoadDetail(0, False, "unknown")
-        raw_h = conn.get("headers")
-        hdrs: dict[str, str] = {}
-        if isinstance(raw_h, dict):
-            hdrs = {str(k): str(v) for k, v in raw_h.items()}
-        servers.append(
-            McpServerStatusOut(
-                id=name,
-                url=_connection_url(conn),
-                connected=d.connected,
-                tool_count=d.tool_count,
-                error=d.error,
-                headers=hdrs,
+    if catalog is not None:
+        for entry in catalog:
+            if entry.deleted:
+                servers.append(
+                    McpServerStatusOut(
+                        id=entry.id,
+                        url=entry.url,
+                        connected=False,
+                        tool_count=0,
+                        error=None,
+                        headers=dict(entry.headers or {}),
+                        status="deleted",
+                    )
+                )
+                continue
+            conn = connections.get(entry.id)
+            if conn is None:
+                continue
+            d = outcome.per_server.get(entry.id) or McpServerLoadDetail(0, False, "unknown")
+            raw_h = conn.get("headers")
+            hdrs: dict[str, str] = {}
+            if isinstance(raw_h, dict):
+                hdrs = {str(k): str(v) for k, v in raw_h.items()}
+            servers.append(
+                McpServerStatusOut(
+                    id=entry.id,
+                    url=_connection_url(conn),
+                    connected=d.connected,
+                    tool_count=d.tool_count,
+                    error=d.error,
+                    headers=hdrs,
+                    status="active",
+                )
             )
-        )
-    total_tools = sum(s.tool_count for s in servers)
-    connected_servers = sum(1 for s in servers if s.connected)
+    else:
+        for name in connections:
+            conn = connections[name]
+            d = outcome.per_server.get(name) or McpServerLoadDetail(0, False, "unknown")
+            raw_h = conn.get("headers")
+            hdrs: dict[str, str] = {}
+            if isinstance(raw_h, dict):
+                hdrs = {str(k): str(v) for k, v in raw_h.items()}
+            servers.append(
+                McpServerStatusOut(
+                    id=name,
+                    url=_connection_url(conn),
+                    connected=d.connected,
+                    tool_count=d.tool_count,
+                    error=d.error,
+                    headers=hdrs,
+                    status="active",
+                )
+            )
+    total_tools = sum(s.tool_count for s in servers if s.status == "active")
+    connected_servers = sum(1 for s in servers if s.status == "active" and s.connected)
+    configured_servers = sum(1 for s in servers if s.status == "active")
     return McpSettingsResponse(
         source=source,
         servers=servers,
         total_tools=total_tools,
-        configured_servers=len(servers),
+        configured_servers=configured_servers,
         connected_servers=connected_servers,
     )
 
@@ -521,7 +569,7 @@ def _persist_mcp_settings(body: McpSettingsPutBody) -> None:
 async def _build_agent_and_mcp_status(fastapi_app: FastAPI) -> McpSettingsResponse:
     model = fastapi_app.state.chat_model
     checkpointer = fastapi_app.state.checkpointer
-    connections, source = _resolve_mcp_connections()
+    catalog, connections, source = _resolve_mcp_catalog_and_connections()
     outcome = await _load_mcp_tools_with_retry(connections)
     mcp_tools = outcome.tools
     if connections and not mcp_tools:
@@ -545,7 +593,7 @@ async def _build_agent_and_mcp_status(fastapi_app: FastAPI) -> McpSettingsRespon
         backend=make_memory_backend,
     )
     fastapi_app.state.agent = agent
-    resp = _mcp_settings_response_from_load(connections, source, outcome)
+    resp = _mcp_settings_response_from_load(catalog, connections, source, outcome)
     fastapi_app.state.mcp_settings_response = resp
     logger.info(
         "MCP summary: source=%s total_tools=%s connected_servers=%s/%s",
