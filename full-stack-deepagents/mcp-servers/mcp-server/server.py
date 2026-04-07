@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 from mcp.server.fastmcp import FastMCP
 
 ## ⬇️ Repo-root .env (full-stack-deepagents/.env), same as backend and ai-api
-load_dotenv(Path(__file__).resolve().parent.parent / ".env", override=True)
+load_dotenv(Path(__file__).resolve().parents[2] / ".env", override=True)
 from starlette.responses import HTMLResponse, JSONResponse, Response
 
 ## ⬇️ Port/host from environment so the AI API can point MCP_SERVER_URL consistently
@@ -76,7 +76,7 @@ def _stack_assets_favicon_ico() -> bytes:
     global _FAVICON_ICO_CACHE
     if _FAVICON_ICO_CACHE is None:
         _FAVICON_ICO_CACHE = (
-            Path(__file__).resolve().parent.parent / "assets" / "favicon.ico"
+            Path(__file__).resolve().parents[2] / "assets" / "favicon.ico"
         ).read_bytes()
     return _FAVICON_ICO_CACHE
 

@@ -1,12 +1,14 @@
 """
-FAISS-backed RAG helpers for Bingchuan product corpus (bingchuan tool, inspect_faiss).
+FAISS-backed RAG helpers for the legacy combined OA + Bingchuan corpus (lookup_docs, bingchuan, inspect_faiss).
 
-Index path: faiss/faiss_index/ (run build_faiss_index.py after editing docs/).
+Index path: faiss/faiss_index/ (incremental sync at MCP startup + optional watchdog).
 """
 
 from __future__ import annotations
 
+import logging
 import os
+import sys
 import threading
 from pathlib import Path
 
@@ -17,13 +19,21 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_openai import ChatOpenAI, OpenAIEmbeddings
 
-## ⬇️ Load env from full-stack-deepagents/.env
-_ROOT = Path(__file__).resolve().parent.parent
-load_dotenv(_ROOT / ".env", override=True)
+logger = logging.getLogger(__name__)
+
+## ⬇️ full-stack-deepagents/ (parent of servers/ and utilities/)
+_STACK_ROOT = Path(__file__).resolve().parents[2]
+if str(_STACK_ROOT) not in sys.path:
+    sys.path.insert(0, str(_STACK_ROOT))
+
+load_dotenv(_STACK_ROOT / ".env", override=True)
 load_dotenv(find_dotenv(), override=True)
 
 _MODULE_DIR = Path(__file__).resolve().parent
+_SERVER_DIR_NAME = _MODULE_DIR.name
+DOCS_PATH = _MODULE_DIR / "docs"
 FAISS_INDEX_PATH = _MODULE_DIR / "faiss" / "faiss_index"
+MANIFEST_PATH = _MODULE_DIR / "faiss" / "index_manifest.json"
 
 RAG_PROMPT = """仅依赖下面的context回答用户的问题:
 Context: {context}
@@ -36,24 +46,66 @@ _retriever = None
 _rag_chain = None
 _embeddings = None
 _vectorstore = None
+_watch_observer = None
+
+
+def _make_embeddings() -> OpenAIEmbeddings:
+    return OpenAIEmbeddings(
+        model="text-embedding-3-small",
+        openai_api_key=os.getenv("OPENAI_API_KEY"),
+        openai_api_base=os.getenv("OPENAI_API_BASE") or os.getenv("OPENAI_BASE_URL"),
+        openai_organization=os.getenv("OPENAI_ORG_ID"),
+    )
+
+
+def _invalidate_runtime_cache() -> None:
+    global _retriever, _rag_chain, _embeddings, _vectorstore
+    _retriever = None
+    _rag_chain = None
+    _embeddings = None
+    _vectorstore = None
+
+
+def sync_docs_to_index_at_startup() -> dict:
+    ## ⬇️ Reconcile faiss/ with docs/; must run under _lock with callers that invalidate the chain.
+    from utilities.rag_faiss.faiss_sync import sync_faiss_index
+
+    with _lock:
+        emb = _make_embeddings()
+        summary = sync_faiss_index(
+            DOCS_PATH,
+            FAISS_INDEX_PATH,
+            emb,
+            manifest_path=MANIFEST_PATH,
+        )
+        logger.info("RAG index sync: %s", summary)
+        _invalidate_runtime_cache()
+    return summary
+
+
+def start_docs_watchdog_background() -> None:
+    ## ⬇️ No-op if the watchdog package is not installed.
+    global _watch_observer
+    if _watch_observer is not None:
+        return
+    from utilities.rag_faiss.watchdog import start_markdown_watchdog
+
+    _watch_observer = start_markdown_watchdog(DOCS_PATH, sync_docs_to_index_at_startup)
 
 
 def _ensure_loaded() -> None:
     global _retriever, _rag_chain, _embeddings, _vectorstore
+    from utilities.rag_faiss.faiss_sync import index_dir_has_faiss
+
     with _lock:
         if _rag_chain is not None:
             return
-        if not FAISS_INDEX_PATH.is_dir():
+        if not index_dir_has_faiss(FAISS_INDEX_PATH):
             raise FileNotFoundError(
                 f"FAISS index not found at {FAISS_INDEX_PATH}. "
-                "Run build_faiss_index.py from mcp-server-bingchuan after installing dependencies."
+                f"Run build_faiss_index.py from servers/{_SERVER_DIR_NAME} after installing dependencies."
             )
-        _embeddings = OpenAIEmbeddings(
-            model="text-embedding-3-small",
-            openai_api_key=os.getenv("OPENAI_API_KEY"),
-            openai_api_base=os.getenv("OPENAI_API_BASE") or os.getenv("OPENAI_BASE_URL"),
-            openai_organization=os.getenv("OPENAI_ORG_ID"),
-        )
+        _embeddings = _make_embeddings()
         _vectorstore = FAISS.load_local(
             str(FAISS_INDEX_PATH), _embeddings, allow_dangerous_deserialization=True
         )

@@ -98,27 +98,27 @@ REM ## ⬇️ mcp-server-oa: OA FAISS MCP (default port 8501)
 
 echo [2/7] mcp-server-oa...
 
-if not exist "%ROOT%\mcp-server-oa\venv\Scripts\python.exe" (
+if not exist "%ROOT%\mcp-servers\mcp-server-oa\venv\Scripts\python.exe" (
 
-  echo   Creating venv "%ROOT%\mcp-server-oa\venv"...
+  echo   Creating venv "%ROOT%\mcp-servers\mcp-server-oa\venv"...
 
-  %PY% -m venv "%ROOT%\mcp-server-oa\venv"
+  %PY% -m venv "%ROOT%\mcp-servers\mcp-server-oa\venv"
 
 )
 
-if not exist "%ROOT%\mcp-server-oa\venv\Scripts\python.exe" (
+if not exist "%ROOT%\mcp-servers\mcp-server-oa\venv\Scripts\python.exe" (
 
   echo ERROR: Failed to create mcp-server-oa venv.
 
 )
 
-if not exist "%ROOT%\mcp-server-oa\venv\Scripts\python.exe" goto PauseExit
+if not exist "%ROOT%\mcp-servers\mcp-server-oa\venv\Scripts\python.exe" goto PauseExit
 
-"%ROOT%\mcp-server-oa\venv\Scripts\python.exe" -m pip install --upgrade pip
+"%ROOT%\mcp-servers\mcp-server-oa\venv\Scripts\python.exe" -m pip install --upgrade pip
 
 if errorlevel 1 goto PauseExit
 
-"%ROOT%\mcp-server-oa\venv\Scripts\python.exe" -m pip install -r "%ROOT%\mcp-server-oa\requirements.txt"
+"%ROOT%\mcp-servers\mcp-server-oa\venv\Scripts\python.exe" -m pip install -r "%ROOT%\mcp-servers\mcp-server-oa\requirements.txt"
 
 if errorlevel 1 goto PauseExit
 
@@ -132,27 +132,27 @@ REM ## ⬇️ mcp-server-bingchuan: Bingchuan FAISS MCP (set MCP_PORT=8503 when 
 
 echo [3/7] mcp-server-bingchuan...
 
-if not exist "%ROOT%\mcp-server-bingchuan\venv\Scripts\python.exe" (
+if not exist "%ROOT%\mcp-servers\mcp-server-bingchuan\venv\Scripts\python.exe" (
 
-  echo   Creating venv "%ROOT%\mcp-server-bingchuan\venv"...
+  echo   Creating venv "%ROOT%\mcp-servers\mcp-server-bingchuan\venv"...
 
-  %PY% -m venv "%ROOT%\mcp-server-bingchuan\venv"
+  %PY% -m venv "%ROOT%\mcp-servers\mcp-server-bingchuan\venv"
 
 )
 
-if not exist "%ROOT%\mcp-server-bingchuan\venv\Scripts\python.exe" (
+if not exist "%ROOT%\mcp-servers\mcp-server-bingchuan\venv\Scripts\python.exe" (
 
   echo ERROR: Failed to create mcp-server-bingchuan venv.
 
 )
 
-if not exist "%ROOT%\mcp-server-bingchuan\venv\Scripts\python.exe" goto PauseExit
+if not exist "%ROOT%\mcp-servers\mcp-server-bingchuan\venv\Scripts\python.exe" goto PauseExit
 
-"%ROOT%\mcp-server-bingchuan\venv\Scripts\python.exe" -m pip install --upgrade pip
+"%ROOT%\mcp-servers\mcp-server-bingchuan\venv\Scripts\python.exe" -m pip install --upgrade pip
 
 if errorlevel 1 goto PauseExit
 
-"%ROOT%\mcp-server-bingchuan\venv\Scripts\python.exe" -m pip install -r "%ROOT%\mcp-server-bingchuan\requirements.txt"
+"%ROOT%\mcp-servers\mcp-server-bingchuan\venv\Scripts\python.exe" -m pip install -r "%ROOT%\mcp-servers\mcp-server-bingchuan\requirements.txt"
 
 if errorlevel 1 goto PauseExit
 
@@ -166,27 +166,27 @@ REM ## ⬇️ mcp-server-rag: legacy combined index (backup; not used by ai-api)
 
 echo [4/7] mcp-server-rag...
 
-if not exist "%ROOT%\mcp-server-rag\venv\Scripts\python.exe" (
+if not exist "%ROOT%\mcp-servers\mcp-server-rag\venv\Scripts\python.exe" (
 
-  echo   Creating venv "%ROOT%\mcp-server-rag\venv"...
+  echo   Creating venv "%ROOT%\mcp-servers\mcp-server-rag\venv"...
 
-  %PY% -m venv "%ROOT%\mcp-server-rag\venv"
+  %PY% -m venv "%ROOT%\mcp-servers\mcp-server-rag\venv"
 
 )
 
-if not exist "%ROOT%\mcp-server-rag\venv\Scripts\python.exe" (
+if not exist "%ROOT%\mcp-servers\mcp-server-rag\venv\Scripts\python.exe" (
 
   echo ERROR: Failed to create mcp-server-rag venv.
 
 )
 
-if not exist "%ROOT%\mcp-server-rag\venv\Scripts\python.exe" goto PauseExit
+if not exist "%ROOT%\mcp-servers\mcp-server-rag\venv\Scripts\python.exe" goto PauseExit
 
-"%ROOT%\mcp-server-rag\venv\Scripts\python.exe" -m pip install --upgrade pip
+"%ROOT%\mcp-servers\mcp-server-rag\venv\Scripts\python.exe" -m pip install --upgrade pip
 
 if errorlevel 1 goto PauseExit
 
-"%ROOT%\mcp-server-rag\venv\Scripts\python.exe" -m pip install -r "%ROOT%\mcp-server-rag\requirements.txt"
+"%ROOT%\mcp-servers\mcp-server-rag\venv\Scripts\python.exe" -m pip install -r "%ROOT%\mcp-servers\mcp-server-rag\requirements.txt"
 
 if errorlevel 1 goto PauseExit
 
@@ -200,27 +200,27 @@ REM ## ⬇️ mcp-server: auxiliary Streamable HTTP MCP (default port 8502)
 
 echo [5/7] mcp-server...
 
-if not exist "%ROOT%\mcp-server\venv\Scripts\python.exe" (
+if not exist "%ROOT%\mcp-servers\mcp-server\venv\Scripts\python.exe" (
 
-  echo   Creating venv "%ROOT%\mcp-server\venv"...
+  echo   Creating venv "%ROOT%\mcp-servers\mcp-server\venv"...
 
-  %PY% -m venv "%ROOT%\mcp-server\venv"
+  %PY% -m venv "%ROOT%\mcp-servers\mcp-server\venv"
 
 )
 
-if not exist "%ROOT%\mcp-server\venv\Scripts\python.exe" (
+if not exist "%ROOT%\mcp-servers\mcp-server\venv\Scripts\python.exe" (
 
   echo ERROR: Failed to create mcp-server venv.
 
 )
 
-if not exist "%ROOT%\mcp-server\venv\Scripts\python.exe" goto PauseExit
+if not exist "%ROOT%\mcp-servers\mcp-server\venv\Scripts\python.exe" goto PauseExit
 
-"%ROOT%\mcp-server\venv\Scripts\python.exe" -m pip install --upgrade pip
+"%ROOT%\mcp-servers\mcp-server\venv\Scripts\python.exe" -m pip install --upgrade pip
 
 if errorlevel 1 goto PauseExit
 
-"%ROOT%\mcp-server\venv\Scripts\python.exe" -m pip install -r "%ROOT%\mcp-server\requirements.txt"
+"%ROOT%\mcp-servers\mcp-server\venv\Scripts\python.exe" -m pip install -r "%ROOT%\mcp-servers\mcp-server\requirements.txt"
 
 if errorlevel 1 goto PauseExit
 

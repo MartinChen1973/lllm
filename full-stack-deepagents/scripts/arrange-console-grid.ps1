@@ -73,10 +73,10 @@ function Classify-FromProcess {
   $name = $info.Name
   if ($null -ne $exe) {
     if ($exe -match '(?i)\\ai-api\\venv\\Scripts\\python(\.exe)?$') { return "ai" }
-    if ($exe -match '(?i)\\mcp-server-oa\\venv\\Scripts\\python(\.exe)?$') { return "mcp_oa" }
-    if ($exe -match '(?i)\\mcp-server-bingchuan\\venv\\Scripts\\python(\.exe)?$') { return "mcp_bc" }
-    if ($exe -match '(?i)\\mcp-server\\venv\\Scripts\\python(\.exe)?$') { return "mcp_aux" }
-    if ($exe -match '(?i)\\mcp-server-rag\\venv\\Scripts\\python(\.exe)?$') { return "mcp_oa" }
+    if ($exe -match '(?i)\\mcp-servers\\mcp-server-oa\\venv\\Scripts\\python(\.exe)?$') { return "mcp_oa" }
+    if ($exe -match '(?i)\\mcp-servers\\mcp-server-bingchuan\\venv\\Scripts\\python(\.exe)?$') { return "mcp_bc" }
+    if ($exe -match '(?i)\\mcp-servers\\mcp-server\\venv\\Scripts\\python(\.exe)?$') { return "mcp_aux" }
+    if ($exe -match '(?i)\\mcp-servers\\mcp-server-rag\\venv\\Scripts\\python(\.exe)?$') { return "mcp_oa" }
   }
   if ($null -ne $cmd) {
     if ($name -eq 'cmd' -or $name -eq 'cmd.exe') {

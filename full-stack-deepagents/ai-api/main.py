@@ -240,7 +240,7 @@ def _mcp_connections_from_env() -> dict[str, dict[str, Any]]:
         }
     if os.environ.get("MCP_ENABLED", "true").strip().lower() in ("0", "false", "no", "off"):
         return {}
-    ## ⬇️ mcp-server-oa (8501), mcp-server-bingchuan (8503), optional mcp-server aux (8502); mcp-server-rag is not used
+    ## ⬇️ mcp-servers/mcp-server-oa (8501), mcp-servers/mcp-server-bingchuan (8503), optional mcp-servers/mcp-server aux (8502); mcp-server-rag is not used
     u_oa = (os.environ.get("MCP_OA_URL") or "http://127.0.0.1:8501/mcp").strip()
     u_bc = (os.environ.get("MCP_BINGCHUAN_URL") or "http://127.0.0.1:8503/mcp").strip()
     u_aux = (os.environ.get("MCP_AUX_URL") or "http://127.0.0.1:8502/mcp").strip()

@@ -19,10 +19,19 @@ export type McpSettingsResponse = {
 };
 
 type FormRow = {
+  /** Stable React list key; must not change when the user edits Server id (that would remount inputs and drop focus). */
+  rowKey: string;
   id: string;
   url: string;
   headersText: string;
 };
+
+function newRowKey(): string {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+    return crypto.randomUUID();
+  }
+  return `row_${Date.now()}_${Math.random().toString(36).slice(2, 9)}`;
+}
 
 const backendBase = (
   process.env.NEXT_PUBLIC_BACKEND_URL ?? "http://127.0.0.1:3501"
@@ -74,6 +83,7 @@ export default function UserSettingsPage() {
       setStatus(s);
       setRows(
         s.servers.map((row) => ({
+          rowKey: row.id,
           id: row.id,
           url: row.url,
           headersText:
@@ -97,6 +107,7 @@ export default function UserSettingsPage() {
     setRows((r) => [
       ...r,
       {
+        rowKey: newRowKey(),
         id: `server_${r.length + 1}`,
         url: "http://127.0.0.1:8501/mcp",
         headersText: "",
@@ -167,6 +178,7 @@ export default function UserSettingsPage() {
       setStatus(s);
       setRows(
         s.servers.map((row) => ({
+          rowKey: row.id,
           id: row.id,
           url: row.url,
           headersText:
@@ -207,6 +219,7 @@ export default function UserSettingsPage() {
       setStatus(s);
       setRows(
         s.servers.map((row) => ({
+          rowKey: row.id,
           id: row.id,
           url: row.url,
           headersText:
@@ -303,7 +316,7 @@ export default function UserSettingsPage() {
                   )}
                   {rows.map((row, i) => (
                     <div
-                      key={`${row.id}-${i}`}
+                      key={row.rowKey}
                       className="flex flex-col gap-2 rounded-xl border border-white/10 bg-[#131314] p-3 md:grid md:grid-cols-[1fr_2fr_1fr_auto]"
                     >
                       <label className="text-[10px] font-medium uppercase text-white/40 md:hidden">
