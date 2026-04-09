@@ -4,7 +4,7 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
-import type { McpSettingsResponse } from "./SettingsPanel";
+import { buildCapabilitiesHoverText, type McpSettingsResponse } from "./SettingsPanel";
 
 type ChatMessage = {
   role: "user" | "assistant";
@@ -382,11 +382,17 @@ export default function ChatShell() {
           <div className="flex shrink-0 items-center gap-2">
             {mcpStatus && !mcpStatusError && (
               <span
-                className="max-w-[11rem] truncate rounded-full border border-emerald-500/25 bg-emerald-500/10 px-2.5 py-1 text-[11px] text-emerald-200/95 md:max-w-none"
-                title={`MCP source: ${mcpStatus.source}; ${mcpStatus.total_tools} tools; ${mcpStatus.connected_servers}/${mcpStatus.configured_servers} servers connected`}
+                className="inline-flex max-w-[16rem] cursor-help items-center gap-1 truncate rounded-full border border-emerald-500/25 bg-emerald-500/10 px-2.5 py-1 text-[11px] text-emerald-200/95 md:max-w-none"
+                title={buildCapabilitiesHoverText(mcpStatus)}
               >
-                {mcpStatus.total_tools} tools · {mcpStatus.connected_servers}/
-                {mcpStatus.configured_servers} MCP
+                <span>{(mcpStatus.skills ?? []).length} skills</span>
+                <span className="text-emerald-200/40" aria-hidden>
+                  ·
+                </span>
+                <span>
+                  {mcpStatus.total_tools} tools · {mcpStatus.connected_servers}/
+                  {mcpStatus.configured_servers} MCP
+                </span>
               </span>
             )}
             {mcpStatusError && (

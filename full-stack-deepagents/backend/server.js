@@ -8,7 +8,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 dotenv.config({ path: path.resolve(__dirname, "..", "..", ".env") });
 
 const app = express();
-app.use(express.json({ limit: "1mb" }));
+app.use(express.json({ limit: "2mb" }));
 
 const PORT = Number(process.env.PORT ?? 3501);
 const AI_API_URL = (process.env.AI_API_URL ?? "http://127.0.0.1:8500").replace(/\/$/, "");
@@ -134,6 +134,91 @@ const openApiSpec = {
         },
       },
     },
+    "/settings/models": {
+      get: {
+        summary: "Chat model id and dropdown list from AI API (storage/model_settings.json)",
+        responses: {
+          "200": { description: "JSON { current_model, models }" },
+        },
+      },
+      put: {
+        summary: "Set active LangChain model id and list; rebuild agent",
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                required: ["current_model"],
+                properties: {
+                  current_model: { type: "string" },
+                  models: { type: "array", items: { type: "string" } },
+                },
+              },
+            },
+          },
+        },
+        responses: { "200": { description: "Updated model settings" } },
+      },
+    },
+    "/settings/skills": {
+      get: {
+        summary: "List skill packages (SKILL.md under ai-api/skills/)",
+        responses: { "200": { description: "Array of { id, skill_md_path }" } },
+      },
+      post: {
+        summary: "Create a skill package and rebuild the AI agent",
+        requestBody: {
+          required: true,
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                required: ["id", "content"],
+                properties: { id: { type: "string" }, content: { type: "string" } },
+              },
+            },
+          },
+        },
+        responses: { "200": { description: "Skill detail with content" } },
+      },
+    },
+    "/settings/skills/{skill_id}": {
+      get: {
+        summary: "Get one skill package including SKILL.md body",
+        parameters: [
+          { name: "skill_id", in: "path", required: true, schema: { type: "string" } },
+        ],
+        responses: { "200": { description: "{ id, skill_md_path, content }" } },
+      },
+      put: {
+        summary: "Update or rename a skill package and rebuild the AI agent",
+        parameters: [
+          { name: "skill_id", in: "path", required: true, schema: { type: "string" } },
+        ],
+        requestBody: {
+          content: {
+            "application/json": {
+              schema: {
+                type: "object",
+                properties: {
+                  content: { type: "string" },
+                  new_id: { type: "string" },
+                },
+              },
+            },
+          },
+        },
+        responses: { "200": { description: "Updated skill detail" } },
+      },
+      delete: {
+        summary: "Delete a skill package and rebuild the AI agent",
+        parameters: [
+          { name: "skill_id", in: "path", required: true, schema: { type: "string" } },
+        ],
+        responses: { "200": { description: "{ ok: true }" } },
+      },
+    },
   },
 };
 
@@ -170,16 +255,22 @@ function preview(text, maxLen = 80) {
   return t.length <= maxLen ? t : `${t.slice(0, maxLen)}…`;
 }
 
-app.get("/settings/mcp", async (_req, res) => {
-  const url = `${AI_API_URL}/settings/mcp`;
-  console.log(`[proxy] GET /settings/mcp -> ${url}`);
+/** Forward JSON to the FastAPI AI service (used for settings and skills; auth hooks go here later). */
+async function proxyJsonToAi(req, res, method, upstreamPath, bodyObj) {
+  const url = `${AI_API_URL}${upstreamPath}`;
+  console.log(`[proxy] ${method} ${req.path} -> ${url}`);
   const t0 = Date.now();
   try {
-    const r = await fetch(url, { method: "GET" });
+    const init = { method };
+    if (bodyObj !== undefined) {
+      init.headers = { "Content-Type": "application/json" };
+      init.body = JSON.stringify(bodyObj);
+    }
+    const r = await fetch(url, init);
     const text = await r.text();
     const ms = Date.now() - t0;
     console.log(
-      `[proxy] upstream GET /settings/mcp status=${r.status} body_bytes=${text.length} elapsed_ms=${ms}`
+      `[proxy] upstream ${method} ${upstreamPath} status=${r.status} body_bytes=${text.length} elapsed_ms=${ms}`
     );
     res.status(r.status);
     try {
@@ -190,7 +281,7 @@ app.get("/settings/mcp", async (_req, res) => {
   } catch (err) {
     const msg = err instanceof Error ? err.message : String(err);
     console.error(
-      `[proxy] GET /settings/mcp FAILED after ${Date.now() - t0}ms — cannot reach AI API:`,
+      `[proxy] ${method} ${upstreamPath} FAILED after ${Date.now() - t0}ms — cannot reach AI API:`,
       url,
       msg
     );
@@ -198,41 +289,45 @@ app.get("/settings/mcp", async (_req, res) => {
       detail: `Proxy could not reach AI API (${AI_API_URL}): ${msg}`,
     });
   }
+}
+
+app.get("/settings/mcp", async (req, res) => {
+  await proxyJsonToAi(req, res, "GET", "/settings/mcp", undefined);
 });
 
 app.put("/settings/mcp", async (req, res) => {
-  const url = `${AI_API_URL}/settings/mcp`;
-  const body = req.body ?? {};
-  console.log(`[proxy] PUT /settings/mcp -> ${url}`);
-  const t0 = Date.now();
-  try {
-    const r = await fetch(url, {
-      method: "PUT",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(body),
-    });
-    const text = await r.text();
-    const ms = Date.now() - t0;
-    console.log(
-      `[proxy] upstream PUT /settings/mcp status=${r.status} body_bytes=${text.length} elapsed_ms=${ms}`
-    );
-    res.status(r.status);
-    try {
-      res.json(JSON.parse(text));
-    } catch {
-      res.type("text/plain").send(text);
-    }
-  } catch (err) {
-    const msg = err instanceof Error ? err.message : String(err);
-    console.error(
-      `[proxy] PUT /settings/mcp FAILED after ${Date.now() - t0}ms — cannot reach AI API:`,
-      url,
-      msg
-    );
-    res.status(502).json({
-      detail: `Proxy could not reach AI API (${AI_API_URL}): ${msg}`,
-    });
-  }
+  await proxyJsonToAi(req, res, "PUT", "/settings/mcp", req.body ?? {});
+});
+
+app.get("/settings/models", async (req, res) => {
+  await proxyJsonToAi(req, res, "GET", "/settings/models", undefined);
+});
+
+app.put("/settings/models", async (req, res) => {
+  await proxyJsonToAi(req, res, "PUT", "/settings/models", req.body ?? {});
+});
+
+app.get("/settings/skills", async (req, res) => {
+  await proxyJsonToAi(req, res, "GET", "/settings/skills", undefined);
+});
+
+app.post("/settings/skills", async (req, res) => {
+  await proxyJsonToAi(req, res, "POST", "/settings/skills", req.body ?? {});
+});
+
+app.get("/settings/skills/:skillId", async (req, res) => {
+  const id = encodeURIComponent(req.params.skillId ?? "");
+  await proxyJsonToAi(req, res, "GET", `/settings/skills/${id}`, undefined);
+});
+
+app.put("/settings/skills/:skillId", async (req, res) => {
+  const id = encodeURIComponent(req.params.skillId ?? "");
+  await proxyJsonToAi(req, res, "PUT", `/settings/skills/${id}`, req.body ?? {});
+});
+
+app.delete("/settings/skills/:skillId", async (req, res) => {
+  const id = encodeURIComponent(req.params.skillId ?? "");
+  await proxyJsonToAi(req, res, "DELETE", `/settings/skills/${id}`, undefined);
 });
 
 app.get("/sessions", async (req, res) => {

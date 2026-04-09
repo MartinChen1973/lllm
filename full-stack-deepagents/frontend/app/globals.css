@@ -1,4 +1,5 @@
-@import "tailwindcss";
+/* ⬇️ Package import resolves from `full-stack-deepagents/` under repo root; use a path relative to this file so `frontend/node_modules` is used. */
+@import "../node_modules/tailwindcss/index.css";
 
 :root {
   --background: #ffffff;

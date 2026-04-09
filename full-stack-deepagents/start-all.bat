@@ -108,59 +108,23 @@ powershell -NoProfile -ExecutionPolicy Bypass -File "%ROOT%\scripts\arrange-cons
 
 REM ## ⬇️ AI API blocks accept until lifespan finishes (MCP retries, model, SQLite); open browser only after /openapi.json responds
 
-echo Waiting for AI API (8500) before opening docs tabs...
+echo Waiting for AI API (8500) before opening docs tabs (can take up to ~120s while MCP/model/SQLite initialize^)...
+
+echo Do not close this window until you see the browser message below, or tabs will never open.
 
 powershell -NoProfile -ExecutionPolicy Bypass -File "%ROOT%\scripts\wait-http-ready.ps1" -Url "http://127.0.0.1:8500/openapi.json" -Label "AI API (8500)" -MaxWaitSec 120
 
-if errorlevel 1 echo WARNING: AI API ^(8500^) did not respond in time; refresh /docs when its console finishes startup.
+if errorlevel 1 echo WARNING: AI API ^(8500^) did not respond in time; opening tabs anyway - refresh /docs when its console finishes startup.
 
 
 
-set "BROWSER_EXE="
+REM ## ⬇️ Use PowerShell Start-Process (registry + standard paths) — cmd "start" + msedge + multiple URLs is easy to mis-parse.
 
-if defined DEEPAGENTS_BROWSER set "BROWSER_EXE=%DEEPAGENTS_BROWSER%"
+echo Opening documentation tabs...
 
-if not defined BROWSER_EXE if exist "%ProgramFiles%\Microsoft\Edge\Application\msedge.exe" set "BROWSER_EXE=%ProgramFiles%\Microsoft\Edge\Application\msedge.exe"
+powershell -NoProfile -ExecutionPolicy Bypass -File "%ROOT%\scripts\open-local-docs.ps1" "http://127.0.0.1:8500/docs" "http://127.0.0.1:8501/docs" "http://127.0.0.1:8502/docs" "http://127.0.0.1:8503/docs" "http://127.0.0.1:3501/docs" "http://127.0.0.1:3500/"
 
-if not defined BROWSER_EXE if exist "%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe" set "BROWSER_EXE=%ProgramFiles(x86)%\Microsoft\Edge\Application\msedge.exe"
-
-if not defined BROWSER_EXE if exist "%ProgramFiles%\Google\Chrome\Application\chrome.exe" set "BROWSER_EXE=%ProgramFiles%\Google\Chrome\Application\chrome.exe"
-
-if not defined BROWSER_EXE if exist "%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe" set "BROWSER_EXE=%LOCALAPPDATA%\Google\Chrome\Application\chrome.exe"
-
-
-
-if defined BROWSER_EXE (
-
-  start "" "%BROWSER_EXE%" --new-window "http://127.0.0.1:8500/docs" "http://127.0.0.1:8501/docs" "http://127.0.0.1:8502/docs" "http://127.0.0.1:8503/docs" "http://127.0.0.1:3501/docs" "http://127.0.0.1:3500/"
-
-) else (
-
-  echo WARNING: Edge/Chrome not found in usual paths; opening with default handler ^(may reuse an existing window^).
-
-  start "" "http://127.0.0.1:8500/docs"
-
-  timeout /t 2 /nobreak >nul
-
-  start "" "http://127.0.0.1:8501/docs"
-
-  timeout /t 2 /nobreak >nul
-
-  start "" "http://127.0.0.1:8502/docs"
-
-  timeout /t 2 /nobreak >nul
-
-  start "" "http://127.0.0.1:8503/docs"
-
-  timeout /t 2 /nobreak >nul
-
-  start "" "http://127.0.0.1:3501/docs"
-
-  timeout /t 2 /nobreak >nul
-
-  start "" "http://127.0.0.1:3500/"
-
-)
+if errorlevel 1 echo WARNING: open-local-docs.ps1 could not launch a browser; open the URLs above manually.
 
 
 

@@ -6,7 +6,7 @@ const nextConfig: NextConfig = {
   allowedDevOrigins: ["127.0.0.1"],
   /* ⬇️ Monorepo: parent `lllm/package-lock.json` otherwise wins and triggers Turbopack root warning */
   turbopack: {
-    root: path.join(__dirname),
+    root: path.resolve(__dirname),
   },
 };
 

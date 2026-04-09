@@ -1,0 +1,65 @@
+operations:
+- datetime: '2026-04-09T16:15:14.116185'
+  entity_name: "\u8003\u8BD5\u8BB0\u5F55"
+  template_selected: CIDED
+  actions_found:
+  - createExamRecord
+  - readExamRecord
+  - updateExamRecord
+  - deleteExamRecord
+  actions_count: 4
+- datetime: '2026-04-09T16:36:49.077170'
+  entity_name: "\u9001\u8D27\u8BA2\u5355"
+  template_selected: CIDED
+  actions_found:
+  - createDeliveryOrder
+  - readDeliveryOrder
+  - updateDeliveryOrder
+  - deleteDeliveryOrder
+  actions_count: 4
+- datetime: '2026-04-09T16:44:19.308228'
+  entity_name: "\u4EA7\u54C1\u8BA2\u5355"
+  template_selected: CIDED
+  actions_found:
+  - createOrder
+  - readOrder
+  - updateOrder
+  - deleteOrder
+  actions_count: 4
+- datetime: '2026-04-09T16:52:29.892802'
+  entity_name: "\u8003\u8BD5\u8BD5\u5377"
+  template_selected: CIDED
+  actions_found:
+  - createExamPaper
+  - readExamPaper
+  - updateExamPaper
+  - deleteExamPaper
+  actions_count: 4
+- datetime: '2026-04-09T16:55:50.002345'
+  entity_name: "\u8003\u8BD5\u8BD5\u5377"
+  template_selected: CIDED
+  actions_found:
+  - createExamPaper
+  - readExamPaper
+  - updateExamPaper
+  - deleteExamPaper
+  actions_count: 4
+- datetime: '2026-04-09T17:01:58.599508'
+  entity_name: "\u8003\u8BD5\u8BB0\u5F55"
+  template_selected: CID
+  actions_found:
+  - createExamRecord
+  - readExamRecord
+  - updateExamRecord
+  - deleteExamRecord
+  actions_count: 4
+- datetime: '2026-04-09T17:06:40.728604'
+  entity_name: "\u8BF7\u5047\u7533\u8BF7"
+  template_selected: CIDED
+  actions_found:
+  - createLeaveRequest
+  - listLeaveRequests
+  - getLeaveRequestDetails
+  - editLeaveRequest
+  - deleteLeaveRequest
+  actions_count: 5
