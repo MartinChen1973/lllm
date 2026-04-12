@@ -89,13 +89,13 @@ for i, tool in enumerate(unique_tools, 1):
     if tool_desc:
         print(f"   {tool_desc[:100]}...")
 
-# print("=" * 60 + "\n")
+print("=" * 60 + "\n")
 
-# result = agent.invoke({
-#     "messages": [{"role": "user", "content": "What is deepagents?"}]
-# })
+result = agent.invoke({
+    "messages": [{"role": "user", "content": "What is deepagents?"}]
+})
 
-# print("Agent Response:")
-# print("-" * 60)
-# print(result["messages"][-1].content)
-# print("-" * 60)
+print("Agent Response:")
+print("-" * 60)
+print(result["messages"][-1].content)
+print("-" * 60)

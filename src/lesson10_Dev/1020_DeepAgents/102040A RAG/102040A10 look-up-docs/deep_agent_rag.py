@@ -81,7 +81,7 @@ agent = create_deep_agent(
     or any topic covered by the loaded documents.
     Use filesystem tools to save/organize findings (e.g., write reports to /reports/).
     Plan complex queries with `write_todos`. Delegate with `task` subagent if needed.
-    如果用户的问题不在context中，请回答“我不知道”。
+    如果用户的问题不在context中，请回答“我不知道”。 ## ⬅️ 如果用户的问题不在context中，请回答“我不知道”。
     """,
     checkpointer=checkpointer,
 )

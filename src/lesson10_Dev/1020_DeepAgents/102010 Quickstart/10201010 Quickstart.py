@@ -40,7 +40,7 @@ agent = create_deep_agent(
     system_prompt=research_instructions
 )
 
-result = agent.invoke({"messages": [{"role": "user", "content": "What is langgraph?"}]})
+result = agent.invoke({"messages": [{"role": "user", "content": "What is deepagents?"}]})
 
 # Print the agent's response
 print(result["messages"][-1].content)

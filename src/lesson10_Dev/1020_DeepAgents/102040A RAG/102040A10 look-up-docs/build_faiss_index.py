@@ -24,7 +24,7 @@ FAISS_INDEX_PATH = _SCRIPT_DIR / "faiss" / "faiss_index"
 ## ⬇️ Load documents from docs (markdown files)
 loader = DirectoryLoader(
     str(DOCS_PATH),
-    glob="**/*.md",
+    glob="**/*.[mp][d]",  # 支持加载 .md 和 .pdf 文件
     loader_cls=TextLoader,
     loader_kwargs={"encoding": "utf-8"},
     show_progress=True,

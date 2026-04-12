@@ -290,6 +290,10 @@ interrupt_on = {
 }
 ```
 
+## Tavily (internet) search with approval
+
+Web search touches an external API and the public internet. A common pattern is to wrap [Tavily](https://tavily.com/) as a tool named `internet_search` and register it in `interrupt_on` with `{"allowed_decisions": ["approve", "reject"]}` so the operator must accept or reject each proposed search before it runs. The runnable lesson script [10206020 Tavily internet search human-in-the-loop.py](./10206020%20Tavily%20internet%20search%20human-in-the-loop.py) follows the same structure as the basic configuration example: a checkpointer, `create_deep_agent(..., interrupt_on=...)`, and a resume loop using `Command(resume={"decisions": ...})` with decisions collected via `get_user_decisions` (or your own UI). Set `TAVILY_API_KEY` in the environment or `.env` file before executing the script.
+
 ---
 
 <Callout icon="pen-to-square" iconType="regular">

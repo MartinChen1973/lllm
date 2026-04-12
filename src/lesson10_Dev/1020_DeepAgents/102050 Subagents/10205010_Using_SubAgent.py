@@ -61,8 +61,8 @@ agent = create_deep_agent(
 # result = agent.invoke({"messages": [{"role": "user", "content": "What is the weather in Beijing?"}]})
 result = agent.invoke({
     "messages": [
-        {"role": "user", "content": "Hey, what's up in the world of AI for March 2026? Any interesting news?"},
-        # {"role": "user", "content": "What is the weather in Beijing today?"}
+        # {"role": "user", "content": "Hey, what's up in the world of AI for March 2026? Any interesting news?"},
+        {"role": "user", "content": "What is the weather in Beijing today?"}
     ]
 })
 

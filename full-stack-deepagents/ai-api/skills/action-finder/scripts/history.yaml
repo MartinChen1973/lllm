@@ -63,3 +63,13 @@ operations:
   - editLeaveRequest
   - deleteLeaveRequest
   actions_count: 5
+- datetime: '2026-04-09T21:38:27.707813'
+  entity_name: ExamRecord
+  template_selected: CIDED
+  actions_found:
+  - createExamRecord
+  - listExamRecords
+  - getExamRecord
+  - editExamRecord
+  - deleteExamRecord
+  actions_count: 5
