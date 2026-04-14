@@ -1,40 +1,12 @@
 {
   "groups": [
     {
-      "category": "合同编号",
-      "canonical_name": "BF-NET-2026-Q2-0088",
-      "surface_forms": [
-        "BF-NET-2026-Q2-0088"
-      ]
-    },
-    {
-      "category": "通信地址",
-      "canonical_name": "广州市白云区",
-      "surface_forms": [
-        "广州市白云区"
-      ]
-    },
-    {
       "category": "公司名称",
       "canonical_name": "中国北方航空股份有限公司",
       "surface_forms": [
         "中国北方航空股份有限公司",
         "北方航空",
         "北航"
-      ]
-    },
-    {
-      "category": "组织代码",
-      "canonical_name": "914400001000008888",
-      "surface_forms": [
-        "914400001000008888"
-      ]
-    },
-    {
-      "category": "联系人",
-      "canonical_name": "李晓明",
-      "surface_forms": [
-        "李晓明"
       ]
     },
     {
@@ -47,28 +19,34 @@
     },
     {
       "category": "组织代码",
+      "canonical_name": "914400001000008888",
+      "surface_forms": [
+        "914400001000008888"
+      ]
+    },
+    {
+      "category": "组织代码",
       "canonical_name": "911100008888888888",
       "surface_forms": [
         "911100008888888888"
       ]
     },
     {
-      "category": "法定代表人",
+      "category": "人名",
       "canonical_name": "王建国",
       "surface_forms": [
         "王建国"
       ]
     },
     {
-      "category": "公司名称",
-      "canonical_name": "中国东南航空股份有限公司",
+      "category": "人名",
+      "canonical_name": "李晓明",
       "surface_forms": [
-        "东南航",
-        "中国东南航空股份有限公司"
+        "李晓明"
       ]
     },
     {
-      "category": "日期",
+      "category": "日期与时间",
       "canonical_name": "2026 年 6 月 30 日",
       "surface_forms": [
         "2026 年 6 月 30 日"
@@ -78,21 +56,8 @@
       "category": "金额（大写）",
       "canonical_name": "壹仟贰佰捌拾万元整",
       "surface_forms": [
-        "壹仟贰佰捌拾万元整"
-      ]
-    },
-    {
-      "category": "金额（小写）",
-      "canonical_name": "¥12,800,000.00",
-      "surface_forms": [
+        "壹仟贰佰捌拾万元整",
         "¥12,800,000.00"
-      ]
-    },
-    {
-      "category": "日期",
-      "canonical_name": "2026 年 4 月 10 日",
-      "surface_forms": [
-        "2026 年 4 月 10 日"
       ]
     }
   ],
